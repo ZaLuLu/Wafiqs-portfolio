@@ -62,7 +62,7 @@ export const IDENTITY = {
   /**
    * Short punchy tagline — shown in the white box below your role.
    */
-  tagline: 'building things that break things — then fixing them better.',
+  tagline: '3 projects deployed · React · Python · FastAPI · open to 2026 internships',
 
   /**
    * Quote shown on the yellow card in the CharacterCard portrait area.
@@ -219,7 +219,7 @@ export const ABOUT = {
 export const SKILL_CATEGORIES = {
   technical: {
     name: 'TECHNICAL',
-    color: 'var(--accent-color)',
+    color: '#F4FF1E',   /* neon yellow */
     skills: [
       { label: 'React & Frontend',    percentage: 85 },
       { label: 'JavaScript / ES6+',   percentage: 80 },
@@ -231,7 +231,7 @@ export const SKILL_CATEGORIES = {
   },
   soft: {
     name: 'SOFT SKILLS',
-    color: 'var(--secondary-color)',
+    color: '#FF1EC7',   /* hot pink */
     skills: [
       { label: 'Problem Solving', percentage: 90 },
       { label: 'Communication',   percentage: 80 },
@@ -241,7 +241,7 @@ export const SKILL_CATEGORIES = {
   },
   other: {
     name: 'OTHER SKILLS',
-    color: 'var(--accent-color)',
+    color: '#00E5FF',   /* cyan */
     skills: [
       { label: 'Git / GitHub',      percentage: 85 },
       { label: 'Linux / CLI',       percentage: 70 },
@@ -274,29 +274,29 @@ export const PROJECTS = [
   {
     id:    1,
     title: 'RETAILMIND',
-    type:  'WEB APP',
+    type:  'WEB APP · LIVE',
     tech:  'REACT, FASTAPI, POSTGRESQL, GEMINI AI',
     year:  '2026',
     url:   'https://retailmind-zalulus-projects.vercel.app/',
-    desc:  'AI-powered retail business intelligence platform for SMB owners. Transforms raw sales CSV data into actionable insights — demand spikes, dead stock alerts, margin erosion detection, and Gemini AI-generated FT-style headlines.',
+    desc:  'SMB owners waste hours manually analysing sales data. RetailMind ingests raw CSV exports and surfaces demand spikes, dead stock, and margin erosion in seconds — with a Gemini AI headline summarising the most critical insight. Full JWT auth, async SQLAlchemy, Sentry monitoring.',
   },
   {
     id:    2,
     title: 'DOCUMIND',
     type:  'WEB APP',
-    tech:  'REACT, FASTAPI, POSTGRESQL, GEMINI AI',
+    tech:  'REACT, FASTAPI, POSTGRESQL, GEMINI AI, OCR',
     year:  '2026',
     url:   'https://github.com/ZaLuLu',
-    desc:  'Personal finance intelligence platform. Uses Gemini OCR to extract vendor, amount, date, and category from uploaded receipts. Features JWT auth, anomaly detection, budget tracking, and an AI financial advisor.',
+    desc:  'Manual expense tracking is tedious and error-prone. DocuMind uses Gemini OCR to extract vendor, amount, date, and category from uploaded receipts automatically. Includes anomaly detection (2× historical average), monthly budget tracking, and a context-aware AI financial advisor.',
   },
   {
     id:    3,
     title: 'ZALULU PORTFOLIO',
-    type:  'WEB APP',
+    type:  'WEB APP · LIVE',
     tech:  'REACT, TAILWINDCSS, VITE',
     year:  '2026',
-    url:   'https://github.com/ZaLuLu',
-    desc:  'This portfolio — a neo-brutalist, game-themed developer portfolio with custom cursor, sound effects, animated skill bars, loading overlays, and a vault-style project archive.',
+    url:   'https://wafiqnawaz.vercel.app',
+    desc:  'Built this portfolio as a design challenge — neo-brutalist game aesthetic with custom cursor, Web Audio API sound effects, animated ASCII skill bars, and a vault-style project archive. Single data-file architecture means all content updates in one place.',
   },
   {
     id:    4,
@@ -305,6 +305,6 @@ export const PROJECTS = [
     tech:  'TBD',
     year:  '2026',
     url:   'https://github.com/ZaLuLu',
-    desc:  'Currently building new projects in web development and cybersecurity. Check back soon or visit the GitHub profile for the latest work.',
+    desc:  'Currently building new projects in web development and cybersecurity. Follow on GitHub for updates — next up: a security-focused tool and an ML-integrated web app.',
   },
 ];
