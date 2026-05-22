@@ -121,22 +121,25 @@ export default function HeroSection() {
           <div style={{ position: 'relative' }} ref={nameRef}>
             {/* Ghost text */}
             <div aria-hidden="true" style={{
-              position: 'absolute', top: '-0.15em', right: '-0.05em',
+              position: 'absolute', top: '-0.1em', right: '-0.05em',
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(80px, 18vw, 220px)',
+              fontWeight: 800,
+              fontSize: 'clamp(80px, 16vw, 200px)',
               color: 'transparent',
-              WebkitTextStroke: '1px rgba(255,92,26,0.07)',
+              WebkitTextStroke: '1px rgba(232,160,32,0.07)',
               lineHeight: 1, userSelect: 'none', pointerEvents: 'none',
               zIndex: 0,
+              letterSpacing: '-0.03em',
             }}>DEV</div>
 
             {/* Name */}
             <div style={{ position: 'relative', zIndex: 1, marginBottom: '1.25rem' }}>
               <h1 style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(52px, 10vw, 120px)',
-                lineHeight: 0.92,
-                letterSpacing: '0.02em',
+                fontWeight: 800,
+                fontSize: 'clamp(48px, 9vw, 110px)',
+                lineHeight: 0.95,
+                letterSpacing: '-0.03em',
                 color: 'var(--color-cream)',
                 margin: 0,
               }}>

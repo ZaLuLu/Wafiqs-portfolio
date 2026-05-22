@@ -219,7 +219,7 @@ export const ABOUT = {
 export const SKILL_CATEGORIES = {
   technical: {
     name: 'TECHNICAL',
-    color: '#F4FF1E',   /* neon yellow */
+    color: '#E8A020',   /* amber */
     skills: [
       { label: 'React & Frontend',    percentage: 85 },
       { label: 'JavaScript / ES6+',   percentage: 80 },
@@ -231,7 +231,7 @@ export const SKILL_CATEGORIES = {
   },
   soft: {
     name: 'SOFT SKILLS',
-    color: '#FF1EC7',   /* hot pink */
+    color: '#F5EDD8',   /* cream */
     skills: [
       { label: 'Problem Solving', percentage: 90 },
       { label: 'Communication',   percentage: 80 },
@@ -241,7 +241,7 @@ export const SKILL_CATEGORIES = {
   },
   other: {
     name: 'OTHER SKILLS',
-    color: '#00E5FF',   /* cyan */
+    color: '#6BAF8A',   /* sage green */
     skills: [
       { label: 'Git / GitHub',      percentage: 85 },
       { label: 'Linux / CLI',       percentage: 70 },

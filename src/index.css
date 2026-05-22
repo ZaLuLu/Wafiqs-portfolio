@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 /* ============================================================
-   DESIGN TOKENS — Techwear Editorial "Carbon & Fire"
+   DESIGN TOKENS — Han Nguyen "Forest & Amber" (Image 3)
    ============================================================ */
 :root {
-  --color-bg:          #0C0C0C;
-  --color-surface:     #141414;
-  --color-surface-2:   #1E1E1E;
-  --color-cream:       #F0EBE1;
-  --color-accent:      #FF5C1A;
-  --color-accent-dim:  rgba(255, 92, 26, 0.12);
-  --color-muted:       #5A5A5A;
-  --color-line:        #2A2A2A;
+  --color-bg:          #0F2318;   /* deep forest green */
+  --color-surface:     #1B3A2D;   /* lifted surface */
+  --color-surface-2:   #2A4A38;   /* elevated card / hover */
+  --color-cream:       #F5EDD8;   /* warm off-white text */
+  --color-accent:      #E8A020;   /* amber / warm gold */
+  --color-accent-dim:  rgba(232, 160, 32, 0.12);
+  --color-muted:       #6B8C78;   /* muted sage */
+  --color-line:        #2E5040;   /* subtle separator */
 
-  --font-display: 'Bebas Neue', sans-serif;
+  --font-display: 'Syne', sans-serif;       /* bold wide headers */
   --font-heading:  'Syne', sans-serif;
   --font-body:     'DM Sans', sans-serif;
   --font-mono:     'JetBrains Mono', monospace;
@@ -78,12 +78,13 @@ body {
 .font-mono     { font-family: var(--font-mono); }
 .font-serif    { font-family: var(--font-serif); }
 
-/* Section title — massive Bebas */
+/* Section title — massive Syne bold */
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 10vw, 8rem);
+  font-size: clamp(3rem, 9vw, 7rem);
+  font-weight: 800;
   color: var(--color-cream);
-  letter-spacing: 0.02em;
+  letter-spacing: -0.02em;
   line-height: 1;
 }
 
