@@ -1,49 +1,37 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 
-/**
- * VaultCard — a project entry in the "Project Archive" section.
- *
- * Click to expand a "Bento Dossier" with tech stack, execution log,
- * and a link button. Hovering shows a cursor-trailing preview tooltip.
- */
 const VaultCard = ({ project, isActive, onClick }) => {
-  const [isHovered,   setIsHovered]   = useState(false);
-  const [mousePos,    setMousePos]    = useState({ x: 0, y: 0 });
-  // Use a ref to throttle mousemove updates to once per animation frame
+  const [isHovered, setIsHovered] = useState(false);
+  const [mousePos, setMousePos]   = useState({ x: 0, y: 0 });
   const rafRef = useRef(null);
 
-  // ── Throttled mouse tracking — avoids a re-render on every pixel ──────────
   const handleMouseMove = useCallback((e) => {
-    if (rafRef.current) return; // already scheduled, skip
+    if (rafRef.current) return;
     rafRef.current = requestAnimationFrame(() => {
       setMousePos({ x: e.clientX, y: e.clientY });
       rafRef.current = null;
     });
   }, []);
 
-  // Cancel any pending RAF on unmount
-  useEffect(() => {
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, []);
+  useEffect(() => () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); }, []);
+
+  const isLive = project.url && !project.url.includes('github.com');
 
   return (
     <>
       <div
-        className={`
-          w-full transition-all duration-300 cursor-pointer outline-none relative
-          bg-white border-4 border-black flex flex-col
-          ${isActive
-            ? 'shadow-[12px_12px_0px_#000] -translate-y-2 z-20 bg-neon-yellow'
-            : 'shadow-[4px_4px_0px_#000] hover:shadow-[8px_8px_0px_#000] hover:-translate-y-1 z-10'
-          }
-        `}
+        className="w-full transition-all duration-300 cursor-pointer outline-none relative flex flex-col"
+        style={{
+          backgroundColor: isActive ? '#1a1a1a' : '#161616',
+          border: `3px solid ${isActive ? '#F4FF1E' : '#333'}`,
+          boxShadow: isActive ? '10px 10px 0px #F4FF1E' : '4px 4px 0px #222',
+          transform: isActive ? 'translateY(-4px)' : isHovered ? 'translateY(-2px)' : 'none',
+        }}
         onClick={onClick}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onMouseMove={handleMouseMove}
-        onKeyDown={(e) => { if (e.key === 'Enter') onClick(); }}
+        onKeyDown={e => { if (e.key === 'Enter') onClick(); }}
         tabIndex={0}
         role="button"
         aria-expanded={isActive}
@@ -51,149 +39,161 @@ const VaultCard = ({ project, isActive, onClick }) => {
       >
         {/* Tape decoration */}
         <div
-          className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6 border-2 border-black/20 rotate-2 z-30 pointer-events-none"
-          style={{ backgroundColor: 'rgba(255,255,255,0.5)', backdropFilter: 'blur(2px)' }}
+          className="absolute -top-2 left-1/2 -translate-x-1/2 w-14 h-5 rotate-2 z-30 pointer-events-none"
+          style={{ backgroundColor: 'rgba(240,237,228,0.15)', border: '1px solid #333' }}
+          aria-hidden="true"
         />
 
-        {/* ── Main Card Content (always visible) ── */}
-        <div className="relative w-full p-6 flex flex-col min-h-[240px]">
-          {/* Header */}
-          <div className="flex justify-between items-start mb-4 border-b-4 border-black pb-2">
+        {/* Main content */}
+        <div className="relative w-full p-5 flex flex-col min-h-[220px]">
+
+          {/* Header row */}
+          <div className="flex justify-between items-start mb-3 pb-2" style={{ borderBottom: '1px solid #333' }}>
             <div className="flex items-center gap-2">
-              <div className="font-mono text-[12px] font-bold text-white bg-black px-2 py-1 uppercase">
+              <span
+                className="font-mono text-[11px] font-bold px-2 py-1 uppercase"
+                style={{ backgroundColor: '#F0EDE4', color: '#000' }}
+              >
                 {project.type}
-              </div>
-              {/* LIVE badge — shown when URL is a deployed site (not just github.com) */}
-              {project.url && !project.url.includes('github.com') && (
-                <div className="font-mono text-[10px] font-bold text-black bg-neon-yellow border-2 border-black px-2 py-1 uppercase animate-pulse">
+              </span>
+              {isLive && (
+                <span
+                  className="font-mono text-[9px] font-bold px-2 py-1 uppercase animate-pulse"
+                  style={{ backgroundColor: '#F4FF1E', color: '#000', border: '1px solid #000' }}
+                >
                   ● LIVE
-                </div>
+                </span>
               )}
             </div>
-            <div className="font-mono text-[14px] text-black font-bold">
+            <span className="font-mono text-[12px] font-bold" style={{ color: '#555' }}>
               [{project.year}]
-            </div>
+            </span>
           </div>
 
           {/* Title */}
-          <h3 className="font-display text-[24px] font-bold text-black leading-tight mb-2 uppercase">
+          <h3 className="font-display text-[22px] sm:text-[24px] font-bold leading-tight mb-2 uppercase" style={{ color: '#F0EDE4' }}>
             {project.title}
           </h3>
 
-          {/* Tech Stack */}
-          <div className="font-mono text-[12px] font-bold text-black mb-4">
+          {/* Tech */}
+          <div className="font-mono text-[11px] font-bold mb-3" style={{ color: '#F4FF1E' }}>
             ► {project.tech}
           </div>
 
           {/* Description */}
-          <p className="font-mono text-[14px] text-black font-medium leading-[1.6] mt-auto">
+          <p className="font-mono text-[12px] sm:text-[13px] leading-[1.65] mt-auto" style={{ color: '#888' }}>
             {project.desc}
           </p>
 
-          {/* Decorative barcode (hidden when expanded) */}
+          {/* Barcode decoration */}
           {!isActive && (
-            <div className="absolute bottom-4 right-4 flex gap-1 h-4 opacity-30" aria-hidden="true">
-              <div className="w-1 bg-black" />
-              <div className="w-2 bg-black" />
-              <div className="w-1 bg-black" />
-              <div className="w-[2px] bg-black" />
-              <div className="w-2 bg-black" />
+            <div className="absolute bottom-4 right-4 flex gap-[2px] h-4 opacity-20" aria-hidden="true">
+              {[1,2,1,3,1,2,1].map((w, i) => (
+                <div key={i} style={{ width: `${w * 2}px`, backgroundColor: '#F0EDE4' }} />
+              ))}
             </div>
           )}
         </div>
 
-        {/* ── Bento Dossier — expanded view ── */}
+        {/* Expanded dossier */}
         {isActive && (
-          <div className="w-full bg-[#f1e4c0] border-t-4 border-black relative overflow-hidden animate-unroll origin-top pb-6">
-            {/* Folder Tab */}
-            <div className="absolute top-0 right-0 w-24 h-6 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center uppercase tracking-tighter">
+          <div
+            className="w-full relative overflow-hidden animate-unroll origin-top pb-5"
+            style={{ borderTop: '2px solid #F4FF1E', backgroundColor: '#0f0f0f' }}
+          >
+            {/* File tab */}
+            <div
+              className="absolute top-0 right-0 font-mono text-[9px] font-bold px-3 py-1 uppercase"
+              style={{ backgroundColor: '#F4FF1E', color: '#000' }}
+            >
               FILE_NO: {project.id ?? '00'}
             </div>
 
-            <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Project ID block */}
-              <div className="col-span-1 sm:col-span-2 bg-white border-4 border-black p-3 shadow-[4px_4px_0px_#000] relative overflow-hidden">
-                <div className="absolute -right-4 -top-4 w-12 h-12 bg-neon-pink rotate-45 border-b-4 border-l-4 border-black" aria-hidden="true" />
-                <div className="font-mono text-[10px] text-gray-500 uppercase mb-1 font-bold">Project Identification</div>
-                <div className="font-display text-[22px] text-black font-bold uppercase tracking-tight">
-                  {project.title}
-                </div>
-              </div>
+            <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
 
-              {/* Tech Stack block */}
-              <div className="bg-neon-blue border-4 border-black p-3 shadow-[4px_4px_0px_#000] transform -rotate-1 hover:rotate-0 transition-transform">
-                <div className="font-mono text-[10px] text-black/60 uppercase mb-2 font-bold flex justify-between">
-                  <span>Tech_Stack</span>
-                  <span>[V.2]</span>
+              {/* Tech stack */}
+              <div
+                className="p-3 transform -rotate-1 hover:rotate-0 transition-transform"
+                style={{ backgroundColor: '#161616', border: '2px solid #F4FF1E' }}
+              >
+                <div className="font-mono text-[9px] uppercase mb-2 font-bold flex justify-between" style={{ color: '#F4FF1E' }}>
+                  <span>TECH_STACK</span><span>[V.2]</span>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.split(',').map((t) => (
-                    <span key={t.trim()} className="bg-white border-2 border-black px-2 py-1 text-[11px] font-mono font-bold uppercase">
+                <div className="flex flex-wrap gap-1">
+                  {project.tech.split(',').map(t => (
+                    <span
+                      key={t.trim()}
+                      className="font-mono text-[10px] font-bold px-2 py-1 uppercase"
+                      style={{ backgroundColor: '#0a0a0a', color: '#F0EDE4', border: '1px solid #333' }}
+                    >
                       {t.trim()}
                     </span>
                   ))}
                 </div>
               </div>
 
-              {/* Execution Log block */}
-              <div className="bg-black border-4 border-black p-3 shadow-[4px_4px_0px_var(--color-neon-pink)] transform rotate-1 hover:rotate-0 transition-transform">
-                <div className="font-mono text-[10px] text-neon-pink uppercase mb-2 font-bold">Execution_Log</div>
-                <div className="font-mono text-[11px] text-[#0f0] space-y-1 overflow-hidden h-[60px]" aria-live="polite">
+              {/* Execution log */}
+              <div
+                className="p-3 transform rotate-1 hover:rotate-0 transition-transform"
+                style={{ backgroundColor: '#0a0a0a', border: '2px solid #FF1EC7' }}
+              >
+                <div className="font-mono text-[9px] uppercase mb-2 font-bold" style={{ color: '#FF1EC7' }}>
+                  EXECUTION_LOG
+                </div>
+                <div className="font-mono text-[11px] space-y-1 overflow-hidden h-[56px]" style={{ color: '#00E5FF' }} aria-live="polite">
                   <div className="animate-typewriter-1">&gt; Initializing...</div>
                   <div className="animate-typewriter-2">&gt; Accessing Repo...</div>
-                  <div className="animate-typewriter-3">&gt; Build Success: 100%</div>
+                  <div className="animate-typewriter-3">&gt; Build: 100%</div>
                   <div className="animate-pulse">&gt; Ready_</div>
                 </div>
               </div>
 
-              {/* Action button */}
-              <div className="col-span-1 sm:col-span-2 mt-2">
+              {/* CTA button */}
+              <div className="col-span-1 sm:col-span-2 mt-1">
                 <a
                   href={project.url ?? '#'}
                   target="_blank"
                   rel="noreferrer noopener"
-                  aria-label={`Open ${project.title} in a new tab`}
-                  className="block w-full bg-neon-pink border-4 border-black p-4 text-center font-display text-[24px] font-bold uppercase shadow-[6px_6px_0px_#000] hover:shadow-[10px_10px_0px_#000] hover:-translate-y-1 active:translate-y-1 active:shadow-none transition-all group"
+                  aria-label={`Open ${project.title}`}
+                  className="block w-full p-4 text-center font-display text-[22px] font-bold uppercase transition-all group"
+                  style={{
+                    backgroundColor: '#F4FF1E',
+                    color: '#000',
+                    border: '3px solid #F0EDE4',
+                    boxShadow: '5px 5px 0px #F0EDE4',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#FF1EC7'; e.currentTarget.style.boxShadow = '5px 5px 0px #FF1EC7'; }}
+                  onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#F4FF1E'; e.currentTarget.style.boxShadow = '5px 5px 0px #F0EDE4'; }}
                 >
-                  <span className="group-hover:tracking-widest transition-all">
-                    {project.url && !project.url.includes('github.com') ? 'VIEW LIVE ↗' : 'EXECUTE PAYLOAD'}
-                  </span>
+                  {isLive ? 'VIEW LIVE ↗' : 'EXECUTE PAYLOAD'}
                 </a>
-              </div>
-
-              {/* Approved stamp */}
-              <div className="absolute bottom-[-10px] right-[10px] pointer-events-none opacity-20 transform -rotate-12" aria-hidden="true">
-                <div className="border-[6px] border-red-600 px-6 py-2 rounded-lg">
-                  <span className="text-red-600 font-display text-[40px] font-bold uppercase tracking-[8px]">
-                    APPROVED
-                  </span>
-                </div>
               </div>
             </div>
           </div>
         )}
       </div>
 
-      {/* ── Cursor-trailing preview tooltip (only when hovered, not expanded) ── */}
+      {/* Cursor tooltip — desktop hover only */}
       {isHovered && !isActive && (
         <div
-          className="fixed pointer-events-none z-[100] border-4 border-black bg-neon-blue shadow-[8px_8px_0px_#000] p-2 flex items-center justify-center animate-pop-in"
+          className="fixed pointer-events-none z-[100] p-2 flex items-center justify-center animate-pop-in"
           style={{
-            left:      mousePos.x + 20,
-            top:       mousePos.y + 20,
-            width:     240,
-            height:    160,
+            left: mousePos.x + 20,
+            top: mousePos.y + 20,
+            width: 220,
+            height: 140,
             transform: 'rotate(2deg)',
+            backgroundColor: '#161616',
+            border: '3px solid #F4FF1E',
+            boxShadow: '6px 6px 0px #F4FF1E',
           }}
           aria-hidden="true"
         >
-          {/* Hatching overlay */}
-          <div
-            className="absolute inset-0 z-10 pointer-events-none opacity-20"
-            style={{ backgroundImage: 'repeating-linear-gradient(45deg, #000 0px, #000 2px, transparent 2px, transparent 8px)' }}
-          />
-          <div className="font-display text-[20px] font-bold text-black uppercase tracking-[2px] text-center">
-            {project.title}<br />[ PREVIEW_NA ]
+          <div className="font-display text-[18px] font-bold uppercase tracking-[2px] text-center" style={{ color: '#F0EDE4' }}>
+            {project.title}<br />
+            <span style={{ color: '#F4FF1E', fontSize: '14px' }}>
+              {isLive ? '● LIVE' : '[ PREVIEW_NA ]'}
+            </span>
           </div>
         </div>
       )}

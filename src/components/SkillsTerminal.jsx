@@ -2,154 +2,141 @@ import React, { useState, useEffect } from 'react';
 import { useSound } from '../context/SoundContext';
 import { SKILL_CATEGORIES } from '../data/portfolio';
 
-/**
- * SkillsTerminal — the animated progress bar "Data Dossier" section.
- *
- * Content is driven entirely by src/data/portfolio.js — see SKILL_CATEGORIES export.
- *
- * Features:
- *  - Three category tabs: TECHNICAL, SOFT SKILLS, OTHER SKILLS
- *  - Neo-brutalist ASCII block progress bars with staggered animation
- *  - Category color driven by CSS variables in portfolio.js
- */
 const SkillsTerminal = () => {
   const { playClick, playHover } = useSound();
   const [activeCategory, setActiveCategory] = useState('technical');
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Trigger animation restart on category change
   useEffect(() => {
     setIsLoaded(false);
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 100);
-    return () => clearTimeout(timer);
+    const t = setTimeout(() => setIsLoaded(true), 100);
+    return () => clearTimeout(t);
   }, [activeCategory]);
 
+  const cat = SKILL_CATEGORIES[activeCategory];
+
   return (
-    <div className="w-full max-w-[900px] flex flex-col md:flex-row gap-8 mb-12 relative z-20 font-mono items-start min-h-[600px]">
-      
-      {/* Left: Brutalist Navigation */}
-      <div className="w-full md:w-[280px] shrink-0 bg-white border-4 border-black p-0 shadow-[8px_8px_0px_var(--text-color)] h-fit" style={{ borderColor: 'var(--text-color)', backgroundColor: 'var(--card-bg)' }}>
-        <div className="bg-black text-white font-display text-[24px] uppercase p-4 border-b-4 border-black tracking-widest" style={{ borderBottomColor: 'var(--text-color)' }}>
+    <div className="w-full max-w-[900px] flex flex-col md:flex-row gap-5 mb-12 relative z-20 font-mono items-start px-2 sm:px-0">
+
+      {/* ── Left: Category nav ── */}
+      <div
+        className="w-full md:w-[220px] shrink-0 h-fit"
+        style={{ border: '3px solid #F0EDE4', boxShadow: '6px 6px 0px #F4FF1E' }}
+      >
+        <div
+          className="font-display text-[20px] uppercase p-3 tracking-widest"
+          style={{ backgroundColor: '#F4FF1E', color: '#000', borderBottom: '2px solid #F0EDE4' }}
+        >
           INDEX_DIR
         </div>
-        <ul className="flex flex-col">
-          {Object.entries(SKILL_CATEGORIES).map(([key, data], idx) => {
+        <ul className="flex flex-col" style={{ backgroundColor: '#111' }}>
+          {Object.entries(SKILL_CATEGORIES).map(([key, data], idx, arr) => {
             const isActive = activeCategory === key;
-            const isLast = idx === Object.keys(SKILL_CATEGORIES).length - 1;
+            const isLast = idx === arr.length - 1;
             return (
-              <li 
+              <li
                 key={key}
                 onMouseEnter={playHover}
-                onClick={() => {
-                  playClick('soft');
-                  setActiveCategory(key);
-                }}
-                className={`
-                  cursor-pointer px-6 py-4 transition-all text-[18px] uppercase font-bold
-                  ${!isLast ? 'border-b-4 border-black' : ''}
-                  ${isActive 
-                    ? `text-black` 
-                    : 'text-black hover:bg-gray-200'}
-                `}
-                style={{ 
+                onClick={() => { playClick('soft'); setActiveCategory(key); }}
+                className="cursor-pointer px-5 py-4 transition-all text-[16px] uppercase font-bold"
+                style={{
                   backgroundColor: isActive ? data.color : 'transparent',
-                  borderBottomColor: 'var(--text-color)',
-                  color: 'var(--text-color)'
+                  color: isActive ? '#000' : '#888',
+                  borderBottom: isLast ? 'none' : '1px solid #222',
                 }}
               >
-                {isActive ? '► ' : ''}{data.name}
+                {isActive ? '► ' : '  '}{data.name}
               </li>
             );
           })}
         </ul>
       </div>
 
-      {/* Right: Data Canvas */}
-      <div className="flex-1 bg-white border-4 border-black shadow-[8px_8px_0px_var(--text-color)] flex flex-col min-w-[320px] md:min-w-[500px]" style={{ borderColor: 'var(--text-color)', backgroundColor: 'var(--card-bg)' }}>
-        {/* Header Bar */}
-        <div className={`p-4 border-b-4 border-black flex items-center justify-between transition-colors duration-300`} style={{ backgroundColor: SKILL_CATEGORIES[activeCategory].color, borderBottomColor: 'var(--text-color)' }}>
-          <span className="font-display text-[24px] text-black uppercase font-bold tracking-widest">
-            {SKILL_CATEGORIES[activeCategory].name} // DATA_OUTPUT
+      {/* ── Right: Skills canvas ── */}
+      <div
+        className="flex-1 flex flex-col"
+        style={{ border: '3px solid #F0EDE4', boxShadow: '6px 6px 0px #F4FF1E', backgroundColor: '#111' }}
+      >
+        {/* Header */}
+        <div
+          className="p-3 sm:p-4 flex items-center justify-between"
+          style={{ backgroundColor: cat.color, borderBottom: '2px solid #F0EDE4' }}
+        >
+          <span className="font-display text-[20px] sm:text-[22px] text-black uppercase font-bold tracking-widest">
+            {cat.name} // DATA_OUTPUT
           </span>
-          {/* Decorative barcode-like element */}
-          <div className="flex gap-1 h-6">
-            <div className="w-1 bg-black"></div>
-            <div className="w-2 bg-black"></div>
-            <div className="w-1 bg-black"></div>
-            <div className="w-3 bg-black"></div>
-            <div className="w-1 bg-black"></div>
+          <div className="flex gap-1 h-5" aria-hidden="true">
+            {[1,2,1,3,1].map((w, i) => <div key={i} style={{ width: `${w * 4}px`, backgroundColor: '#000' }} />)}
           </div>
         </div>
-        
-        {/* Skills List */}
-        <div className="p-4 sm:p-8 flex flex-col gap-6 sm:gap-8">
-          {SKILL_CATEGORIES[activeCategory].skills.map((skill, idx) => {
-            return (
-              <div 
-                key={`${activeCategory}-${idx}`} 
-                className="flex flex-col gap-2"
-                style={{ 
-                  opacity: isLoaded ? 1 : 0, 
-                  transform: isLoaded ? 'translateX(0)' : 'translateX(-20px)',
-                  transition: `opacity 0.3s ease, transform 0.3s ease`,
-                  transitionDelay: `${idx * 120}ms` 
-                }}
-              >
-                {/* Label + percentage */}
-                <div className="flex justify-between items-center font-bold" style={{ color: 'var(--text-color)' }}>
-                  <span className="uppercase bg-black text-white px-2 py-1 text-[13px] sm:text-[15px] tracking-widest inline-block" style={{ backgroundColor: 'var(--text-color)', color: 'var(--card-bg)' }}>
-                    {skill.label}
-                  </span>
-                  <span className="text-[18px] sm:text-[22px] font-display bg-white border-2 border-black px-2 shadow-[2px_2px_0px_var(--text-color)]" style={{ borderColor: 'var(--text-color)', backgroundColor: 'var(--card-bg)' }}>
-                    {skill.percentage}%
-                  </span>
-                </div>
-                
-                {/* CSS-based progress bar — pixel-perfect, no character width issues */}
-                <div
-                  className="w-full border-4 border-black relative overflow-hidden shadow-[4px_4px_0px_var(--text-color)]"
-                  style={{ borderColor: 'var(--text-color)', backgroundColor: 'var(--card-bg)', height: '28px' }}
+
+        {/* Skills list */}
+        <div className="p-4 sm:p-6 flex flex-col gap-5 sm:gap-6">
+          {cat.skills.map((skill, idx) => (
+            <div
+              key={`${activeCategory}-${idx}`}
+              className="flex flex-col gap-2"
+              style={{
+                opacity: isLoaded ? 1 : 0,
+                transform: isLoaded ? 'translateX(0)' : 'translateX(-16px)',
+                transition: `opacity 0.3s ease ${idx * 100}ms, transform 0.3s ease ${idx * 100}ms`,
+              }}
+            >
+              {/* Label row */}
+              <div className="flex justify-between items-center">
+                <span
+                  className="uppercase px-2 py-1 text-[12px] sm:text-[13px] tracking-widest font-bold"
+                  style={{ backgroundColor: '#F0EDE4', color: '#000' }}
                 >
-                  {/* Bracket left */}
-                  <span className="absolute left-2 top-1/2 -translate-y-1/2 font-mono font-bold text-[18px] z-10" style={{ color: 'var(--text-color)' }}>[</span>
-                  {/* Fill bar */}
-                  <div
-                    className="absolute top-[4px] bottom-[4px] left-[20px] right-[20px] overflow-hidden"
-                    style={{ backgroundColor: 'transparent' }}
-                  >
-                    {/* Filled portion */}
-                    <div
-                      className="h-full transition-all duration-700 ease-out relative"
-                      style={{
-                        width: isLoaded ? `${skill.percentage}%` : '0%',
-                        transitionDelay: `${idx * 120}ms`,
-                        backgroundColor: 'var(--text-color)',
-                      }}
-                    >
-                      {/* Hatching pattern on fill */}
-                      <div className="absolute inset-0 opacity-20" style={{
-                        backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(255,255,255,0.5) 3px, rgba(255,255,255,0.5) 4px)'
-                      }} />
-                    </div>
-                    {/* Unfilled portion — dotted */}
-                    <div
-                      className="absolute top-0 bottom-0 right-0"
-                      style={{
-                        left: isLoaded ? `${skill.percentage}%` : '0%',
-                        transition: `left 0.7s ease ${idx * 120}ms`,
-                        backgroundImage: 'repeating-linear-gradient(90deg, #ccc 0px, #ccc 4px, transparent 4px, transparent 8px)',
-                        backgroundSize: '8px 100%',
-                      }}
-                    />
-                  </div>
-                  {/* Bracket right */}
-                  <span className="absolute right-2 top-1/2 -translate-y-1/2 font-mono font-bold text-[18px] z-10" style={{ color: 'var(--text-color)' }}>]</span>
-                </div>
+                  {skill.label}
+                </span>
+                <span
+                  className="font-display text-[18px] sm:text-[20px] px-2"
+                  style={{ color: cat.color, border: `2px solid ${cat.color}`, backgroundColor: '#0a0a0a' }}
+                >
+                  {skill.percentage}%
+                </span>
               </div>
-            );
-          })}
+
+              {/* Progress bar */}
+              <div
+                className="w-full relative overflow-hidden"
+                style={{ height: '24px', border: '2px solid #333', backgroundColor: '#0a0a0a' }}
+              >
+                {/* Bracket left */}
+                <span className="absolute left-1 top-1/2 -translate-y-1/2 font-mono font-bold text-[14px] z-10" style={{ color: '#555' }}>[</span>
+
+                {/* Track area */}
+                <div className="absolute top-[3px] bottom-[3px] left-[14px] right-[14px] overflow-hidden">
+                  {/* Fill */}
+                  <div
+                    className="h-full relative transition-all duration-700 ease-out"
+                    style={{
+                      width: isLoaded ? `${skill.percentage}%` : '0%',
+                      transitionDelay: `${idx * 100}ms`,
+                      backgroundColor: cat.color,
+                    }}
+                  >
+                    <div className="absolute inset-0 opacity-30" style={{
+                      backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(0,0,0,0.4) 3px, rgba(0,0,0,0.4) 4px)'
+                    }} />
+                  </div>
+                  {/* Empty */}
+                  <div
+                    className="absolute top-0 bottom-0 right-0 transition-all duration-700 ease-out"
+                    style={{
+                      left: isLoaded ? `${skill.percentage}%` : '0%',
+                      transitionDelay: `${idx * 100}ms`,
+                      backgroundImage: 'repeating-linear-gradient(90deg, #222 0px, #222 3px, transparent 3px, transparent 7px)',
+                    }}
+                  />
+                </div>
+
+                {/* Bracket right */}
+                <span className="absolute right-1 top-1/2 -translate-y-1/2 font-mono font-bold text-[14px] z-10" style={{ color: '#555' }}>]</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

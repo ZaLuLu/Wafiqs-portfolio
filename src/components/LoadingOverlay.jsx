@@ -68,19 +68,19 @@ const LoadingOverlay = ({ section, onComplete }) => {
     <div 
       className={`fixed inset-0 z-[200] flex flex-col justify-end p-8 transition-colors duration-75 ${flash ? 'bg-white' : 'bg-black'} ${isFadingOut ? 'opacity-0' : 'opacity-100'}`}
     >
-      <div className={`font-mono text-[16px] md:text-[20px] font-bold uppercase leading-relaxed max-w-[600px] ${flash ? 'opacity-0' : ''}`} style={{ color: 'var(--secondary-color)' }}>
+      <div className={`font-mono text-[16px] md:text-[20px] font-bold uppercase leading-relaxed max-w-[600px] ${flash ? 'opacity-0' : ''}`} style={{ color: '#FF1EC7' }}>
         {messages.slice(0, logIndex).map((msg, i) => (
-          <div key={i} className={i === messages.length - 1 ? '' : ''} style={{ color: i === messages.length - 1 ? 'var(--accent-color)' : 'var(--secondary-color)' }}>
+          <div key={i} style={{ color: i === messages.length - 1 ? '#F4FF1E' : '#FF1EC7' }}>
             {msg}
           </div>
         ))}
         {logIndex < messages.length && (
-          <div className="animate-pulse">_</div>
+          <div className="animate-pulse" style={{ color: '#F4FF1E' }}>_</div>
         )}
       </div>
       
       {/* Massive Section Name Background */}
-      <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-display text-[80px] md:text-[180px] opacity-[0.03] pointer-events-none uppercase tracking-[10px] ${flash ? 'opacity-0' : ''}`} style={{ color: 'var(--text-color)' }}>
+      <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-display text-[80px] md:text-[180px] opacity-[0.04] pointer-events-none uppercase tracking-[10px] ${flash ? 'opacity-0' : ''}`} style={{ color: '#F4FF1E' }}>
         {section}
       </div>
 

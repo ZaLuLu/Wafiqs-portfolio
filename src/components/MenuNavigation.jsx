@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSound } from '../context/SoundContext';
 
-
 const MENU_ITEMS = [
-  { id: 'about',    label: 'ABOUT ME',        color: 'var(--accent-color)' },
-  { id: 'skills',   label: 'SKILL TREE',      color: 'var(--secondary-color)' },
-  { id: 'projects', label: 'PROJECT ARCHIVE', color: 'var(--accent-color)' },
-  { id: 'contact',  label: 'SOCIALS',         color: 'var(--secondary-color)' },
+  { id: 'about',    label: 'ABOUT ME',        color: '#F4FF1E', textColor: '#000' },
+  { id: 'skills',   label: 'SKILL TREE',      color: '#FF1EC7', textColor: '#000' },
+  { id: 'projects', label: 'PROJECT ARCHIVE', color: '#F4FF1E', textColor: '#000' },
+  { id: 'contact',  label: 'SOCIALS',         color: '#FF1EC7', textColor: '#000' },
 ];
 
 const MenuNavigation = ({ onSelect }) => {
@@ -15,30 +14,21 @@ const MenuNavigation = ({ onSelect }) => {
   const menuRef = useRef(null);
 
   useEffect(() => {
-    // Focus the menu container on mount to catch keyboard events
-    if (menuRef.current) {
-      menuRef.current.focus();
-    }
+    if (menuRef.current) menuRef.current.focus();
   }, []);
 
   const handleKeyDown = (e) => {
     if (e.key === 'ArrowUp') {
       e.preventDefault();
-      setSelectedIndex((prev) => {
-        playHover();
-        return prev > 0 ? prev - 1 : MENU_ITEMS.length - 1;
-      });
+      setSelectedIndex(prev => { playHover(); return prev > 0 ? prev - 1 : MENU_ITEMS.length - 1; });
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
-      setSelectedIndex((prev) => {
-        playHover();
-        return prev < MENU_ITEMS.length - 1 ? prev + 1 : 0;
-      });
+      setSelectedIndex(prev => { playHover(); return prev < MENU_ITEMS.length - 1 ? prev + 1 : 0; });
     } else if (e.key === 'Enter') {
       e.preventDefault();
       playClick('hard');
       onSelect(MENU_ITEMS[selectedIndex].id);
-    } else if (['1', '2', '3', '4'].includes(e.key)) {
+    } else if (['1','2','3','4'].includes(e.key)) {
       e.preventDefault();
       const index = parseInt(e.key) - 1;
       setSelectedIndex(index);
@@ -47,79 +37,72 @@ const MenuNavigation = ({ onSelect }) => {
     }
   };
 
-
   return (
-    <div 
-      className="flex flex-col items-center w-full max-w-[500px] outline-none focus:outline-none focus-visible:outline-none mt-6 relative z-20 px-2 sm:px-0"
+    <div
+      className="flex flex-col items-center w-full max-w-[520px] outline-none focus:outline-none mt-5 relative z-20 px-2 sm:px-0"
       tabIndex={0}
       onKeyDown={handleKeyDown}
       ref={menuRef}
     >
-      <div className="flex flex-col w-full gap-3 sm:gap-4">
+      <div className="flex flex-col w-full gap-2 sm:gap-3">
         {MENU_ITEMS.map((item, index) => {
           const isSelected = index === selectedIndex;
-          
           return (
-            <div 
+            <div
               key={item.id}
-              className="group flex items-center justify-between py-3 sm:py-4 px-4 sm:px-6 cursor-pointer transition-all duration-300 border-4 border-black relative overflow-hidden"
+              className="group flex items-center justify-between py-3 sm:py-4 px-4 sm:px-5 cursor-pointer transition-all duration-200 relative overflow-hidden"
               style={{
-                backgroundColor: isSelected ? item.color : 'var(--card-bg)',
-                transform: isSelected ? 'translateX(8px) skewX(-2deg)' : 'translateX(0) skewX(0)',
-                boxShadow: isSelected 
-                  ? '6px 6px 0px var(--text-color)' 
-                  : '4px 4px 0px var(--text-color)',
-                borderColor: 'var(--text-color)'
+                backgroundColor: isSelected ? item.color : '#161616',
+                border: `3px solid ${isSelected ? item.color : '#333'}`,
+                boxShadow: isSelected
+                  ? `6px 6px 0px ${item.color}55`
+                  : '4px 4px 0px #222',
+                transform: isSelected ? 'translateX(6px)' : 'translateX(0)',
               }}
-              onClick={() => {
-                setSelectedIndex(index);
-                playClick('hard');
-                onSelect(item.id);
-              }}
-              onMouseEnter={() => {
-                if (selectedIndex !== index) playHover();
-                setSelectedIndex(index);
-              }}
+              onClick={() => { setSelectedIndex(index); playClick('hard'); onSelect(item.id); }}
+              onMouseEnter={() => { if (selectedIndex !== index) playHover(); setSelectedIndex(index); }}
+              role="button"
+              tabIndex={-1}
+              aria-label={`Navigate to ${item.label}`}
             >
-              {/* Background texture when active */}
+              {/* Diagonal stripe texture when active */}
               {isSelected && (
-                <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
-                  backgroundImage: 'repeating-linear-gradient(45deg, #000 0px, #000 4px, transparent 4px, transparent 12px)'
-                }}></div>
+                <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{
+                  backgroundImage: 'repeating-linear-gradient(45deg, #000 0px, #000 3px, transparent 3px, transparent 10px)'
+                }} />
               )}
-              
-              <div className="flex items-center gap-3 sm:gap-6 relative z-10 min-w-0">
-                {/* Arrow */}
-                <div className="w-[20px] sm:w-[30px] flex justify-center shrink-0">
-                  <span 
-                    className="font-display text-[20px] sm:text-[28px] text-black font-bold"
-                    style={{ 
-                      opacity: isSelected ? 1 : 0,
-                      transform: isSelected ? 'translateX(0)' : 'translateX(-10px)',
-                      transition: 'all 0.2s ease-out'
-                    }}
-                  >
-                    ►
-                  </span>
-                </div>
-                
-                {/* Label */}
-                <div 
-                  className="font-display text-[18px] sm:text-[22px] md:text-[26px] tracking-[2px] sm:tracking-[4px] uppercase font-bold text-black truncate"
+
+              <div className="flex items-center gap-3 sm:gap-5 relative z-10 min-w-0">
+                {/* Arrow indicator */}
+                <span
+                  className="font-display text-[18px] sm:text-[24px] font-bold shrink-0 transition-all duration-200"
                   style={{
-                    letterSpacing: isSelected ? '3px' : '2px',
-                    transition: 'all 0.3s ease'
+                    color: isSelected ? '#000' : '#555',
+                    opacity: isSelected ? 1 : 0.4,
+                    transform: isSelected ? 'translateX(0)' : 'translateX(-6px)',
+                  }}
+                >►</span>
+
+                {/* Label */}
+                <span
+                  className="font-display text-[17px] sm:text-[22px] md:text-[25px] uppercase font-bold truncate transition-all duration-200"
+                  style={{
+                    color: isSelected ? item.textColor : '#F0EDE4',
+                    letterSpacing: isSelected ? '4px' : '2px',
                   }}
                 >
                   {item.label}
-                </div>
+                </span>
               </div>
 
-              {/* Number indicator */}
-              <div className="font-mono font-bold text-[14px] sm:text-[16px] text-black border-4 border-black w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center bg-white relative z-10 shadow-[2px_2px_0px_#000] shrink-0"
+              {/* Number badge */}
+              <div
+                className="font-mono font-bold text-[13px] sm:text-[15px] w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center shrink-0 transition-all duration-200"
                 style={{
+                  backgroundColor: isSelected ? '#000' : 'transparent',
+                  color: isSelected ? item.color : '#555',
+                  border: `2px solid ${isSelected ? '#000' : '#333'}`,
                   transform: isSelected ? 'rotate(5deg)' : 'rotate(0deg)',
-                  transition: 'transform 0.3s ease'
                 }}
               >
                 {index + 1}
@@ -129,14 +112,14 @@ const MenuNavigation = ({ onSelect }) => {
         })}
       </div>
 
-      {/* Footer Hints — hidden on mobile (touch users don't use keyboard) */}
-      <div className="hidden sm:flex gap-8 mt-12 items-center text-black font-mono font-bold text-[12px] sm:text-[14px] uppercase tracking-[2px] bg-white border-4 border-black px-4 py-2 shadow-[4px_4px_0px_#000] transform -rotate-1">
-        <div className="flex items-center gap-2">
-          <span className="bg-black text-white px-1">↑↓</span> NAVIGATE
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="bg-black text-white px-1">ENTER</span> SELECT
-        </div>
+      {/* Keyboard hints — desktop only */}
+      <div
+        className="hidden sm:flex gap-6 mt-8 items-center font-mono font-bold text-[11px] uppercase tracking-[2px] px-4 py-2"
+        style={{ border: '2px solid #333', color: '#555', backgroundColor: '#111' }}
+      >
+        <span><span style={{ backgroundColor: '#222', color: '#F0EDE4', padding: '1px 5px' }}>↑↓</span> NAVIGATE</span>
+        <span><span style={{ backgroundColor: '#222', color: '#F0EDE4', padding: '1px 5px' }}>ENTER</span> SELECT</span>
+        <span><span style={{ backgroundColor: '#222', color: '#F0EDE4', padding: '1px 5px' }}>1-4</span> JUMP</span>
       </div>
     </div>
   );
