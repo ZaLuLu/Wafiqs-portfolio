@@ -84,49 +84,68 @@ const SkillsTerminal = () => {
         </div>
         
         {/* Skills List */}
-        <div className="p-8 flex flex-col gap-8">
+        <div className="p-4 sm:p-8 flex flex-col gap-6 sm:gap-8">
           {SKILL_CATEGORIES[activeCategory].skills.map((skill, idx) => {
-            const blocks = 20;
-            const filledBlocks = Math.floor(skill.percentage / (100 / blocks));
-            
             return (
               <div 
                 key={`${activeCategory}-${idx}`} 
-                className="flex flex-col gap-2 transition-all duration-75"
+                className="flex flex-col gap-2"
                 style={{ 
                   opacity: isLoaded ? 1 : 0, 
                   transform: isLoaded ? 'translateX(0)' : 'translateX(-20px)',
-                  transitionDelay: `${idx * 150}ms` 
+                  transition: `opacity 0.3s ease, transform 0.3s ease`,
+                  transitionDelay: `${idx * 120}ms` 
                 }}
               >
-                <div className="flex justify-between items-end font-bold text-black text-[18px]" style={{ color: 'var(--text-color)' }}>
-                  <span className="uppercase bg-black text-white px-2 py-1 tracking-widest inline-block" style={{ backgroundColor: 'var(--text-color)', color: 'var(--card-bg)' }}>{skill.label}</span>
-                  <span className="text-[24px] font-display bg-white border-2 border-black px-2 shadow-[2px_2px_0px_var(--text-color)]" style={{ borderColor: 'var(--text-color)', backgroundColor: 'var(--card-bg)' }}>{skill.percentage}%</span>
+                {/* Label + percentage */}
+                <div className="flex justify-between items-center font-bold" style={{ color: 'var(--text-color)' }}>
+                  <span className="uppercase bg-black text-white px-2 py-1 text-[13px] sm:text-[15px] tracking-widest inline-block" style={{ backgroundColor: 'var(--text-color)', color: 'var(--card-bg)' }}>
+                    {skill.label}
+                  </span>
+                  <span className="text-[18px] sm:text-[22px] font-display bg-white border-2 border-black px-2 shadow-[2px_2px_0px_var(--text-color)]" style={{ borderColor: 'var(--text-color)', backgroundColor: 'var(--card-bg)' }}>
+                    {skill.percentage}%
+                  </span>
                 </div>
                 
-                {/* Neo-Brutalist ASCII Progress Bar */}
-                <div className="w-full bg-white border-4 border-black relative overflow-hidden flex items-center p-2 shadow-[4px_4px_0px_var(--text-color)]" style={{ borderColor: 'var(--text-color)', backgroundColor: 'var(--card-bg)' }}>
-                  <div className="font-mono text-[20px] md:text-[24px] font-bold text-black whitespace-pre tracking-widest flex w-full">
-                    <span className="mr-2" style={{ color: 'var(--text-color)' }}>[</span>
-                    <div className="flex-1 flex overflow-hidden">
-                      {Array.from({ length: blocks }).map((_, i) => {
-                        const isFilled = isLoaded && i < filledBlocks;
-                        return (
-                          <span 
-                            key={i}
-                            className={`transition-colors duration-[50ms]`}
-                            style={{ 
-                              transitionDelay: `${idx * 150 + (i * 20)}ms`,
-                              color: isFilled ? 'var(--text-color)' : 'var(--muted-color, #ccc)'
-                            }}
-                          >
-                            {isFilled ? '█' : '▒'}
-                          </span>
-                        );
-                      })}
+                {/* CSS-based progress bar — pixel-perfect, no character width issues */}
+                <div
+                  className="w-full border-4 border-black relative overflow-hidden shadow-[4px_4px_0px_var(--text-color)]"
+                  style={{ borderColor: 'var(--text-color)', backgroundColor: 'var(--card-bg)', height: '28px' }}
+                >
+                  {/* Bracket left */}
+                  <span className="absolute left-2 top-1/2 -translate-y-1/2 font-mono font-bold text-[18px] z-10" style={{ color: 'var(--text-color)' }}>[</span>
+                  {/* Fill bar */}
+                  <div
+                    className="absolute top-[4px] bottom-[4px] left-[20px] right-[20px] overflow-hidden"
+                    style={{ backgroundColor: 'transparent' }}
+                  >
+                    {/* Filled portion */}
+                    <div
+                      className="h-full transition-all duration-700 ease-out relative"
+                      style={{
+                        width: isLoaded ? `${skill.percentage}%` : '0%',
+                        transitionDelay: `${idx * 120}ms`,
+                        backgroundColor: 'var(--text-color)',
+                      }}
+                    >
+                      {/* Hatching pattern on fill */}
+                      <div className="absolute inset-0 opacity-20" style={{
+                        backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(255,255,255,0.5) 3px, rgba(255,255,255,0.5) 4px)'
+                      }} />
                     </div>
-                    <span className="ml-2" style={{ color: 'var(--text-color)' }}>]</span>
+                    {/* Unfilled portion — dotted */}
+                    <div
+                      className="absolute top-0 bottom-0 right-0"
+                      style={{
+                        left: isLoaded ? `${skill.percentage}%` : '0%',
+                        transition: `left 0.7s ease ${idx * 120}ms`,
+                        backgroundImage: 'repeating-linear-gradient(90deg, #ccc 0px, #ccc 4px, transparent 4px, transparent 8px)',
+                        backgroundSize: '8px 100%',
+                      }}
+                    />
                   </div>
+                  {/* Bracket right */}
+                  <span className="absolute right-2 top-1/2 -translate-y-1/2 font-mono font-bold text-[18px] z-10" style={{ color: 'var(--text-color)' }}>]</span>
                 </div>
               </div>
             );

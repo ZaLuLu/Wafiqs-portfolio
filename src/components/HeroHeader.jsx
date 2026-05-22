@@ -63,11 +63,14 @@ const HeroHeader = () => {
         </div>
       </div>
 
-      {/* ── Calligraphic Name — scales down on mobile ── */}
-      <div className="w-full flex justify-center mb-6 relative z-10 overflow-hidden">
+      {/* ── Calligraphic Name — single line, scales to fit viewport ── */}
+      <div className="w-full flex justify-center mb-6 relative z-10 overflow-hidden px-2">
         <h1
-          className="text-[52px] xs:text-[64px] sm:text-[90px] md:text-[120px] lg:text-[140px] text-black tracking-[2px] m-0 leading-none z-50 transform rotate-[-3deg] sm:rotate-[-4deg] drop-shadow-[4px_4px_0px_var(--color-neon-blue)] sm:drop-shadow-[8px_8px_0px_var(--color-neon-blue)] hover:drop-shadow-[12px_12px_0px_var(--color-neon-blue)] hover:rotate-[-2deg] transition-all duration-300"
-          style={{ fontFamily: "'Style Script', cursive" }}
+          className="whitespace-nowrap text-black tracking-[2px] m-0 leading-none z-50 transform rotate-[-3deg] sm:rotate-[-4deg] drop-shadow-[4px_4px_0px_var(--color-neon-blue)] hover:drop-shadow-[10px_10px_0px_var(--color-neon-blue)] hover:rotate-[-2deg] transition-all duration-300"
+          style={{
+            fontFamily: "'Style Script', cursive",
+            fontSize: 'clamp(36px, 10vw, 130px)',
+          }}
         >
           {IDENTITY.fullName}
         </h1>

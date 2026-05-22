@@ -3,10 +3,10 @@ import { useSound } from '../context/SoundContext';
 
 
 const MENU_ITEMS = [
-  { id: 'about', label: 'PLAYER 1 INFO', color: 'var(--accent-color)' },
-  { id: 'skills', label: 'SKILL TREE', color: 'var(--secondary-color)' },
+  { id: 'about',    label: 'ABOUT ME',        color: 'var(--accent-color)' },
+  { id: 'skills',   label: 'SKILL TREE',      color: 'var(--secondary-color)' },
   { id: 'projects', label: 'PROJECT ARCHIVE', color: 'var(--accent-color)' },
-  { id: 'contact', label: 'MULTIPLAYER', color: 'var(--secondary-color)' },
+  { id: 'contact',  label: 'SOCIALS',         color: 'var(--secondary-color)' },
 ];
 
 const MenuNavigation = ({ onSelect }) => {

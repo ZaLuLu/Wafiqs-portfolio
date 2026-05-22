@@ -31,28 +31,51 @@
    CSS CUSTOM PROPERTIES — Default: Classic Brutalist
    ============================================================ */
 :root {
-  --bg-color:      #FAFAFA;
-  --bg-grid:       #e5e5e5;
-  --text-color:    #000000;
-  --accent-color:  #F4FF1E; /* MELLOW    */
-  --secondary-color: #FF1EC7; /* HOT PINK */
-  --border-color:  #000000;
-  --card-bg:       #FFFFFF;
-  --window-bg:     rgba(255, 255, 255, 0.95);
+  --bg-color:        #F0EDE4;   /* warm off-white parchment */
+  --bg-grid:         #D8D4C8;   /* slightly darker grid lines */
+  --bg-grid-accent:  #C9A84C33; /* gold tint every 5th line */
+  --text-color:      #000000;
+  --accent-color:    #F4FF1E;
+  --secondary-color: #FF1EC7;
+  --border-color:    #000000;
+  --card-bg:         #FFFFFF;
+  --window-bg:       rgba(255, 255, 255, 0.95);
 }
 
 /* ============================================================
-   BASE STYLES
+   BASE STYLES — richer background
    ============================================================ */
 body {
   margin: 0;
   padding: 0;
   background-color: var(--bg-color);
-  /* Neo-Brutalist blueprint grid */
+  /*
+    Layered background:
+    1. Fine 20px grid (subtle)
+    2. Bold 100px grid (structural)
+    3. Diagonal hatching (very faint)
+  */
   background-image:
-    linear-gradient(var(--bg-grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
-  background-size: 40px 40px;
+    /* diagonal hatching — very faint */
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(0,0,0,0.018) 40px,
+      rgba(0,0,0,0.018) 41px
+    ),
+    /* bold 100px structural grid */
+    linear-gradient(rgba(0,0,0,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.07) 1px, transparent 1px),
+    /* fine 20px grid */
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size:
+    80px 80px,
+    100px 100px,
+    100px 100px,
+    20px 20px,
+    20px 20px;
   background-attachment: fixed;
   color: var(--text-color);
   font-family: var(--font-mono);

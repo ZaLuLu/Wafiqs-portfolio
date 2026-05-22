@@ -34,6 +34,36 @@ const WindowFrame = ({ children }) => {
         {children}
       </div>
 
+      {/* Corner crosshair markers — blueprint aesthetic */}
+      <div className="fixed top-8 left-8 z-[99] pointer-events-none hidden sm:block" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" opacity="0.3">
+          <line x1="12" y1="0" x2="12" y2="8" />
+          <line x1="0" y1="12" x2="8" y2="12" />
+          <circle cx="12" cy="12" r="2" fill="black" />
+        </svg>
+      </div>
+      <div className="fixed top-8 right-8 z-[99] pointer-events-none hidden sm:block" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" opacity="0.3">
+          <line x1="12" y1="0" x2="12" y2="8" />
+          <line x1="16" y1="12" x2="24" y2="12" />
+          <circle cx="12" cy="12" r="2" fill="black" />
+        </svg>
+      </div>
+      <div className="fixed bottom-8 left-8 z-[99] pointer-events-none hidden sm:block" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" opacity="0.3">
+          <line x1="12" y1="16" x2="12" y2="24" />
+          <line x1="0" y1="12" x2="8" y2="12" />
+          <circle cx="12" cy="12" r="2" fill="black" />
+        </svg>
+      </div>
+      <div className="fixed bottom-8 right-8 z-[99] pointer-events-none hidden sm:block" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" opacity="0.3">
+          <line x1="12" y1="16" x2="12" y2="24" />
+          <line x1="16" y1="12" x2="24" y2="12" />
+          <circle cx="12" cy="12" r="2" fill="black" />
+        </svg>
+      </div>
+
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes scanDrift {
           from { background-position: 0 0; }
