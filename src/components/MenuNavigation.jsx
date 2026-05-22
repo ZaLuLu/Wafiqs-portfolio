@@ -50,24 +50,24 @@ const MenuNavigation = ({ onSelect }) => {
 
   return (
     <div 
-      className="flex flex-col items-center w-full max-w-[500px] outline-none focus:outline-none focus-visible:outline-none mt-8 relative z-20"
+      className="flex flex-col items-center w-full max-w-[500px] outline-none focus:outline-none focus-visible:outline-none mt-6 relative z-20 px-2 sm:px-0"
       tabIndex={0}
       onKeyDown={handleKeyDown}
       ref={menuRef}
     >
-      <div className="flex flex-col w-full gap-4">
+      <div className="flex flex-col w-full gap-3 sm:gap-4">
         {MENU_ITEMS.map((item, index) => {
           const isSelected = index === selectedIndex;
           
           return (
             <div 
               key={item.id}
-              className="group flex items-center justify-between py-4 px-6 cursor-pointer transition-all duration-300 border-4 border-black relative overflow-hidden"
+              className="group flex items-center justify-between py-3 sm:py-4 px-4 sm:px-6 cursor-pointer transition-all duration-300 border-4 border-black relative overflow-hidden"
               style={{
                 backgroundColor: isSelected ? item.color : 'var(--card-bg)',
-                transform: isSelected ? 'translateX(20px) skewX(-5deg)' : 'translateX(0) skewX(0)',
+                transform: isSelected ? 'translateX(8px) skewX(-2deg)' : 'translateX(0) skewX(0)',
                 boxShadow: isSelected 
-                  ? '6px 6px 0px var(--text-color), 12px 12px 0px rgba(0,0,0,0.5)' 
+                  ? '6px 6px 0px var(--text-color)' 
                   : '4px 4px 0px var(--text-color)',
                 borderColor: 'var(--text-color)'
               }}
@@ -80,20 +80,19 @@ const MenuNavigation = ({ onSelect }) => {
                 if (selectedIndex !== index) playHover();
                 setSelectedIndex(index);
               }}
-
             >
-              {/* Background texture line pattern when active */}
+              {/* Background texture when active */}
               {isSelected && (
                 <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
                   backgroundImage: 'repeating-linear-gradient(45deg, #000 0px, #000 4px, transparent 4px, transparent 12px)'
                 }}></div>
               )}
               
-              <div className="flex items-center gap-6 relative z-10">
+              <div className="flex items-center gap-3 sm:gap-6 relative z-10 min-w-0">
                 {/* Arrow */}
-                <div className="w-[30px] flex justify-center">
+                <div className="w-[20px] sm:w-[30px] flex justify-center shrink-0">
                   <span 
-                    className="font-display text-[32px] text-black font-bold"
+                    className="font-display text-[20px] sm:text-[28px] text-black font-bold"
                     style={{ 
                       opacity: isSelected ? 1 : 0,
                       transform: isSelected ? 'translateX(0)' : 'translateX(-10px)',
@@ -106,10 +105,9 @@ const MenuNavigation = ({ onSelect }) => {
                 
                 {/* Label */}
                 <div 
-                  className="font-display text-[28px] tracking-[4px] uppercase font-bold text-black"
+                  className="font-display text-[18px] sm:text-[22px] md:text-[26px] tracking-[2px] sm:tracking-[4px] uppercase font-bold text-black truncate"
                   style={{
-                    letterSpacing: isSelected ? '6px' : '4px',
-                    transform: isSelected ? 'scale(1.05)' : 'scale(1)',
+                    letterSpacing: isSelected ? '3px' : '2px',
                     transition: 'all 0.3s ease'
                   }}
                 >
@@ -118,7 +116,7 @@ const MenuNavigation = ({ onSelect }) => {
               </div>
 
               {/* Number indicator */}
-              <div className="font-mono font-bold text-[16px] text-black border-4 border-black w-10 h-10 flex items-center justify-center bg-white relative z-10 shadow-[2px_2px_0px_#000]"
+              <div className="font-mono font-bold text-[14px] sm:text-[16px] text-black border-4 border-black w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center bg-white relative z-10 shadow-[2px_2px_0px_#000] shrink-0"
                 style={{
                   transform: isSelected ? 'rotate(5deg)' : 'rotate(0deg)',
                   transition: 'transform 0.3s ease'
@@ -131,8 +129,8 @@ const MenuNavigation = ({ onSelect }) => {
         })}
       </div>
 
-      {/* Footer Hints */}
-      <div className="flex gap-8 mt-16 items-center text-black font-mono font-bold text-[14px] uppercase tracking-[2px] bg-white border-4 border-black px-4 py-2 shadow-[4px_4px_0px_#000] transform -rotate-1">
+      {/* Footer Hints — hidden on mobile (touch users don't use keyboard) */}
+      <div className="hidden sm:flex gap-8 mt-12 items-center text-black font-mono font-bold text-[12px] sm:text-[14px] uppercase tracking-[2px] bg-white border-4 border-black px-4 py-2 shadow-[4px_4px_0px_#000] transform -rotate-1">
         <div className="flex items-center gap-2">
           <span className="bg-black text-white px-1">↑↓</span> NAVIGATE
         </div>

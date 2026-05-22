@@ -232,3 +232,68 @@ body {
   to   { opacity: 1; transform: none; }
 }
 .animate-fade-up { animation: fadeUp 400ms ease forwards; }
+
+/* ============================================================
+   MOBILE RESPONSIVE FIXES
+   ============================================================ */
+
+/* Restore default cursor on touch devices — custom cursor is mouse-only */
+@media (hover: none) and (pointer: coarse) {
+  * { cursor: auto !important; }
+  .ripple { display: none !important; }
+}
+
+/* Prevent horizontal overflow on all screens */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Ensure the app never overflows horizontally */
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Touch-friendly tap targets — minimum 44px */
+@media (max-width: 640px) {
+  button, a, [role="button"] {
+    min-height: 44px;
+  }
+
+  /* Reduce shadow depth on mobile for performance */
+  .shadow-\[8px_8px_0px_\#000\] {
+    box-shadow: 4px 4px 0px #000;
+  }
+  .shadow-\[12px_12px_0px_\#000\] {
+    box-shadow: 6px 6px 0px #000;
+  }
+
+  /* VaultCard tooltip — disable on mobile (no hover) */
+  .animate-pop-in {
+    display: none !important;
+  }
+}
+
+/* Skills terminal — stack on mobile */
+@media (max-width: 640px) {
+  .skills-layout {
+    flex-direction: column;
+  }
+}
+
+/* CharacterCard — full width on mobile */
+@media (max-width: 768px) {
+  .character-card-portrait {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+
+/* Contact keycards — disable translate on mobile (tap not hover) */
+@media (hover: none) {
+  .contact-keycard:hover {
+    transform: none !important;
+  }
+}

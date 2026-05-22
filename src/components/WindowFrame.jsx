@@ -4,8 +4,8 @@ const WindowFrame = ({ children }) => {
   return (
     <div className="min-h-screen relative z-10 flex flex-col font-display" style={{ backgroundColor: 'var(--bg-color)' }}>
       
-      {/* Global Hazard Tape Border */}
-      <div className="fixed inset-0 z-[100] pointer-events-none border-[12px]" style={{
+      {/* Global Hazard Tape Border — thinner on mobile */}
+      <div className="fixed inset-0 z-[100] pointer-events-none border-[6px] sm:border-[10px] md:border-[12px]" style={{
         borderImage: 'repeating-linear-gradient(45deg, var(--text-color), var(--text-color) 20px, var(--accent-color) 20px, var(--accent-color) 40px) 12',
         borderStyle: 'solid'
       }}></div>

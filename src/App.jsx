@@ -64,75 +64,78 @@ function App() {
 
   return (
     <>
+      {/* Custom cursor — hidden on touch devices via CSS */}
       <BrutalistCursor />
-      <div className="fixed top-6 right-8 z-[110] flex gap-2">
+
+      {/* Mute button — repositioned for mobile */}
+      <div className="fixed top-4 right-4 sm:top-6 sm:right-8 z-[110] flex gap-2">
         <button
           onClick={toggleMute}
-          className="w-10 h-10 flex items-center justify-center btn-brutalist text-lg"
+          className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center btn-brutalist text-base sm:text-lg"
           aria-label={isMuted ? 'Unmute sound effects' : 'Mute sound effects'}
           onMouseEnter={playHover}
         >
           {isMuted ? '🔇' : '🔊'}
         </button>
       </div>
-      <WindowFrame>
 
+      <WindowFrame>
         {isLoading && (
-        <LoadingOverlay 
-          section={loadingSection} 
-          onComplete={handleLoadingComplete} 
-        />
-      )}
+          <LoadingOverlay 
+            section={loadingSection} 
+            onComplete={handleLoadingComplete} 
+          />
+        )}
       
-      <div className={`w-full h-full p-[18px] md:p-[24px] lg:p-[28px] overflow-y-auto ${isLoading ? 'hidden' : 'block'}`}>
-        {/* Screens */}
-        {currentScreen === 'home' && (
-          <div className="flex flex-col h-full items-center justify-center py-12 w-full max-w-[800px] mx-auto relative z-20">
-            <HeroHeader />
-            <MenuNavigation onSelect={loadSection} />
-            {/* Resume download */}
-            <a
-              href="/resume.pdf"
-              download="Wafiq_Nawaz_Resume.pdf"
-              className="mt-6 px-8 py-3 text-[14px] font-mono btn-brutalist flex items-center gap-2"
-              onMouseEnter={playHover}
-              onClick={() => playClick('soft')}
-              aria-label="Download resume PDF"
-            >
-              ↓ DOWNLOAD_RESUME.PDF
-            </a>
-          </div>
-        )}
-        
-        {currentScreen === 'about' && (
-          <div className="flex flex-col h-full items-center justify-start gap-4">
-            <AboutSection />
-            <button className="mt-8 px-6 py-3 text-[14px] font-mono btn-brutalist" onClick={goHome} onMouseEnter={playHover}>◀ BACK TO MENU [ ESC ]</button>
-          </div>
-        )}
-        
-        {currentScreen === 'skills' && (
-          <div className="flex flex-col h-full items-center justify-start gap-4">
-            <SkillsTerminal />
-            <button className="mt-8 px-6 py-3 text-[14px] font-mono btn-brutalist" onClick={goHome} onMouseEnter={playHover}>◀ BACK TO MENU [ ESC ]</button>
-          </div>
-        )}
-        
-        {currentScreen === 'projects' && (
-          <div className="flex flex-col h-full items-center justify-start gap-4">
-            <ProjectsSection />
-            <button className="mt-8 px-6 py-3 text-[14px] font-mono btn-brutalist" onClick={goHome} onMouseEnter={playHover}>◀ BACK TO MENU [ ESC ]</button>
-          </div>
-        )}
-        
-        {currentScreen === 'contact' && (
-          <div className="flex flex-col h-full items-center justify-start gap-4">
-            <ContactSection />
-            <button className="mt-8 px-6 py-3 text-[14px] font-mono btn-brutalist" onClick={goHome} onMouseEnter={playHover}>◀ BACK TO MENU [ ESC ]</button>
-          </div>
-        )}
-      </div>
-    </WindowFrame>
+        <div className={`w-full h-full p-[14px] sm:p-[20px] md:p-[24px] lg:p-[28px] overflow-y-auto ${isLoading ? 'hidden' : 'block'}`}>
+
+          {currentScreen === 'home' && (
+            <div className="flex flex-col min-h-screen items-center justify-center py-8 sm:py-12 w-full max-w-[600px] mx-auto relative z-20">
+              <HeroHeader />
+              <MenuNavigation onSelect={loadSection} />
+              <a
+                href="/resume.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 px-6 sm:px-8 py-3 text-[12px] sm:text-[14px] font-mono btn-brutalist flex items-center gap-2"
+                onMouseEnter={playHover}
+                onClick={() => playClick('soft')}
+                aria-label="View resume"
+              >
+                ↓ VIEW_RESUME
+              </a>
+            </div>
+          )}
+          
+          {currentScreen === 'about' && (
+            <div className="flex flex-col items-center justify-start gap-4 pb-8">
+              <AboutSection />
+              <button className="mt-4 sm:mt-8 px-6 py-3 text-[13px] sm:text-[14px] font-mono btn-brutalist" onClick={goHome} onMouseEnter={playHover}>◀ BACK [ ESC ]</button>
+            </div>
+          )}
+          
+          {currentScreen === 'skills' && (
+            <div className="flex flex-col items-center justify-start gap-4 pb-8">
+              <SkillsTerminal />
+              <button className="mt-4 sm:mt-8 px-6 py-3 text-[13px] sm:text-[14px] font-mono btn-brutalist" onClick={goHome} onMouseEnter={playHover}>◀ BACK [ ESC ]</button>
+            </div>
+          )}
+          
+          {currentScreen === 'projects' && (
+            <div className="flex flex-col items-center justify-start gap-4 pb-8">
+              <ProjectsSection />
+              <button className="mt-4 sm:mt-8 px-6 py-3 text-[13px] sm:text-[14px] font-mono btn-brutalist" onClick={goHome} onMouseEnter={playHover}>◀ BACK [ ESC ]</button>
+            </div>
+          )}
+          
+          {currentScreen === 'contact' && (
+            <div className="flex flex-col items-center justify-start gap-4 pb-8">
+              <ContactSection />
+              <button className="mt-4 sm:mt-8 px-6 py-3 text-[13px] sm:text-[14px] font-mono btn-brutalist" onClick={goHome} onMouseEnter={playHover}>◀ BACK [ ESC ]</button>
+            </div>
+          )}
+        </div>
+      </WindowFrame>
     </>
   )
 }
