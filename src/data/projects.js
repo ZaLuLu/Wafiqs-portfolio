@@ -1,9 +1,35 @@
-/**
- * projects.js — legacy re-export shim.
- *
- * Projects data has been moved to src/data/portfolio.js (the PROJECTS export).
- * This file re-exports it so existing imports don't break.
- *
- * To edit your projects, open src/data/portfolio.js and find the PROJECTS section.
- */
-export { PROJECTS as projectsData } from './portfolio';
+export const projects = [
+  {
+    id: '01',
+    title: 'RETAILMIND',
+    subtitle: 'Demand Forecasting Engine',
+    description: 'An intelligent demand forecasting and analytical engine for small and medium businesses. Automates CSV exports, asynchronous FastAPI pipelines, PostgreSQL analytics, and Gemini AI executive summaries in seconds.',
+    stack: ['REACT', 'FASTAPI', 'POSTGRESQL', 'GEMINI AI'],
+    year: '2026',
+    status: 'LIVE',
+    liveUrl: 'https://retailmind-zalulus-projects.vercel.app/',
+    sourceUrl: 'https://github.com/ZaLuLu',
+  },
+  {
+    id: '02',
+    title: 'ZALULU PORTFOLIO',
+    subtitle: 'Tactile Editorial Lookbook',
+    description: 'An interactive monograph portfolio challenging the boundaries of digital lookbook layout. Features clean typewriter columns, asymmetric geometric grids, paper grain, and single-accent gold pivots.',
+    stack: ['REACT', 'TAILWIND CSS v4', 'VITE 8', 'FRAMER MOTION'],
+    year: '2026',
+    status: 'LIVE',
+    liveUrl: 'https://wafiqnawaz.vercel.app',
+    sourceUrl: 'https://github.com/ZaLuLu/Wafiqs-portfolio',
+  },
+  {
+    id: '03',
+    title: 'FASTAPI SECURITY',
+    subtitle: 'Defensive System Architecture',
+    description: 'Web security pipelines, cryptographic hashing utilities, and JWT-token authentication nodes. Engineered to conform cleanly to OWASP Top 10 security standards.',
+    stack: ['PYTHON', 'FASTAPI', 'JWT AUTH', 'OWASP TOP 10'],
+    year: '2025',
+    status: 'RESEARCH',
+    liveUrl: null,
+    sourceUrl: 'https://github.com/ZaLuLu',
+  },
+];
