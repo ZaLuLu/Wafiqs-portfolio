@@ -100,14 +100,14 @@ export default function SpreadAbout({ onOpenDossier }) {
             <p className="font-body text-[12.5px] leading-relaxed text-[#383530] select-text">
               {ABOUT.bio}
             </p>
+            
+            {/* Slanted Calligraphic Signature - positioned naturally to avoid text collisions */}
+            <div className="flex justify-end w-full mt-1 sm:mt-2 pr-3 select-none pointer-events-none">
+              <span className="font-cookie text-[36px] text-[#C9A96E] leading-none block -rotate-6 transform origin-bottom-right drop-shadow-[0_1.5px_3px_rgba(0,0,0,0.05)]">
+                Wafiq Nawaz
+              </span>
+            </div>
           </div>
-        </div>
-
-        {/* Slanted Calligraphic Signature in bottom right */}
-        <div className="absolute bottom-[3.25rem] right-[2.5rem] select-none pointer-events-none z-20">
-          <span className="font-cookie text-[42px] text-[#C9A96E] leading-none block -rotate-6 transform origin-bottom-right select-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
-            Wafiq Nawaz
-          </span>
         </div>
 
         {/* Bottom Folio */}

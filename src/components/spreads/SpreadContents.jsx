@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import ColumnRule from '../ui/ColumnRule';
 import Folio from '../ui/Folio';
 
 const contentsData = [
@@ -44,7 +43,7 @@ export default function SpreadContents() {
   };
 
   return (
-    <div className="page-spread-content page-left-gutter h-full bg-jp-sage text-[#1A1916]">
+    <div className="page-spread-content page-left-gutter h-full bg-jp-sage text-[#1A1916] flex flex-col justify-between">
       {/* Tactical paper grain realism overlay */}
       <div className="paper-grain-overlay opacity-[0.02]" />
 
@@ -67,66 +66,44 @@ export default function SpreadContents() {
           </span>
         </motion.header>
 
-        {/* Spacious Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_0.15fr_1.4fr] gap-12 my-auto py-8 items-stretch">
+        {/* Spacious Single-Column Content Area */}
+        <div className="my-auto py-4 flex flex-col justify-center w-full max-w-[390px] mx-auto">
           
-          {/* Left Side: Editorial Typography & Whitespace */}
-          <div className="flex flex-col justify-between pr-4 select-none">
-            <motion.div variants={itemVariants} className="flex flex-col gap-3">
-              <span className="font-meta text-[9px] tracking-[0.3em] text-[#C9A96E] uppercase font-bold block mb-1">
-                VOLUME 1.0
-              </span>
-              <h2 className="contents-logotype">
-                CON<br/>TENTS
-              </h2>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="border-t border-[#1A1916]/10 pt-6 mt-8 md:mt-0">
-              <span className="font-meta text-[8.5px] tracking-[0.35em] text-[#1A1916]/50 block uppercase mb-3 font-semibold">
-                CREATIVE BLUEPRINT
-              </span>
-              <p className="font-body text-[13px] leading-relaxed text-[#383530]">
-                This publication maps Wafiq Nawaz's technology products, engineering milestones, and security research dossiers in a borderless wabi-sabi lookbook format.
-              </p>
-            </motion.div>
+          {/* Header block with elegant italic tagline */}
+          <div className="flex flex-col gap-1.5 select-none">
+            <span className="font-meta text-[8.5px] tracking-[0.3em] text-[#C9A96E] uppercase font-bold block">
+              VOLUME 1.0
+            </span>
+            <h1 className="font-heading text-3xl sm:text-4xl tracking-tight text-[#1A1916] leading-none mb-1">
+              CONTENTS
+            </h1>
+            <p className="font-body italic text-[12.5px] leading-relaxed text-[#383530]/80 border-b border-[#1A1916]/10 pb-4">
+              This publication maps Wafiq Nawaz's technology products, engineering milestones, and security research dossiers in a borderless wabi-sabi lookbook format.
+            </p>
           </div>
 
-          {/* Column Divider */}
-          <div className="hidden md:flex justify-center items-center">
-            <ColumnRule vertical={true} />
-          </div>
-
-          {/* Right Side: Spacious Page Listings */}
-          <div className="flex flex-col justify-center pl-0 md:pl-4 gap-1">
-            <motion.div variants={itemVariants} className="flex items-center gap-4 mb-4 select-none">
-              <span className="font-meta text-[9.5px] tracking-[0.35em] text-[#1A1916]/40 uppercase font-semibold">
-                IN THIS ISSUE
-              </span>
-              <ColumnRule />
-            </motion.div>
-
-            <motion.ol variants={listVariants} className="flex flex-col">
-              {contentsData.map((item) => (
-                <motion.li
-                  key={item.page}
-                  variants={itemVariants}
-                  className="grid grid-cols-[44px_1fr] gap-6 py-4 border-b border-[#1A1916]/10 hover:bg-[#C9A96E]/[0.025] transition-colors group cursor-pointer duration-300"
-                >
-                  <span className="font-display font-light text-[34px] leading-none text-[#7A746B] group-hover:text-[#C9A96E] transition-colors self-center">
-                    {item.page}
+          {/* Chapter listings with no middle creasing squish */}
+          <motion.ol variants={listVariants} className="flex flex-col mt-2 select-text">
+            {contentsData.map((item) => (
+              <motion.li
+                key={item.page}
+                variants={itemVariants}
+                className="grid grid-cols-[32px_1fr] gap-4 py-2 sm:py-2.5 border-b border-[#1A1916]/10 hover:bg-[#C9A96E]/[0.025] transition-colors group cursor-pointer duration-300"
+              >
+                <span className="font-display font-light text-[22px] leading-none text-[#7A746B] group-hover:text-[#C9A96E] transition-colors self-center">
+                  {item.page}
+                </span>
+                <div className="flex flex-col justify-center">
+                  <span className="font-display font-bold text-[11.5px] tracking-widest text-[#1A1916] group-hover:text-[#C9A96E] transition-colors uppercase">
+                    {item.section}
                   </span>
-                  <div className="flex flex-col justify-center">
-                    <span className="font-display font-bold text-[14px] tracking-widest text-[#1A1916] group-hover:text-[#C9A96E] transition-colors uppercase">
-                      {item.section}
-                    </span>
-                    <span className="chapter-desc mt-1 font-light leading-normal">
-                      {item.desc}
-                    </span>
-                  </div>
-                </motion.li>
-              ))}
-            </motion.ol>
-          </div>
+                  <span className="chapter-desc mt-0.5 font-light leading-normal text-[11px] text-[#383530]/75">
+                    {item.desc}
+                  </span>
+                </div>
+              </motion.li>
+            ))}
+          </motion.ol>
 
         </div>
 
