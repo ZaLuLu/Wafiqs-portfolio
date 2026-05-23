@@ -57,7 +57,7 @@ export default function SpreadExperience() {
   };
 
   return (
-    <div className="page-spread-content h-full bg-jp-ochre text-[#1A1916]">
+    <div className="page-spread-content page-right-gutter h-full bg-jp-ochre text-[#1A1916]">
       {/* Tactical paper grain realism overlay */}
       <div className="paper-grain-overlay opacity-[0.02]" />
 

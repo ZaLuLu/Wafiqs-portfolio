@@ -115,13 +115,13 @@ export default function VerticalBinderViewer() {
 
         <HTMLFlipBook
           ref={bookRef}
-          width={550}
-          height={750}
+          width={480}
+          height={680}
           size="stretch"
-          minWidth={315}
-          maxWidth={1000}
-          minHeight={420}
-          maxHeight={1350}
+          minWidth={240}
+          maxWidth={960}
+          minHeight={340}
+          maxHeight={1360}
           flippingTime={800}
           usePortrait={false}
           startPage={0}

@@ -755,10 +755,10 @@ html, body {
 .magazine-wrap {
   position: relative;
   z-index: 10;
-  width: 90vw;
-  max-width: 1100px;
-  height: 80vh;
-  max-height: 750px;
+  width: 92vw;
+  max-width: 960px; /* Reduced to ensure visibility without zooming (V6) */
+  height: 72vh;
+  max-height: 680px; /* Comfortably fits standard laptop screens at 100% zoom */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -805,4 +805,15 @@ html, body {
   mix-blend-mode: multiply;
   opacity: 0.85;
 }
+
+/* Asymmetric Gutenberg spine gutters (V6) */
+.page-left-gutter {
+  padding-right: clamp(3rem, 7.5vw, 6.5rem) !important;
+  padding-left: clamp(2rem, 4.5vw, 3.5rem) !important;
+}
+.page-right-gutter {
+  padding-left: clamp(3rem, 7.5vw, 6.5rem) !important;
+  padding-right: clamp(2rem, 4.5vw, 3.5rem) !important;
+}
+
 

@@ -90,7 +90,7 @@ export const SOCIALS = {
   github: 'https://github.com/ZaLuLu',
 
   /** Your full LinkedIn profile URL — set to '' to hide */
-  linkedin: '',
+  linkedin: 'https://www.linkedin.com/in/wafiqnawaz',
 
   /** Your Twitter/X profile URL — set to '' to hide */
   twitter: '',
@@ -188,10 +188,12 @@ export const ABOUT = {
     'React',
     'JavaScript',
     'Python',
+    'Java',
     'FastAPI',
-    'TailwindCSS',
-    'Node.js',
-    'PostgreSQL',
+    'Computer Networks',
+    'Cybersecurity',
+    'Cryptography Basics',
+    'OWASP Top 10',
     'Git / GitHub',
   ],
 
@@ -218,35 +220,38 @@ export const ABOUT = {
  */
 export const SKILL_CATEGORIES = {
   technical: {
-    name: 'TECHNICAL',
+    name: 'BACKEND & CYBER',
     color: '#E8A020',   /* amber */
     skills: [
-      { label: 'React & Frontend',    percentage: 85 },
-      { label: 'JavaScript / ES6+',   percentage: 80 },
-      { label: 'Python',              percentage: 75 },
-      { label: 'FastAPI / Backend',   percentage: 70 },
-      { label: 'PostgreSQL / SQL',    percentage: 65 },
-      { label: 'TailwindCSS',         percentage: 80 },
+      { label: 'Python',                    percentage: 85 },
+      { label: 'Java',                      percentage: 80 },
+      { label: 'Computer Networks',         percentage: 85 },
+      { label: 'Cybersecurity Fundamentals',percentage: 80 },
+      { label: 'Cryptography Basics',       percentage: 75 },
+      { label: 'Vulnerability Assessment',  percentage: 70 },
+      { label: 'OWASP Top 10',              percentage: 80 },
     ],
   },
   soft: {
     name: 'SOFT SKILLS',
     color: '#F5EDD8',   /* cream */
     skills: [
-      { label: 'Problem Solving', percentage: 90 },
-      { label: 'Communication',   percentage: 80 },
-      { label: 'Adaptability',    percentage: 85 },
-      { label: 'Self-Learning',   percentage: 90 },
+      { label: 'Analytical Thinking', percentage: 90 },
+      { label: 'Time Management',     percentage: 85 },
+      { label: 'Crisis Communication',percentage: 80 },
+      { label: 'Problem Solving',     percentage: 90 },
+      { label: 'Adaptive Collaboration',percentage: 85 },
     ],
   },
   other: {
-    name: 'OTHER SKILLS',
+    name: 'FRONTEND DEVELOPMENT',
     color: '#6BAF8A',   /* sage green */
     skills: [
-      { label: 'Git / GitHub',      percentage: 85 },
-      { label: 'Linux / CLI',       percentage: 70 },
-      { label: 'UI/UX Design',      percentage: 70 },
-      { label: 'Responsive Design', percentage: 85 },
+      { label: 'JavaScript / ES6+',   percentage: 85 },
+      { label: 'React UI Engine',     percentage: 85 },
+      { label: 'CSS Grid & Flex',     percentage: 80 },
+      { label: 'Semantic HTML5',      percentage: 85 },
+      { label: 'Lookbook Design',     percentage: 80 },
     ],
   },
 };

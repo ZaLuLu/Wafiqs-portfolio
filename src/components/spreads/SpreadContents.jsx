@@ -44,7 +44,7 @@ export default function SpreadContents() {
   };
 
   return (
-    <div className="page-spread-content h-full bg-jp-sage text-[#1A1916]">
+    <div className="page-spread-content page-left-gutter h-full bg-jp-sage text-[#1A1916]">
       {/* Tactical paper grain realism overlay */}
       <div className="paper-grain-overlay opacity-[0.02]" />
 

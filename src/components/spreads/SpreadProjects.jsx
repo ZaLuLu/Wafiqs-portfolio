@@ -92,7 +92,7 @@ export default function SpreadProjects({ projectIndex }) {
   };
 
   return (
-    <div className={`page-spread-content h-full ${isDark ? 'bg-jp-granite text-[#F5F1EB]' : 'bg-jp-rose text-[#1A1916]'}`}>
+    <div className={`page-spread-content ${isDark ? 'page-left-gutter' : 'page-right-gutter'} h-full ${isDark ? 'bg-jp-granite text-[#F5F1EB]' : 'bg-jp-rose text-[#1A1916]'}`}>
       {/* Tactical paper grain realism overlay */}
       <div className="paper-grain-overlay opacity-[0.02]" />
 

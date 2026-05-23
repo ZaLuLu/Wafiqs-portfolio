@@ -75,7 +75,12 @@ export default function SpreadCover() {
           className="flex justify-between items-center border-b border-white/10 pb-6 w-full select-none"
         >
           <div className="flex items-center gap-3">
-            <motion.div variants={starVariants}>
+            <motion.div 
+              variants={starVariants}
+              whileHover={{ rotate: 180, scale: 1.15 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              className="cursor-pointer"
+            >
               <MastheadLogo />
             </motion.div>
             <span className="font-meta text-[9.5px] tracking-[0.35em] text-[#D1B48C] font-bold uppercase">

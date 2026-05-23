@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Folio from '../ui/Folio';
-import { IDENTITY, EMAIL_USER, EMAIL_DOMAIN } from '../../data/portfolio';
 
 export default function SpreadContact() {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
@@ -34,7 +33,7 @@ export default function SpreadContact() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 25 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -43,14 +42,14 @@ export default function SpreadContact() {
   };
 
   return (
-    <div className="page-spread-content h-full bg-jp-obsidian text-[#F5F1EB]">
+    <div className="page-spread-content page-left-gutter h-full bg-jp-obsidian text-[#F5F1EB] relative flex flex-col justify-between">
       {/* Tactical paper grain realism overlay */}
       <div className="paper-grain-overlay opacity-[0.015]" />
 
       {/* Floating Spotlight backlight */}
       <div className="absolute inset-0 pointer-events-none select-none z-0"
         style={{
-          background: 'radial-gradient(circle at 70% 60%, rgba(209, 180, 140, 0.04) 0%, transparent 60%)'
+          background: 'radial-gradient(circle at 30% 60%, rgba(209, 180, 140, 0.04) 0%, transparent 60%)'
         }}
       />
 
@@ -63,7 +62,7 @@ export default function SpreadContact() {
         {/* Top Folio strip */}
         <motion.header 
           variants={itemVariants} 
-          className="flex justify-between items-center border-b border-white/10 pb-5 select-none"
+          className="flex justify-between items-center border-b border-white/10 pb-4 select-none"
         >
           <span className="font-meta text-[9.5px] tracking-[0.25em] text-[#D1B48C] uppercase font-bold">
             COLLABORATION
@@ -73,57 +72,98 @@ export default function SpreadContact() {
           </span>
         </motion.header>
 
-        {/* Single-Column Wabi-Sabi Flow (V5 Decluttered) */}
-        <div className="my-auto py-4 flex flex-col gap-6 max-w-[420px] mx-auto w-full">
+        {/* Directory Spread (Directory Grid & Message Transmission) */}
+        <div className="my-auto py-2 flex flex-col gap-4 max-w-[420px] mx-auto w-full">
           
           {/* Header block */}
-          <div className="flex flex-col gap-2 text-center select-none">
-            <span className="font-meta text-[8.5px] tracking-[0.2em] text-[#D1B48C] block font-bold uppercase">
+          <div className="flex flex-col gap-1 text-center select-none">
+            <span className="font-meta text-[8px] tracking-[0.2em] text-[#D1B48C] block font-bold uppercase">
               TRANSMIT REQUEST
             </span>
-            <h3 className="font-heading italic font-light text-[36px] leading-[0.9] text-white">
-              LET'S BUILD SOMETHING.
+            <h3 className="font-heading italic font-light text-[28px] leading-tight text-white">
+              Let's Build Together.
             </h3>
-            <p className="font-body text-[12.5px] leading-relaxed text-[#F5F1EB]/80 font-light mt-1 px-4">
-              Seeking Summer 2026 developer internships or security collaborations. Drop a direct transmission request to establish communication.
-            </p>
           </div>
 
-          {/* Credentials Info row */}
-          <div className="flex justify-between border-b border-white/10 pb-4 select-none text-xs px-2 mt-2 gap-4">
-            <div className="flex flex-col text-left">
-              <span className="font-meta text-[8px] text-[#F5F1EB]/50 uppercase font-bold mb-0.5">EMAIL</span>
-              <a href={`mailto:${EMAIL_USER}@${EMAIL_DOMAIN}`} className="font-meta font-bold text-[10px] text-[#D1B48C] hover:text-[#DC684A] transition-colors">
-                {EMAIL_USER}@{EMAIL_DOMAIN}
-              </a>
-            </div>
-            <div className="flex flex-col text-right">
-              <span className="font-meta text-[8px] text-[#F5F1EB]/50 uppercase font-bold mb-0.5">GITHUB</span>
-              <a href="https://github.com/ZaLuLu" target="_blank" rel="noreferrer" className="font-meta font-bold text-[10px] text-white/90 hover:text-[#D1B48C] transition-colors">
-                github.com/ZaLuLu
-              </a>
-            </div>
-          </div>
+          {/* Socials & Channels Directory Cards Grid */}
+          <motion.div variants={itemVariants} className="grid grid-cols-2 gap-2.5 w-full select-none mt-1">
+            {/* Outlook Card */}
+            <a 
+              href="mailto:wafiqnawaz@outlook.com" 
+              className="p-2.5 bg-[#151310] border border-white/10 hover:border-[#D1B48C]/80 transition-all duration-300 rounded-[2px] flex flex-col gap-0.5 text-left group"
+            >
+              <span className="font-meta text-[7.5px] text-[#D1B48C] font-bold tracking-wider">OUTLOOK MAIL</span>
+              <span className="font-body text-[10.5px] text-white/80 group-hover:text-[#D1B48C] transition-colors truncate">wafiqnawaz@outlook.com</span>
+            </a>
+            
+            {/* Gmail Card */}
+            <a 
+              href="mailto:nawazfaqiq711@gmail.com" 
+              className="p-2.5 bg-[#151310] border border-white/10 hover:border-[#D1B48C]/80 transition-all duration-300 rounded-[2px] flex flex-col gap-0.5 text-left group"
+            >
+              <span className="font-meta text-[7.5px] text-[#D1B48C] font-bold tracking-wider">GMAIL MAIL</span>
+              <span className="font-body text-[10.5px] text-white/80 group-hover:text-[#D1B48C] transition-colors truncate">nawazfaqiq711@gmail.com</span>
+            </a>
+
+            {/* LinkedIn Card */}
+            <a 
+              href="https://www.linkedin.com/in/wafiqnawaz" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="p-2.5 bg-[#151310] border border-white/10 hover:border-[#D1B48C]/80 transition-all duration-300 rounded-[2px] flex flex-col gap-0.5 text-left group"
+            >
+              <span className="font-meta text-[7.5px] text-[#D1B48C] font-bold tracking-wider">LINKEDIN DIRECTORY</span>
+              <span className="font-body text-[10.5px] text-white/80 group-hover:text-[#D1B48C] transition-colors truncate">in/wafiqnawaz</span>
+            </a>
+
+            {/* GitHub Card */}
+            <a 
+              href="https://github.com/ZaLuLu" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="p-2.5 bg-[#151310] border border-white/10 hover:border-[#D1B48C]/80 transition-all duration-300 rounded-[2px] flex flex-col gap-0.5 text-left group"
+            >
+              <span className="font-meta text-[7.5px] text-[#D1B48C] font-bold tracking-wider">GITHUB ARCHIVE</span>
+              <span className="font-body text-[10.5px] text-white/80 group-hover:text-[#D1B48C] transition-colors truncate">github.com/ZaLuLu</span>
+            </a>
+          </motion.div>
+
+          {/* Full-width resume download key */}
+          <motion.div variants={itemVariants} className="w-full">
+            <a 
+              href="/Wafiq_Nawaz_Resume.pdf" 
+              download
+              className="w-full flex items-center justify-center gap-2 p-2.5 bg-[#151310] border border-[#D1B48C]/40 hover:border-[#D1B48C] transition-all duration-300 rounded-[2px] font-meta text-[9.5px] tracking-widest text-[#D1B48C] font-bold uppercase text-center select-none hover:bg-[#D1B48C]/10"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              DOWNLOAD IIM-STYLE RESUME
+            </a>
+          </motion.div>
 
           {/* Form input fields */}
-          <div className="w-full px-2">
+          <div className="w-full px-1 border-t border-white/10 pt-3">
             {status === 'success' ? (
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-[#151310] border border-[#D1B48C]/20 p-6 text-center rounded-[1px] select-none shadow-2xl"
+                className="bg-[#151310] border border-[#D1B48C]/20 p-4 text-center rounded-[2px] select-none shadow-xl"
               >
-                <span className="font-cookie text-3xl text-[#D1B48C] block mb-2 font-normal">Thank you!</span>
-                <p className="font-body text-[11.5px] text-[#F5F1EB]/85">
-                  Transmission successfully logged. Wafiq will follow up shortly.
+                <span className="font-cookie text-2xl text-[#D1B48C] block mb-1 font-normal">Thank you!</span>
+                <p className="font-body text-[11px] text-[#F5F1EB]/80">
+                  Transmission logged. Wafiq will follow up shortly.
                 </p>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <div className="grid grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
+                <span className="font-meta text-[7.5px] tracking-[0.25em] text-[#D1B48C] font-bold block select-none uppercase mb-1">OR TRANSMIT AN IMMEDIATE FEEDBACK PACKET</span>
+                <div className="grid grid-cols-2 gap-3">
                   {/* Name */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className="font-meta text-[8px] tracking-widest text-[#F5F1EB]/55 uppercase select-none font-bold">
+                  <div className="flex flex-col gap-1">
+                    <label className="font-meta text-[7px] tracking-widest text-[#F5F1EB]/55 uppercase select-none font-bold">
                       NAME
                     </label>
                     <input
@@ -133,13 +173,13 @@ export default function SpreadContact() {
                       onChange={handleChange}
                       required
                       placeholder="Enter name"
-                      className="bg-transparent border-b border-white/20 focus:border-[#D1B48C] text-[11px] font-meta text-[#F5F1EB] pb-1 outline-none transition-colors"
+                      className="bg-transparent border-b border-white/15 focus:border-[#D1B48C] text-[10.5px] font-meta text-[#F5F1EB] pb-0.5 outline-none transition-colors"
                     />
                   </div>
 
                   {/* Email */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className="font-meta text-[8px] tracking-widest text-[#F5F1EB]/55 uppercase select-none font-bold">
+                  <div className="flex flex-col gap-1">
+                    <label className="font-meta text-[7px] tracking-widest text-[#F5F1EB]/55 uppercase select-none font-bold">
                       EMAIL
                     </label>
                     <input
@@ -149,14 +189,14 @@ export default function SpreadContact() {
                       onChange={handleChange}
                       required
                       placeholder="Enter email"
-                      className="bg-transparent border-b border-white/20 focus:border-[#D1B48C] text-[11px] font-meta text-[#F5F1EB] pb-1 outline-none transition-colors"
+                      className="bg-transparent border-b border-white/15 focus:border-[#D1B48C] text-[10.5px] font-meta text-[#F5F1EB] pb-0.5 outline-none transition-colors"
                     />
                   </div>
                 </div>
 
                 {/* Message */}
-                <div className="flex flex-col gap-1.5 mt-1">
-                  <label className="font-meta text-[8px] tracking-widest text-[#F5F1EB]/55 uppercase select-none font-bold">
+                <div className="flex flex-col gap-1">
+                  <label className="font-meta text-[7px] tracking-widest text-[#F5F1EB]/55 uppercase select-none font-bold">
                     MESSAGE
                   </label>
                   <textarea
@@ -165,17 +205,17 @@ export default function SpreadContact() {
                     onChange={handleChange}
                     required
                     rows={1}
-                    placeholder="Describe your inquiry..."
-                    className="bg-transparent border-b border-white/20 focus:border-[#D1B48C] text-[11px] font-body text-[#F5F1EB] pb-1 outline-none transition-colors resize-none"
+                    placeholder="Describe inquiry..."
+                    className="bg-transparent border-b border-white/15 focus:border-[#D1B48C] text-[10.5px] font-body text-[#F5F1EB] pb-0.5 outline-none transition-colors resize-none"
                   />
                 </div>
 
-                {/* Submit technical button (Premium Ghost technical CTA) */}
+                {/* Submit technical button */}
                 <motion.button
                   variants={itemVariants}
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="mt-3 font-meta text-[10px] tracking-widest text-[#D1B48C] hover:text-[#0D0C0A] bg-transparent hover:bg-[#D1B48C] border border-[#D1B48C]/50 hover:border-[#D1B48C] py-3.5 text-center cursor-pointer transition-all duration-300 font-bold uppercase disabled:opacity-50 select-none rounded-[9999px] outline-none border-solid"
+                  className="font-meta text-[9px] tracking-widest text-[#D1B48C] hover:text-[#0D0C0A] bg-transparent hover:bg-[#D1B48C] border border-[#D1B48C]/50 hover:border-[#D1B48C] py-2.5 text-center cursor-pointer transition-all duration-300 font-bold uppercase disabled:opacity-50 select-none rounded-[2px] outline-none border-solid mt-1.5"
                 >
                   {status === 'submitting' ? 'TRANSMITTING...' : 'TRANSMIT REGISTER →'}
                 </motion.button>
@@ -185,7 +225,7 @@ export default function SpreadContact() {
         </div>
 
         {/* Bottom Folio */}
-        <motion.footer variants={itemVariants} className="border-t border-white/10 pt-5 w-full">
+        <motion.footer variants={itemVariants} className="border-t border-white/10 pt-4 w-full">
           <Folio page={8} text="CLOSE REGISTER" />
         </motion.footer>
       </motion.div>

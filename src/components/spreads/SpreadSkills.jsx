@@ -24,7 +24,7 @@ export default function SpreadSkills() {
   };
 
   return (
-    <div className="page-spread-content h-full bg-jp-blue text-[#1A1916]">
+    <div className="page-spread-content page-left-gutter h-full bg-jp-blue text-[#1A1916]">
       {/* Tactical paper grain realism overlay */}
       <div className="paper-grain-overlay opacity-[0.02]" />
 
@@ -47,57 +47,84 @@ export default function SpreadSkills() {
           </span>
         </motion.header>
 
-        {/* Single-Column Wabi-Sabi Spec Table (V5 Decluttered & Spacious) */}
-        <div className="my-auto py-4 flex flex-col gap-6 max-w-[420px] mx-auto w-full">
+        {/* Single-Column Wabi-Sabi Spec Table (V6 Clean Specifications) */}
+        <div className="my-auto py-3 flex flex-col gap-5 max-w-[420px] mx-auto w-full">
           
           {/* Header block */}
-          <motion.div variants={itemVariants} className="flex flex-col gap-2 select-none text-center">
+          <motion.div variants={itemVariants} className="flex flex-col gap-1 select-none text-center">
             <span className="font-meta text-[8.5px] tracking-[0.3em] text-[#DC684A] uppercase font-bold">
               ENGINEERING CORE
             </span>
-            <h3 className="font-heading italic font-light text-[38px] leading-none text-[#1A1916]">
+            <h3 className="font-heading italic font-light text-[32px] leading-none text-[#1A1916]">
               Technical Specs
             </h3>
-            <div className="w-12 h-[1px] bg-[#DC684A] mx-auto mt-3" />
+            <div className="w-12 h-[1px] bg-[#DC684A] mx-auto mt-2" />
           </motion.div>
 
-          {/* Elegant monospaced spec table with dot leaders */}
-          <motion.div variants={itemVariants} className="spec-list mt-2">
-            <div className="spec-item">
-              <span className="font-meta text-[11px] font-bold text-[#1A1916]">React &amp; Frontend</span>
-              <span className="spec-dot-leader" />
-              <span className="font-meta text-[10px] text-[#7A746B]">High-Fidelity Interfaces</span>
+          {/* Dotted Spec Matrices */}
+          <motion.div variants={itemVariants} className="flex flex-col gap-5 mt-1 select-none">
+            
+            {/* Backend & Cyber Security */}
+            <div className="flex flex-col gap-1.5">
+              <span className="font-meta text-[8px] tracking-[0.2em] text-[#DC684A] font-bold uppercase">BACKEND &amp; CYBER SECURITY</span>
+              <div className="spec-list">
+                <div className="spec-item">
+                  <span className="font-meta text-[10.5px] font-bold text-[#1A1916]">Python / Java / Networks</span>
+                  <span className="spec-dot-leader" />
+                  <span className="font-meta text-[9.5px] text-[#7A746B]">Core Systems</span>
+                </div>
+                <div className="spec-item">
+                  <span className="font-meta text-[10.5px] font-bold text-[#1A1916]">Cybersecurity / Cryptography</span>
+                  <span className="spec-dot-leader" />
+                  <span className="font-meta text-[9.5px] text-[#7A746B]">Defensive Audits</span>
+                </div>
+                <div className="spec-item">
+                  <span className="font-meta text-[10.5px] font-bold text-[#1A1916]">OWASP Top 10 / Vuln Assessment</span>
+                  <span className="spec-dot-leader" />
+                  <span className="font-meta text-[9.5px] text-[#7A746B]">Security Auditing</span>
+                </div>
+              </div>
             </div>
-            <div className="spec-item">
-              <span className="font-meta text-[11px] font-bold text-[#1A1916]">JavaScript / ES6+</span>
-              <span className="spec-dot-leader" />
-              <span className="font-meta text-[10px] text-[#7A746B]">Dynamic Logic Systems</span>
+
+            {/* Frontend Development */}
+            <div className="flex flex-col gap-1.5">
+              <span className="font-meta text-[8px] tracking-[0.2em] text-[#DC684A] font-bold uppercase">FRONTEND DEVELOPMENT</span>
+              <div className="spec-list">
+                <div className="spec-item">
+                  <span className="font-meta text-[10.5px] font-bold text-[#1A1916]">JavaScript / ES6+ / React UI</span>
+                  <span className="spec-dot-leader" />
+                  <span className="font-meta text-[9.5px] text-[#7A746B]">Render Engines</span>
+                </div>
+                <div className="spec-item">
+                  <span className="font-meta text-[10.5px] font-bold text-[#1A1916]">CSS Grid &amp; Flex / Tailwind</span>
+                  <span className="spec-dot-leader" />
+                  <span className="font-meta text-[9.5px] text-[#7A746B]">Pixel Precision</span>
+                </div>
+                <div className="spec-item">
+                  <span className="font-meta text-[10.5px] font-bold text-[#1A1916]">Semantic HTML5 / Lookbook Design</span>
+                  <span className="spec-dot-leader" />
+                  <span className="font-meta text-[9.5px] text-[#7A746B]">Artful UX</span>
+                </div>
+              </div>
             </div>
-            <div className="spec-item">
-              <span className="font-meta text-[11px] font-bold text-[#1A1916]">Python &amp; Systems</span>
-              <span className="spec-dot-leader" />
-              <span className="font-meta text-[10px] text-[#7A746B]">CTF Security Scripts</span>
+
+            {/* Soft Skills */}
+            <div className="flex flex-col gap-1.5">
+              <span className="font-meta text-[8px] tracking-[0.2em] text-[#DC684A] font-bold uppercase">ADAPTIVE SOFT SKILLS</span>
+              <div className="spec-list">
+                <div className="spec-item">
+                  <span className="font-meta text-[10.5px] font-bold text-[#1A1916]">Problem Solving / Analysis</span>
+                  <span className="spec-dot-leader" />
+                  <span className="font-meta text-[9.5px] text-[#7A746B]">Resolution</span>
+                </div>
+                <div className="spec-item">
+                  <span className="font-meta text-[10.5px] font-bold text-[#1A1916]">Time Management / Crisis Comms</span>
+                  <span className="spec-dot-leader" />
+                  <span className="font-meta text-[9.5px] text-[#7A746B]">Operations</span>
+                </div>
+              </div>
             </div>
-            <div className="spec-item">
-              <span className="font-meta text-[11px] font-bold text-[#1A1916]">FastAPI / REST APIs</span>
-              <span className="spec-dot-leader" />
-              <span className="font-meta text-[10px] text-[#7A746B]">Async Service Pipelines</span>
-            </div>
-            <div className="spec-item">
-              <span className="font-meta text-[11px] font-bold text-[#1A1916]">PostgreSQL / SQL</span>
-              <span className="spec-dot-leader" />
-              <span className="font-meta text-[10px] text-[#7A746B]">Structured Database Models</span>
-            </div>
-            <div className="spec-item">
-              <span className="font-meta text-[11px] font-bold text-[#1A1916]">TailwindCSS</span>
-              <span className="spec-dot-leader" />
-              <span className="font-meta text-[10px] text-[#7A746B]">Responsive Design Tokens</span>
-            </div>
-            <div className="spec-item">
-              <span className="font-meta text-[11px] font-bold text-[#1A1916]">Web Security</span>
-              <span className="spec-dot-leader" />
-              <span className="font-meta text-[10px] text-[#7A746B]">Defensive OWASP Auditing</span>
-            </div>
+
           </motion.div>
         </div>
 

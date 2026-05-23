@@ -88,9 +88,9 @@ export default function ProfileCard({ onClose }) {
           {/* Col 3: Tools */}
           <div className="pc-col">
             <span className="pc-section-label select-none">EQUIPPED TOOLS</span>
-            <ul className="pc-list">
-              {ABOUT.equippedSkills.slice(0, 5).map((tool) => (
-                <li key={tool}>{tool}</li>
+            <ul className="pc-list grid grid-cols-2 gap-x-4 select-text">
+              {ABOUT.equippedSkills.map((tool) => (
+                <li key={tool} className="truncate border-b border-[#1A1916]/10 pb-1 pt-1 last:border-b-0">{tool}</li>
               ))}
             </ul>
           </div>

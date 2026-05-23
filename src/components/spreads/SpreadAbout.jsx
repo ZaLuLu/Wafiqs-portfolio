@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Folio from '../ui/Folio';
-import Caption from '../ui/Caption';
 import { IDENTITY, ABOUT } from '../../data/portfolio';
 
 export default function SpreadAbout({ onOpenDossier }) {
@@ -17,7 +16,7 @@ export default function SpreadAbout({ onOpenDossier }) {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 25 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -26,7 +25,7 @@ export default function SpreadAbout({ onOpenDossier }) {
   };
 
   const photoVariants = {
-    hidden: { opacity: 0, scale: 1.05 },
+    hidden: { opacity: 0, scale: 1.03 },
     visible: {
       opacity: 1,
       scale: 1,
@@ -35,7 +34,7 @@ export default function SpreadAbout({ onOpenDossier }) {
   };
 
   return (
-    <div className="page-spread-content h-full bg-jp-oyster text-[#1A1916]">
+    <div className="page-spread-content page-right-gutter h-full bg-jp-oyster text-[#1A1916] relative flex flex-col justify-between">
       {/* Tactical paper grain realism overlay */}
       <div className="paper-grain-overlay opacity-[0.02]" />
 
@@ -48,7 +47,7 @@ export default function SpreadAbout({ onOpenDossier }) {
         {/* Top Folio strip */}
         <motion.header 
           variants={itemVariants} 
-          className="flex justify-between items-center border-b border-[#1A1916]/10 pb-5 select-none"
+          className="flex justify-between items-center border-b border-[#1A1916]/10 pb-4 select-none"
         >
           <span className="font-meta text-[9.5px] tracking-[0.25em] text-[#DC684A] uppercase font-bold">
             SUBJECT PROFILE
@@ -58,63 +57,61 @@ export default function SpreadAbout({ onOpenDossier }) {
           </span>
         </motion.header>
 
-        {/* Single-Column Wabi-Sabi Flow (V5 Decluttered) */}
-        <div className="my-auto py-4 flex flex-col gap-6 items-center w-full">
+        {/* Spacious Single-Column Flow (V6 Polaroid & Slanted Signature) */}
+        <div className="my-auto py-4 flex flex-col gap-6 items-center w-full relative">
           
-          {/* Card Portrait centerpiece with Slanted Signature */}
+          {/* Polaroid Card Portrait Centerpiece */}
           <motion.div 
             variants={photoVariants}
-            className="bg-[#FAF6F0] p-4 border border-[#1A1916]/10 shadow-2xl rounded-[1px] max-w-[210px] w-full flex flex-col items-center cursor-pointer group"
+            className="bg-[#FAF6F0] p-3 pb-8 border border-[#1A1916]/12 shadow-[0_20px_40px_rgba(0,0,0,0.12)] rounded-[2px] max-w-[230px] w-full flex flex-col items-center cursor-pointer group relative"
             onClick={onOpenDossier}
             role="button"
             tabIndex={0}
             aria-label="Open detailed dossier overlay"
-            whileHover={{ scale: 1.025, rotate: -1 }}
+            whileHover={{ scale: 1.03, rotate: 1 }}
             transition={{ duration: 0.4 }}
           >
-            {/* Card-like border */}
-            <div className="relative overflow-hidden w-full aspect-[3/4] border border-[#1A1916]/10">
+            {/* Card-like border around image */}
+            <div className="relative overflow-hidden w-full aspect-[3/4] border border-[#1A1916]/10 bg-[#EFE9DF]">
               <img
                 src="/profile.jpg"
                 alt="Wafiq Nawaz portrait centerpiece"
                 className="w-full h-full object-cover filter brightness-[0.98] contrast-[1.03] transition-all duration-700 group-hover:scale-103"
               />
+              {/* Subtle glass reflection overlay */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
             </div>
-            
-            {/* Slanted Signature Name underneath in Cookie script */}
-            <div className="mt-4 pt-1 pb-1 select-none flex flex-col items-center">
-              <span className="font-cookie text-[34px] text-[#DC684A] leading-none font-normal -rotate-4 block transform origin-center select-none text-center">
-                Wafiq Nawaz
-              </span>
+
+            {/* Polaroid caption / stamp code */}
+            <div className="mt-3 w-full flex justify-between px-1 select-none">
+              <span className="font-meta text-[8px] text-[#7A746B] tracking-wider uppercase font-semibold">ZN-001</span>
+              <span className="font-meta text-[8px] text-[#DC684A] font-bold">ACTIVE SYSTEM</span>
             </div>
           </motion.div>
 
-          {/* Biographical Anchor */}
-          <div className="flex flex-col gap-3 text-center px-4 max-w-[440px]">
-            <span className="font-meta text-[8.5px] tracking-[0.25em] text-[#DC684A] uppercase font-bold block select-none">
+          {/* Biography Block - High Premium Editorial Text */}
+          <div className="flex flex-col gap-2.5 text-center px-4 max-w-[390px] mt-2">
+            <span className="font-meta text-[8px] tracking-[0.25em] text-[#DC684A] uppercase font-bold block select-none">
               BIOGRAPHICAL ANCHOR
             </span>
-            <h3 className="font-heading italic font-light text-[32px] leading-tight text-[#1A1916] select-none">
+            <h3 className="font-heading italic font-light text-[28px] leading-tight text-[#1A1916] select-none">
               Discipline &amp; Craft
             </h3>
             <p className="font-body text-[12.5px] leading-relaxed text-[#383530] select-text">
               {ABOUT.bio}
             </p>
           </div>
+        </div>
 
-          {/* Sleek Underline Button (Micro-animating Hover) */}
-          <motion.div variants={itemVariants} className="select-none mt-2">
-            <button
-              onClick={onOpenDossier}
-              className="font-meta text-[10px] tracking-widest text-[#1A1916] hover:text-[#DC684A] pb-1 transition-all duration-300 font-bold uppercase border-b border-[#1A1916] hover:border-[#DC684A] cursor-pointer bg-transparent border-none outline-none"
-            >
-              OPEN SYSTEM DOSSIER →
-            </button>
-          </motion.div>
+        {/* Slanted Calligraphic Signature in bottom right */}
+        <div className="absolute bottom-[3.25rem] right-[2.5rem] select-none pointer-events-none z-20">
+          <span className="font-cookie text-[42px] text-[#DC684A] leading-none block -rotate-6 transform origin-bottom-right select-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
+            Wafiq Nawaz
+          </span>
         </div>
 
         {/* Bottom Folio */}
-        <motion.footer variants={itemVariants} className="border-t border-[#1A1916]/10 pt-5 w-full">
+        <motion.footer variants={itemVariants} className="border-t border-[#1A1916]/10 pt-4 w-full relative z-10">
           <Folio page={3} text="SUBJECT DOSSIER" />
         </motion.footer>
       </motion.div>
