@@ -39,7 +39,7 @@ export default function SpreadAbout() {
 
   return (
     <>
-      <div className="page-spread-content h-full bg-[#F5F1EB] text-[#1A1916]">
+      <div className="page-spread-content h-full bg-jp-oyster text-[#1A1916]">
         {/* Tactical paper grain realism overlay */}
         <div className="paper-grain-overlay opacity-[0.02]" />
 
@@ -65,13 +65,13 @@ export default function SpreadAbout() {
           {/* Spacious High-Fashion Split Grid */}
           <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.3fr] gap-12 my-auto py-6 items-center">
             
-            {/* Column 1: Vibrant Flagship Portrait */}
+            {/* Column 1: Vibrant Flagship Portrait (Only Portrait centerpiece in the entire app) */}
             <motion.div 
               variants={photoVariants}
               className="flex flex-col justify-center select-none"
             >
               <motion.div
-                className="relative overflow-hidden cursor-pointer group shadow-2xl border-[4px] border-white max-w-[360px] mx-auto w-full"
+                className="relative overflow-hidden cursor-pointer group shadow-2xl border-[4px] border-white max-w-[340px] mx-auto w-full"
                 whileHover={{ scale: 1.02 }}
                 onClick={() => setProfileOpen(true)}
                 role="button"
@@ -108,7 +108,7 @@ export default function SpreadAbout() {
               </motion.div>
 
               {/* Svyasa University Stats */}
-              <motion.div variants={itemVariants} className="my-8 select-none">
+              <motion.div variants={itemVariants} className="my-6 select-none">
                 <ul className="flex flex-col gap-3">
                   <li className="flex justify-between items-baseline border-b border-[#1A1916]/10 pb-2 text-xs">
                     <span className="font-meta text-[9.5px] text-[#7A746B] uppercase font-semibold">Degree</span>
@@ -125,13 +125,13 @@ export default function SpreadAbout() {
                 </ul>
               </motion.div>
 
-              {/* Action trigger button */}
-              <motion.div variants={itemVariants} className="select-none flex gap-4 mt-2">
+              {/* Action trigger button (V5 Premium Text Underline Link) */}
+              <motion.div variants={itemVariants} className="select-none flex gap-4 mt-3">
                 <button
                   onClick={() => setProfileOpen(true)}
-                  className="font-meta text-[10px] tracking-widest text-[#F5F1EB] bg-[#1A1916] hover:bg-[#DC684A] px-6 py-3.5 transition-all duration-300 font-bold uppercase rounded-[9999px] border-none cursor-pointer shadow-md hover:shadow-lg"
+                  className="font-meta text-[10.5px] tracking-widest text-[#1A1916] hover:text-[#DC684A] pb-1.5 transition-all duration-300 font-bold uppercase border-b-2 border-[#1A1916] hover:border-[#DC684A] cursor-pointer bg-transparent border-none outline-none"
                 >
-                  OPEN DOSSIER →
+                  OPEN SYSTEM DOSSIER →
                 </button>
               </motion.div>
             </div>

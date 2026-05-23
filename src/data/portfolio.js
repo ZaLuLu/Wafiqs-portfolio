@@ -174,7 +174,7 @@ export const HERO = {
 //  ABOUT — the player dossier section
 // ─────────────────────────────────────────────────────────────
 export const ABOUT = {
-  bio: 'I\'m a Computer Science student and security enthusiast based in Bengaluru, India. I build full-stack web applications and security tools, merging brutalist aesthetics with modern engineering. Currently open to internships and entry-level roles in development or cybersecurity.',
+  bio: 'Operating at the intersection of robust full-stack engineering and modern web security, I specialize in crafting performant digital products with high-fidelity design aesthetics. A Computer Science student at Svyasa University, Bengaluru, I translate intricate system constraints and security models into clean, resilient, and beautifully structured user experiences.',
 
   aliasOrigin: 'ZaLuLu started as a low-level encryption handle in the early days of forum-based CTFs. It has since evolved into a personal brand representing the intersection of chaos (Zal) and logic (Lu).',
 
@@ -278,7 +278,7 @@ export const PROJECTS = [
     tech:  'REACT, FASTAPI, POSTGRESQL, GEMINI AI',
     year:  '2026',
     url:   'https://retailmind-zalulus-projects.vercel.app/',
-    desc:  'SMB owners waste hours manually analysing sales data. RetailMind ingests raw CSV exports and surfaces demand spikes, dead stock, and margin erosion in seconds — with a Gemini AI headline summarising the most critical insight. Full JWT auth, async SQLAlchemy, Sentry monitoring.',
+    desc:  'An intelligent demand forecasting and analytical engine tailored for small and medium businesses. RetailMind automates high-volume CSV exports, utilizing asynchronous FastAPI pipelines and PostgreSQL models to analyze sales metrics. Integrates the Gemini AI API to surface natural language executive summaries of demand spikes, dead stock, and margin erosion in seconds. Secured via full JWT-token auth and monitored with Sentry integration.',
   },
   {
     id:    2,
@@ -287,7 +287,7 @@ export const PROJECTS = [
     tech:  'REACT, TAILWINDCSS, VITE',
     year:  '2026',
     url:   'https://wafiqnawaz.vercel.app',
-    desc:  'Built this portfolio as a design challenge — neo-brutalist game aesthetic with custom cursor, Web Audio API sound effects, animated ASCII skill bars, and a vault-style project archive. Single data-file architecture means all content updates in one place.',
+    desc:  'An interactive lookbook portfolio challenging the boundaries of digital editorial design. Engineered using Vite, React 19, and Tailwind v4, the application models a physical high-end art publication with horizontal page-flipping physics, wabi-sabi wove color blocks, and typographic restraint. Designed with single-data-source configurations for absolute maintenance speed.',
   },
   {
     id:    3,
@@ -296,6 +296,6 @@ export const PROJECTS = [
     tech:  'TBD',
     year:  '2026',
     url:   'https://github.com/ZaLuLu',
-    desc:  'Currently building new projects in web development and cybersecurity. Follow on GitHub for updates — next up: a security-focused tool and an ML-integrated web app.',
+    desc:  'Currently engineering new defensive security tools and machine-learning web applications. Follow on GitHub to explore ongoing trials, cryptographic experiments, and full-stack systems engineering.',
   },
 ];

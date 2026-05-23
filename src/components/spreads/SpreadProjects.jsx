@@ -14,6 +14,7 @@ export default function SpreadProjects({ projectIndex }) {
   // Project 1 (index 0) is P.06
   // Project 2 (index 1) is P.07
   const pageNum = 6 + projectIndex;
+  const isDark = projectIndex === 0;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -49,7 +50,7 @@ export default function SpreadProjects({ projectIndex }) {
     if (projectIndex === 0) {
       // RetailMind
       return (
-        <div className="w-full h-full bg-[#151310] flex flex-col justify-between p-6 text-[#F5F1EB] border border-[#D1B48C]/20 select-none">
+        <div className="w-full h-full bg-[#1C1A17] flex flex-col justify-between p-6 text-[#F5F1EB] border border-[#D1B48C]/20 select-none">
           <div className="flex justify-between items-start">
             <span className="font-meta text-[9px] tracking-widest text-[#D1B48C] font-semibold">INGESTION PIPELINE</span>
             <span className="font-meta text-[9px] text-[#D1B48C] font-bold">VOL I · 001</span>
@@ -70,24 +71,24 @@ export default function SpreadProjects({ projectIndex }) {
           </div>
 
           <div className="border-t border-white/10 pt-3">
-            <Caption><span className="text-[#F5F1EB]/80">Fig 1.1: Neural demand spike vectors and dead stock mapping.</span></Caption>
+            <Caption><span className="text-[#F5F1EB]/60">Fig 1.1: Neural demand spike vectors and dead stock mapping.</span></Caption>
           </div>
         </div>
       );
     } else {
       // Zalulu Portfolio
       return (
-        <div className="w-full h-full bg-[#1D1915] flex flex-col justify-between p-6 text-[#F5F1EB] border border-[#D1B48C]/20 select-none">
+        <div className="w-full h-full bg-[#E5DBD7] flex flex-col justify-between p-6 text-[#1A1916] border border-[#DC684A]/25 select-none">
           <div className="flex justify-between items-start">
-            <span className="font-meta text-[9px] tracking-widest text-[#D1B48C] font-semibold">TACTILE DESIGN</span>
-            <span className="font-meta text-[9px] text-[#D1B48C] font-bold">VOL I · 002</span>
+            <span className="font-meta text-[9px] tracking-widest text-[#DC684A] font-semibold">TACTILE DESIGN</span>
+            <span className="font-meta text-[9px] text-[#DC684A] font-bold">VOL I · 002</span>
           </div>
           
           <div className="my-auto flex flex-col items-center gap-4 text-center">
             {/* SVG representation of editorial spreads and book pages */}
-            <svg viewBox="0 0 100 100" className="w-28 h-28 stroke-[#D1B48C] stroke-[0.75] fill-none opacity-90">
+            <svg viewBox="0 0 100 100" className="w-28 h-28 stroke-[#DC684A] stroke-[0.75] fill-none opacity-90">
               <motion.rect x="15" y="22" width="70" height="56" rx="2" variants={svgVariants} />
-              <motion.line x1="50" y1="22" x2="50" y2="78" strokeWidth="1" stroke="#DC684A" variants={svgVariants} />
+              <motion.line x1="50" y1="22" x2="50" y2="78" strokeWidth="1" stroke="#3D4A3E" variants={svgVariants} />
               {/* Lines representing columns */}
               <motion.line x1="22" y1="35" x2="42" y2="35" strokeDasharray="1 1" variants={svgVariants} />
               <motion.line x1="22" y1="45" x2="42" y2="45" strokeDasharray="1 1" variants={svgVariants} />
@@ -96,12 +97,12 @@ export default function SpreadProjects({ projectIndex }) {
               <motion.line x1="58" y1="45" x2="78" y2="45" strokeDasharray="1 1" variants={svgVariants} />
               <motion.line x1="58" y1="55" x2="78" y2="55" strokeDasharray="1 1" variants={svgVariants} />
             </svg>
-            <h4 className="font-heading italic text-2xl text-[#D1B48C] mt-2">Zalulu Issue</h4>
-            <span className="font-meta text-[9px] tracking-widest text-white/50 uppercase">{project.type}</span>
+            <h4 className="font-heading italic text-2xl text-[#1A1916] mt-2">Zalulu Issue</h4>
+            <span className="font-meta text-[9px] tracking-widest text-[#1A1916]/50 uppercase">{project.type}</span>
           </div>
 
-          <div className="border-t border-white/10 pt-3">
-            <Caption><span className="text-[#F5F1EB]/80">Fig 2.1: Tactile page flip physics and responsive margins layout.</span></Caption>
+          <div className="border-t border-[#1A1916]/10 pt-3">
+            <Caption><span className="text-[#1A1916]/60">Fig 2.1: Tactile page flip physics and responsive margins layout.</span></Caption>
           </div>
         </div>
       );
@@ -109,7 +110,7 @@ export default function SpreadProjects({ projectIndex }) {
   };
 
   return (
-    <div className="page-spread-content h-full bg-[#F5F1EB] text-[#1A1916]">
+    <div className={`page-spread-content h-full ${isDark ? 'bg-jp-granite text-[#F5F1EB]' : 'bg-jp-rose text-[#1A1916]'}`}>
       {/* Tactical paper grain realism overlay */}
       <div className="paper-grain-overlay opacity-[0.02]" />
 
@@ -122,12 +123,12 @@ export default function SpreadProjects({ projectIndex }) {
         {/* Top Header */}
         <motion.header 
           variants={itemVariants} 
-          className="flex justify-between items-center border-b border-[#1A1916]/10 pb-5 select-none"
+          className={`flex justify-between items-center border-b ${isDark ? 'border-white/10' : 'border-[#1A1916]/10'} pb-5 select-none`}
         >
           <span className="font-meta text-[9.5px] tracking-[0.25em] text-[#DC684A] uppercase font-bold">
             CASE STUDY SHOWCASE
           </span>
-          <span className="font-meta text-[9.5px] tracking-widest text-[#1A1916]/40 uppercase font-semibold">
+          <span className={`font-meta text-[9.5px] tracking-widest ${isDark ? 'text-white/40' : 'text-[#1A1916]/40'} uppercase font-semibold`}>
             PROJECT {String(projectIndex + 1).padStart(2, '0')}
           </span>
         </motion.header>
@@ -138,7 +139,7 @@ export default function SpreadProjects({ projectIndex }) {
           {/* Left Column: Premium Abstract Blueprint Graphic */}
           <motion.div 
             variants={itemVariants} 
-            className="flex flex-col justify-center border-b md:border-b-0 md:border-r border-[#1A1916]/10 pb-6 md:pb-0 pr-0 md:pr-6"
+            className={`flex flex-col justify-center border-b md:border-b-0 md:border-r ${isDark ? 'border-white/10' : 'border-[#1A1916]/10'} pb-6 md:pb-0 pr-0 md:pr-6`}
           >
             <div className="w-full aspect-[4/5] shadow-2xl select-none">
               {renderAbstractGraphic()}
@@ -149,14 +150,14 @@ export default function SpreadProjects({ projectIndex }) {
           <div className="flex flex-col justify-between pl-0 md:pl-4">
             
             <motion.div variants={itemVariants} className="flex flex-col gap-2">
-              <span className="font-meta text-[9px] tracking-[0.2em] text-[#DC684A] uppercase block font-bold mb-1.5 select-none">
+              <span className="font-meta text-[9px] tracking-[0.2em] text-[#DC684A] block font-bold mb-1.5 select-none">
                 {project.type}
               </span>
-              <h3 className="font-heading italic font-light text-[38px] leading-[0.9] text-[#1A1916] select-none">
+              <h3 className="font-heading italic font-light text-[38px] leading-[0.9] select-none">
                 {project.title}
               </h3>
               
-              <p className="font-body text-[13.5px] leading-relaxed text-[#383530] mt-4 select-text">
+              <p className={`font-body text-[13.5px] leading-relaxed ${isDark ? 'text-[#F5F1EB]/80' : 'text-[#383530]'} mt-4 select-text`}>
                 {project.desc}
               </p>
             </motion.div>
@@ -164,36 +165,59 @@ export default function SpreadProjects({ projectIndex }) {
             {/* Details footer */}
             <motion.div 
               variants={itemVariants} 
-              className="my-6 pt-4 border-t border-[#1A1916]/10 flex flex-wrap gap-x-8 gap-y-4 select-none"
+              className={`my-6 pt-4 border-t ${isDark ? 'border-white/10' : 'border-[#1A1916]/10'} flex flex-wrap gap-x-8 gap-y-4 select-none`}
             >
               <div className="flex flex-col">
-                <span className="font-meta text-[8.5px] tracking-widest text-[#7A746B] uppercase mb-1.5 font-bold">YEAR</span>
-                <span className="font-display font-bold text-xs text-[#1A1916]">{project.year}</span>
+                <span className={`font-meta text-[8.5px] tracking-widest ${isDark ? 'text-white/45' : 'text-[#7A746B]'} uppercase mb-1.5 font-bold`}>YEAR</span>
+                <span className="font-display font-bold text-xs">{project.year}</span>
               </div>
               <div className="flex flex-col max-w-[220px]">
-                <span className="font-meta text-[8.5px] tracking-widest text-[#7A746B] uppercase mb-1.5 font-bold">TECH STACK</span>
-                <span className="font-meta text-[10px] text-[#383530] leading-normal font-semibold">{project.tech}</span>
+                <span className={`font-meta text-[8.5px] tracking-widest ${isDark ? 'text-white/45' : 'text-[#7A746B]'} uppercase mb-1.5 font-bold`}>TECH STACK</span>
+                <span className="font-meta text-[10px] leading-normal font-semibold">{project.tech}</span>
               </div>
             </motion.div>
 
             {/* Action Links */}
             <motion.div variants={itemVariants} className="flex gap-4 select-none">
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noreferrer"
-                className="font-meta text-[10px] tracking-widest text-[#F5F1EB] bg-[#1A1916] hover:bg-[#DC684A] px-5 py-3 transition-colors duration-300 font-bold uppercase rounded-[9999px]"
-              >
-                EXECUTE PAYLOAD ↗
-              </a>
-              <a
-                href="https://github.com/ZaLuLu"
-                target="_blank"
-                rel="noreferrer"
-                className="font-meta text-[10px] tracking-widest text-[#1A1916] hover:text-[#D1B48C] border border-[#1A1916]/20 hover:border-[#D1B48C] px-5 py-3 transition-colors duration-300 font-bold uppercase rounded-[9999px]"
-              >
-                VIEW SOURCE
-              </a>
+              {isDark ? (
+                <>
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-meta text-[10px] tracking-widest text-[#0D0C0A] bg-[#D1B48C] hover:bg-[#F5F1EB] hover:text-[#0D0C0A] px-5 py-3 transition-colors duration-300 font-bold uppercase rounded-[9999px]"
+                  >
+                    EXECUTE PAYLOAD ↗
+                  </a>
+                  <a
+                    href="https://github.com/ZaLuLu"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-meta text-[10px] tracking-widest text-[#F5F1EB] hover:text-[#D1B48C] border border-white/20 hover:border-[#D1B48C] px-5 py-3 transition-colors duration-300 font-bold uppercase rounded-[9999px]"
+                  >
+                    VIEW SOURCE
+                  </a>
+                </>
+              ) : (
+                <>
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-meta text-[10px] tracking-widest text-[#F5F1EB] bg-[#1A1916] hover:bg-[#DC684A] px-5 py-3 transition-colors duration-300 font-bold uppercase rounded-[9999px]"
+                  >
+                    EXECUTE PAYLOAD ↗
+                  </a>
+                  <a
+                    href="https://github.com/ZaLuLu"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-meta text-[10px] tracking-widest text-[#1A1916] hover:text-[#D1B48C] border border-[#1A1916]/20 hover:border-[#D1B48C] px-5 py-3 transition-colors duration-300 font-bold uppercase rounded-[9999px]"
+                  >
+                    VIEW SOURCE
+                  </a>
+                </>
+              )}
             </motion.div>
 
           </div>
@@ -201,7 +225,7 @@ export default function SpreadProjects({ projectIndex }) {
         </div>
 
         {/* Bottom Folio */}
-        <motion.footer variants={itemVariants} className="border-t border-[#1A1916]/10 pt-5 w-full">
+        <motion.footer variants={itemVariants} className={`border-t ${isDark ? 'border-white/10' : 'border-[#1A1916]/10'} pt-5 w-full`}>
           <Folio page={pageNum} text={`PROJECT: ${project.title}`} />
         </motion.footer>
       </motion.div>

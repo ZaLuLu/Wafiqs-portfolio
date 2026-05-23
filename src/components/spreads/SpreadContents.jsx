@@ -4,12 +4,12 @@ import ColumnRule from '../ui/ColumnRule';
 import Folio from '../ui/Folio';
 
 const contentsData = [
-  { page: "03", section: "SUBJECT DOSSIER", desc: "Flagship bio with our subject's primary full-color portrait" },
-  { page: "04", section: "TECHNICAL CAPABILITIES", desc: "Equipped engineering stack, databases, and secure systems matrix" },
-  { page: "05", section: "ACADEMIC TIMELINE", desc: "Academic milestones, educational dossier, and system history" },
-  { page: "06", section: "RETAILMIND SHOWCASE", desc: "AI demand forecasting, async FastAPI, and JWT-authenticated routes" },
-  { page: "07", section: "ZALULU PORTFOLIO", desc: "High-end digital lookbook review engineered in React and Vite" },
-  { page: "08", section: "CONTACT DIRECTORY", desc: "Secure message transmitter and direct network access" },
+  { page: "03", section: "SUBJECT DOSSIER", desc: "A cinematic profiling of Wafiq Nawaz — detailing biographical roots, design philosophy, and core focus." },
+  { page: "04", section: "TECHNICAL CAPABILITIES", desc: "A comprehensive breakdown of core technical capabilities, database systems, and secure application architecture." },
+  { page: "05", section: "ACADEMIC TIMELINE", desc: "A retrospective timeline of academic milestones, system architectures, and engineering achievements." },
+  { page: "06", section: "RETAILMIND SHOWCASE", desc: "A high-fidelity case study on intelligent demand forecasting, async operations, and analytical pipelines." },
+  { page: "07", section: "ZALULU PORTFOLIO", desc: "An in-depth review of interactive digital interfaces, lookbook architecture, and modern client engineering." },
+  { page: "08", section: "CONTACT DIRECTORY", desc: "Direct network gateway and encrypted communication channels for professional inquiries." },
 ];
 
 export default function SpreadContents() {
@@ -44,7 +44,7 @@ export default function SpreadContents() {
   };
 
   return (
-    <div className="page-spread-content h-full bg-[#F5F1EB] text-[#1A1916]">
+    <div className="page-spread-content h-full bg-jp-sage text-[#1A1916]">
       {/* Tactical paper grain realism overlay */}
       <div className="paper-grain-overlay opacity-[0.02]" />
 
@@ -86,7 +86,7 @@ export default function SpreadContents() {
                 CREATIVE BLUEPRINT
               </span>
               <p className="font-body text-[13px] leading-relaxed text-[#383530]">
-                This publication maps Wafiq Nawaz's technology products, engineering milestones, and security research dossiers in a borderless lookbook format.
+                This publication maps Wafiq Nawaz's technology products, engineering milestones, and security research dossiers in a borderless wabi-sabi lookbook format.
               </p>
             </motion.div>
           </div>
@@ -110,7 +110,7 @@ export default function SpreadContents() {
                 <motion.li
                   key={item.page}
                   variants={itemVariants}
-                  className="grid grid-cols-[44px_1fr] gap-6 py-4.5 border-b border-[#1A1916]/10 hover:bg-[#DC684A]/[0.025] transition-colors group cursor-pointer duration-300"
+                  className="grid grid-cols-[44px_1fr] gap-6 py-4 border-b border-[#1A1916]/10 hover:bg-[#DC684A]/[0.025] transition-colors group cursor-pointer duration-300"
                 >
                   <span className="font-display font-light text-[34px] leading-none text-[#7A746B] group-hover:text-[#DC684A] transition-colors self-center">
                     {item.page}

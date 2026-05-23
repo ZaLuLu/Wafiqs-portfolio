@@ -58,16 +58,9 @@ export default function SpreadExperience() {
   };
 
   return (
-    <div className="page-spread-content h-full bg-[#F5F1EB] text-[#1A1916]">
+    <div className="page-spread-content h-full bg-jp-ochre text-[#1A1916]">
       {/* Tactical paper grain realism overlay */}
       <div className="paper-grain-overlay opacity-[0.02]" />
-
-      {/* Background outline typographic embellishment (from 3.jpg style) */}
-      <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
-        <div className="absolute bottom-[20%] left-[-8%] font-heading font-outline-cream text-[130px] opacity-[0.16] leading-none uppercase tracking-[0.25em] font-black rotate-[-90deg]">
-          HISTORY
-        </div>
-      </div>
 
       <motion.div
         variants={containerVariants}
@@ -132,10 +125,10 @@ export default function SpreadExperience() {
           {/* Right Column: Svyasa Education Dossier */}
           <div className="flex flex-col justify-center pl-0 md:pl-2 gap-8 mt-10 md:mt-0">
             
-            {/* Headline quote in outline styling */}
-            <motion.div variants={itemVariants} className="select-none py-4 border-b border-dashed border-[#1A1916]/15">
-              <h4 className="font-heading font-outline text-[42px] leading-none mb-1 opacity-90 uppercase tracking-widest">
-                RESUME
+            {/* Headline quote in simple technical styling - V5 Decluttered */}
+            <motion.div variants={itemVariants} className="select-none py-4 border-b border-[#1A1916]/10">
+              <h4 className="font-heading font-light text-[32px] italic leading-none mb-1 text-[#1A1916] tracking-wide">
+                Dossier
               </h4>
               <p className="font-body italic text-[13.5px] leading-relaxed text-[#7A746B] mt-3">
                 "Discipline and relentless consistency shape the finest engineering products."

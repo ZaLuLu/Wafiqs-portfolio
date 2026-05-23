@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import HTMLFlipBook from 'react-pageflip';
 import SpreadCover from '../spreads/SpreadCover';
 import SpreadContents from '../spreads/SpreadContents';
 import SpreadAbout from '../spreads/SpreadAbout';
@@ -12,14 +12,14 @@ import PageNav from './PageNav';
 const TOTAL_PAGES = 8;
 
 export default function VerticalBinderViewer() {
+  const bookRef = useRef(null);
   const [currentPage, setCurrentPage] = useState(0);
-  const [direction, setDirection] = useState(0); // 1 = forward, -1 = backward
   const [isMobile, setIsMobile] = useState(false);
 
   // Monitor viewport size for mobile layout fallback
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 1024); // Use 1024px to ensure enough screen space for double pages
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
@@ -27,16 +27,14 @@ export default function VerticalBinderViewer() {
   }, []);
 
   const nextPage = () => {
-    if (currentPage < TOTAL_PAGES - 1) {
-      setDirection(1);
-      setCurrentPage((prev) => prev + 1);
+    if (bookRef.current) {
+      bookRef.current.pageFlip().flipNext();
     }
   };
 
   const prevPage = () => {
-    if (currentPage > 0) {
-      setDirection(-1);
-      setCurrentPage((prev) => prev - 1);
+    if (bookRef.current) {
+      bookRef.current.pageFlip().flipPrev();
     }
   };
 
@@ -54,105 +52,111 @@ export default function VerticalBinderViewer() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentPage, isMobile]);
+  }, [isMobile]);
 
-  // List of page components
-  const pages = [
-    { component: <SpreadCover />, id: "cover", dark: true },
-    { component: <SpreadContents />, id: "contents" },
-    { component: <SpreadAbout />, id: "about" },
-    { component: <SpreadSkills />, id: "skills" },
-    { component: <SpreadExperience />, id: "experience" },
-    { component: <SpreadProjects projectIndex={0} />, id: "retailmind" },
-    { component: <SpreadProjects projectIndex={1} />, id: "portfolio" },
-    { component: <SpreadContact />, id: "contact", dark: true },
-  ];
+  const onFlip = (e) => {
+    setCurrentPage(e.data);
+  };
 
   // ─── MOBILE VIEW (Elegant Scrollable Feed) ───
   if (isMobile) {
+    const mobilePages = [
+      { component: <SpreadCover />, id: "cover", classes: "bg-jp-obsidian shadow-2xl" },
+      { component: <SpreadContents />, id: "contents", classes: "bg-jp-sage shadow-2xl" },
+      { component: <SpreadAbout />, id: "about", classes: "bg-jp-oyster shadow-2xl" },
+      { component: <SpreadSkills />, id: "skills", classes: "bg-jp-blue shadow-2xl" },
+      { component: <SpreadExperience />, id: "experience", classes: "bg-jp-ochre shadow-2xl" },
+      { component: <SpreadProjects projectIndex={0} />, id: "retailmind", classes: "bg-jp-granite shadow-2xl" },
+      { component: <SpreadProjects projectIndex={1} />, id: "portfolio", classes: "bg-jp-rose shadow-2xl" },
+      { component: <SpreadContact />, id: "contact", classes: "bg-jp-obsidian shadow-2xl" },
+    ];
+
     return (
-      <div className="binder-stage flex flex-col gap-10 py-12 px-4 overflow-y-auto min-h-screen">
+      <div className="binder-stage flex flex-col gap-12 py-16 px-4 overflow-y-auto min-h-screen">
         <div className="binder-glow" />
-        <div className="w-full max-w-[600px] flex flex-col gap-10 z-10 mx-auto">
-          {pages.map((page) => (
+        <div className="w-full max-w-[640px] flex flex-col gap-12 z-10 mx-auto">
+          {mobilePages.map((page) => (
             <div
               key={page.id}
-              className={`binder-page relative w-full shadow-2xl ${page.dark ? 'binder-page-cover' : ''}`}
-              style={{ position: 'relative' }}
+              className={`relative w-full overflow-hidden border border-black/5 rounded-[2px] ${page.classes}`}
+              style={{ minHeight: '680px' }}
             >
               {page.component}
             </div>
           ))}
         </div>
-        <footer className="text-center font-meta text-[10px] text-white/40 tracking-widest pt-4 select-none uppercase z-10">
+        <footer className="text-center font-meta text-[10px] text-white/40 tracking-widest pt-6 select-none uppercase z-10">
           ZALULU PORTFOLIO · MOBILE ARCHIVE
         </footer>
       </div>
     );
   }
 
-  // ─── DESKTOP VIEW (Cinematic 3D Parallax Slideshow) ───
-  const activePage = pages[currentPage];
-
-  // Transition variants for highly cinematic 3D folder slide
-  const pageVariants = {
-    enter: (dir) => ({
-      y: dir > 0 ? '100%' : '-100%',
-      rotateX: dir > 0 ? -25 : 25,
-      scale: dir > 0 ? 1.05 : 0.95,
-      opacity: 0,
-    }),
-    center: {
-      y: 0,
-      rotateX: 0,
-      scale: 1,
-      opacity: 1,
-      transition: {
-        y: { type: 'spring', stiffness: 90, damping: 20 },
-        rotateX: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
-        scale: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
-        opacity: { duration: 0.5 },
-      },
-    },
-    exit: (dir) => ({
-      y: dir > 0 ? '-100%' : '100%',
-      rotateX: dir > 0 ? 25 : -25,
-      scale: dir > 0 ? 0.95 : 1.05,
-      opacity: 0,
-      transition: {
-        y: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
-        rotateX: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
-        scale: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
-        opacity: { duration: 0.4 },
-      },
-    }),
-  };
-
+  // ─── DESKTOP VIEW (Tactile Page Flip Magazine) ───
   return (
-    <div className="binder-stage">
+    <div className="magazine-stage">
       {/* Floating pulsing spotlight */}
       <div className="binder-glow" />
 
-      {/* Main Slideshow Frame */}
-      <div className="binder-wrap">
-        <AnimatePresence initial={false} custom={direction} mode="popLayout">
-          <motion.div
-            key={currentPage}
-            custom={direction}
-            variants={pageVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            className={`binder-page ${activePage.dark ? 'binder-page-cover' : ''}`}
-            style={{
-              width: '100%',
-              height: '100%',
-              transformStyle: 'preserve-3d',
-            }}
-          >
-            {activePage.component}
-          </motion.div>
-        </AnimatePresence>
+      {/* Main Magazine Frame */}
+      <div className="magazine-wrap select-none relative">
+        {/* Realistic spine crease down the center seam of the open book */}
+        {currentPage > 0 && currentPage < TOTAL_PAGES - 1 && (
+          <div className="magazine-spine" />
+        )}
+
+        <HTMLFlipBook
+          ref={bookRef}
+          width={550}
+          height={750}
+          size="stretch"
+          minWidth={315}
+          maxWidth={1000}
+          minHeight={420}
+          maxHeight={1350}
+          flippingTime={800}
+          usePortrait={false}
+          startPage={0}
+          drawShadow={true}
+          showCover={true}
+          mobileScrollSupport={true}
+          onFlip={onFlip}
+          className="magazine-book"
+          style={{ background: 'transparent' }}
+        >
+          {/* Page 1: Cover (Volcanic Obsidian) */}
+          <div className="page bg-jp-obsidian" data-density="hard">
+            <SpreadCover />
+          </div>
+          {/* Page 2: Table of Contents (Moss Sage Green) */}
+          <div className="page bg-jp-sage">
+            <SpreadContents />
+          </div>
+          {/* Page 3: About Dossier (Wabi-Sabi Oyster) */}
+          <div className="page bg-jp-oyster">
+            <SpreadAbout />
+          </div>
+          {/* Page 4: Capabilities / Skills (Steel Blue) */}
+          <div className="page bg-jp-blue">
+            <SpreadSkills />
+          </div>
+          {/* Page 5: Academic Timeline (Amber Ochre) */}
+          <div className="page bg-jp-ochre">
+            <SpreadExperience />
+          </div>
+          {/* Page 6: RetailMind (Dark Volcanic Granite) */}
+          <div className="page bg-jp-granite">
+            <SpreadProjects projectIndex={0} />
+          </div>
+          {/* Page 7: Zalulu Portfolio (Muted Coral Rose) */}
+          <div className="page bg-jp-rose">
+            <SpreadProjects projectIndex={1} />
+          </div>
+          {/* Page 8: Contact Close (Volcanic Obsidian) */}
+          <div className="page bg-jp-obsidian" data-density="hard">
+            <SpreadContact />
+          </div>
+        </HTMLFlipBook>
       </div>
 
       {/* Floating Tactical Navigation controls */}

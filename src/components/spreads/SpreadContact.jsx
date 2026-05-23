@@ -44,7 +44,7 @@ export default function SpreadContact() {
   };
 
   return (
-    <div className="page-spread-content h-full bg-[#0D0C0A] text-[#F5F1EB]">
+    <div className="page-spread-content h-full bg-jp-obsidian text-[#F5F1EB]">
       {/* Tactical paper grain realism overlay */}
       <div className="paper-grain-overlay opacity-[0.015]" />
 
@@ -193,14 +193,14 @@ export default function SpreadContact() {
                   />
                 </motion.div>
 
-                {/* Submit button */}
+                {/* Submit button (V5 Premium Ghost Technical CTA) */}
                 <motion.button
                   variants={itemVariants}
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="mt-3 font-meta text-[10px] tracking-widest text-[#0D0C0A] bg-[#D1B48C] hover:bg-[#F5F1EB] hover:text-[#0D0C0A] py-4 text-center cursor-pointer transition-all duration-300 font-bold uppercase disabled:opacity-50 select-none border-none shadow-2xl rounded-[9999px]"
+                  className="mt-4 font-meta text-[10.5px] tracking-widest text-[#D1B48C] hover:text-[#0D0C0A] bg-transparent hover:bg-[#D1B48C] border border-[#D1B48C]/50 hover:border-[#D1B48C] py-4 text-center cursor-pointer transition-all duration-300 font-bold uppercase disabled:opacity-50 select-none rounded-[9999px] outline-none border-solid"
                 >
-                  {status === 'submitting' ? 'TRANSMITTING...' : 'TRANSMIT REQUEST →'}
+                  {status === 'submitting' ? 'TRANSMITTING...' : 'TRANSMIT SYSTEM REQUEST →'}
                 </motion.button>
 
               </form>

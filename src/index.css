@@ -23,6 +23,15 @@
   
   --c-forest-dark:  #080706;   /* Deepest shadow */
 
+  /* ─── Japanese Muted Organic Palette (V5) ─── */
+  --c-jp-sage:      #E2E7DF;   /* Moss Sage Green */
+  --c-jp-oyster:    #F5F1EB;   /* Wabi-Sabi Oyster Warm White */
+  --c-jp-blue:      #E4E9EC;   /* Muted Indigo / Steel Blue */
+  --c-jp-ochre:     #EFE9DF;   /* Soft Amber Ochre */
+  --c-jp-rose:      #F0E5E1;   /* Muted Coral Rose / Clay Terracotta */
+  --c-jp-granite:   #151310;   /* Dark Granite volcanic stone */
+  --c-jp-obsidian:  #0D0C0A;   /* Volcanic Sand obsidian */
+
   /* ─── Text / Ink ─── */
   --c-ink:          #1A1916;   /* Rich deep ink */
   --c-ink-mid:      #383530;   /* Mid charcoal/stone for body */
@@ -163,6 +172,54 @@ html, body {
   letter-spacing: 0.25em;
   color: var(--c-ink-muted);
   text-transform: uppercase;
+}
+
+/* ============================================================
+   WABI-SABI JAPANESE PAGE BACKGROUNDS (V5)
+   ============================================================ */
+.bg-jp-sage { background-color: var(--c-jp-sage) !important; color: #1A1916 !important; }
+.bg-jp-oyster { background-color: var(--c-jp-oyster) !important; color: #1A1916 !important; }
+.bg-jp-blue { background-color: var(--c-jp-blue) !important; color: #1A1916 !important; }
+.bg-jp-ochre { background-color: var(--c-jp-ochre) !important; color: #1A1916 !important; }
+.bg-jp-rose { background-color: var(--c-jp-rose) !important; color: #1A1916 !important; }
+.bg-jp-granite { background-color: var(--c-jp-granite) !important; color: #F5F1EB !important; }
+.bg-jp-obsidian { background-color: var(--c-jp-obsidian) !important; color: #F5F1EB !important; }
+
+/* Set text contrast overrides for dark pages */
+.bg-jp-granite .body-text, .bg-jp-obsidian .body-text {
+  color: rgba(245, 241, 235, 0.75) !important;
+}
+.bg-jp-granite .caption, .bg-jp-obsidian .caption,
+.bg-jp-granite .folio, .bg-jp-obsidian .folio {
+  color: rgba(245, 241, 235, 0.45) !important;
+}
+
+/* ============================================================
+   MONOSPACED SPECIFICATION SHEET WITH DOT LEADERS
+   ============================================================ */
+.spec-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.spec-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+}
+.spec-dot-leader {
+  flex-grow: 1;
+  border-bottom: 1.5px dotted rgba(26, 25, 22, 0.15);
+  margin: 0 10px;
+  position: relative;
+  top: -3px;
+}
+.bg-jp-blue .spec-dot-leader {
+  border-bottom-color: rgba(26, 25, 22, 0.25);
+}
+.bg-jp-granite .spec-dot-leader {
+  border-bottom-color: rgba(245, 241, 235, 0.2);
 }
 
 /* ============================================================
@@ -679,3 +736,73 @@ html, body {
     border-bottom: none;
   }
 }
+
+/* ============================================================
+   TACTILE MAGAZINE DOUBLE-PAGE BOOK WRAPPER (V5)
+   ============================================================ */
+.magazine-stage {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--c-base);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.magazine-wrap {
+  position: relative;
+  z-index: 10;
+  width: 90vw;
+  max-width: 1100px;
+  height: 80vh;
+  max-height: 750px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.85);
+  background-color: var(--c-jp-granite);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.magazine-book {
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Page flip sheet style override */
+.page {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: inset -2px 0 10px rgba(0,0,0,0.05);
+}
+
+.page-right {
+  box-shadow: inset 2px 0 10px rgba(0,0,0,0.05);
+}
+
+/* Central folding shadow down the seam of the open book */
+.magazine-spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 32px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.4) 45%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.4) 55%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  z-index: 99;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.85;
+}
+
