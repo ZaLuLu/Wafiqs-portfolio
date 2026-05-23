@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import HTMLFlipBook from 'react-pageflip';
+import { AnimatePresence } from 'framer-motion';
 import SpreadCover from '../spreads/SpreadCover';
 import SpreadContents from '../spreads/SpreadContents';
 import SpreadAbout from '../spreads/SpreadAbout';
@@ -7,6 +8,7 @@ import SpreadSkills from '../spreads/SpreadSkills';
 import SpreadExperience from '../spreads/SpreadExperience';
 import SpreadProjects from '../spreads/SpreadProjects';
 import SpreadContact from '../spreads/SpreadContact';
+import ProfileCard from '../overlays/ProfileCard';
 import PageNav from './PageNav';
 
 const TOTAL_PAGES = 8;
@@ -15,6 +17,7 @@ export default function VerticalBinderViewer() {
   const bookRef = useRef(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
 
   // Monitor viewport size for mobile layout fallback
   useEffect(() => {
@@ -63,7 +66,7 @@ export default function VerticalBinderViewer() {
     const mobilePages = [
       { component: <SpreadCover />, id: "cover", classes: "bg-jp-obsidian shadow-2xl" },
       { component: <SpreadContents />, id: "contents", classes: "bg-jp-sage shadow-2xl" },
-      { component: <SpreadAbout />, id: "about", classes: "bg-jp-oyster shadow-2xl" },
+      { component: <SpreadAbout onOpenDossier={() => setProfileOpen(true)} />, id: "about", classes: "bg-jp-oyster shadow-2xl" },
       { component: <SpreadSkills />, id: "skills", classes: "bg-jp-blue shadow-2xl" },
       { component: <SpreadExperience />, id: "experience", classes: "bg-jp-ochre shadow-2xl" },
       { component: <SpreadProjects projectIndex={0} />, id: "retailmind", classes: "bg-jp-granite shadow-2xl" },
@@ -88,6 +91,11 @@ export default function VerticalBinderViewer() {
         <footer className="text-center font-meta text-[10px] text-white/40 tracking-widest pt-6 select-none uppercase z-10">
           ZALULU PORTFOLIO · MOBILE ARCHIVE
         </footer>
+
+        {/* Global Profile Dossier Overlay (Mobile View) */}
+        <AnimatePresence>
+          {profileOpen && <ProfileCard onClose={() => setProfileOpen(false)} />}
+        </AnimatePresence>
       </div>
     );
   }
@@ -134,7 +142,7 @@ export default function VerticalBinderViewer() {
           </div>
           {/* Page 3: About Dossier (Wabi-Sabi Oyster) */}
           <div className="page bg-jp-oyster">
-            <SpreadAbout />
+            <SpreadAbout onOpenDossier={() => setProfileOpen(true)} />
           </div>
           {/* Page 4: Capabilities / Skills (Steel Blue) */}
           <div className="page bg-jp-blue">
@@ -166,6 +174,11 @@ export default function VerticalBinderViewer() {
         current={currentPage}
         total={TOTAL_PAGES}
       />
+
+      {/* Global Profile Dossier Overlay (Desktop View) */}
+      <AnimatePresence>
+        {profileOpen && <ProfileCard onClose={() => setProfileOpen(false)} />}
+      </AnimatePresence>
     </div>
   );
 }
