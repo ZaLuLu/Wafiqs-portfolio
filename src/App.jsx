@@ -9,13 +9,13 @@ export default function App() {
 
   // Console easter egg
   useEffect(() => {
-    console.log('%c Wafiq Nawaz ', 'background:#C41E1E;color:#FFFFFF;font-size:20px;font-weight:bold;padding:4px 12px;');
-    console.log('%c Full-Stack Developer · Cybersecurity Student · Open to Work 2026 ', 'color:#EDE9E3;font-size:12px;font-family:monospace;');
-    console.log('%c wafiqnawaz@outlook.com · github.com/ZaLuLu ', 'color:#E8A020;font-size:11px;font-family:monospace;');
+    console.log('%c Wafiq Nawaz ', 'background:#FFA726;color:#1D2C24;font-size:20px;font-weight:bold;padding:4px 12px;');
+    console.log('%c Full-Stack Developer · Cybersecurity Student · Open to Work 2026 ', 'color:#F4ECE1;font-size:12px;font-family:monospace;');
+    console.log('%c wafiqnawaz@outlook.com · github.com/ZaLuLu ', 'color:#E25A38;font-size:11px;font-family:monospace;');
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-[#07140E] overflow-x-hidden">
+    <div className="w-full min-h-screen bg-[#1D2C24] overflow-x-hidden">
       <AnimatePresence mode="wait">
         {!loaded ? (
           <motion.div
@@ -25,38 +25,56 @@ export default function App() {
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Paper grain overlay for realism */}
-            <div className="paper-grain-overlay opacity-[0.02]" />
+            <div className="paper-grain-overlay opacity-[0.015]" />
+
+            {/* Abstract background vector details */}
+            <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
+              <div className="absolute top-[25%] left-[20%] text-[#FFA726] opacity-35 animate-pulse">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+                  <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+                </svg>
+              </div>
+              <div className="absolute bottom-[25%] right-[20%] text-[#FFA726] opacity-25">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                  <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+                </svg>
+              </div>
+            </div>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="intro-content flex flex-col items-center gap-6 z-10 px-6 max-w-md select-none"
+              className="intro-content flex flex-col items-center gap-6 z-10 px-6 max-w-md select-none relative"
             >
               {/* Masthead */}
-              <div className="scale-125 mb-2">
+              <div className="scale-[1.5] mb-4">
                 <MastheadLogo />
               </div>
 
               {/* Title Callout */}
               <div className="flex flex-col items-center">
-                <span className="font-meta text-[10px] tracking-[0.4em] text-[#E8A020] uppercase font-bold">
+                <span className="font-meta text-[10px] tracking-[0.4em] text-white/50 uppercase font-medium">
                   THE DEVELOPER ISSUE
                 </span>
-                <h1 className="font-display font-light text-[40px] text-[#F8F5F0] leading-none mt-3 tracking-wide">
-                  {IDENTITY.fullName.split(' ')[0]}
-                  <span className="font-cookie text-[58px] text-[#E8A020] inline-block ml-2 normal-case font-normal">
-                    {IDENTITY.fullName.split(' ')[1]}
-                  </span>
+                
+                {/* Outline Portfolio title stamp */}
+                <h2 className="font-heading font-outline-cream uppercase tracking-[0.2em] text-[48px] leading-none mt-4 opacity-50">
+                  PORTFOLIO
+                </h2>
+                
+                <h1 className="font-cookie text-[64px] text-[#FFA726] leading-none tracking-wide normal-case font-normal mt-[-5px]">
+                  {IDENTITY.fullName}
                 </h1>
-                <p className="font-meta text-[9.5px] tracking-widest text-white/40 uppercase mt-2">
-                  Bengaluru · Karnataka · India
+                
+                <p className="font-meta text-[9.5px] tracking-widest text-[#FFA726] uppercase mt-4 font-semibold">
+                  {IDENTITY.location}
                 </p>
               </div>
 
               {/* Action Button */}
               <motion.button
-                className="intro-open-btn mt-6"
+                className="intro-open-btn mt-8"
                 onClick={() => setLoaded(true)}
                 whileHover={{ scale: 1.025 }}
                 whileTap={{ scale: 0.985 }}

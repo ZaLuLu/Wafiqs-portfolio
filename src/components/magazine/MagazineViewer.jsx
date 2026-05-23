@@ -5,12 +5,12 @@ import SpreadCover from '../spreads/SpreadCover';
 import SpreadContents from '../spreads/SpreadContents';
 import SpreadAbout from '../spreads/SpreadAbout';
 import SpreadSkills from '../spreads/SpreadSkills';
-import SpreadProjects from '../spreads/SpreadProjects';
 import SpreadExperience from '../spreads/SpreadExperience';
+import SpreadProjects from '../spreads/SpreadProjects';
 import SpreadContact from '../spreads/SpreadContact';
 import PageNav from './PageNav';
 
-const TOTAL_PAGES = 10;
+const TOTAL_PAGES = 8;
 
 export default function MagazineViewer() {
   const bookRef = useRef(null);
@@ -53,18 +53,13 @@ export default function MagazineViewer() {
           <div className="page shadow-xl border border-black/10 aspect-[550/780] min-h-[600px]"><SpreadContents /></div>
           <div className="page shadow-xl border border-black/10 aspect-[550/780] min-h-[600px]"><SpreadAbout /></div>
           <div className="page shadow-xl border border-black/10 aspect-[550/780] min-h-[600px]"><SpreadSkills /></div>
-          
-          {/* Projects spreads */}
-          <div className="page shadow-xl border border-black/10 aspect-[550/780] min-h-[600px]"><SpreadProjects projectIndex={0} side="left" /></div>
-          <div className="page shadow-xl border border-black/10 aspect-[550/780] min-h-[600px]"><SpreadProjects projectIndex={0} side="right" /></div>
-          <div className="page shadow-xl border border-black/10 aspect-[550/780] min-h-[600px]"><SpreadProjects projectIndex={1} side="left" /></div>
-          <div className="page shadow-xl border border-black/10 aspect-[550/780] min-h-[600px]"><SpreadProjects projectIndex={1} side="right" /></div>
-          
           <div className="page shadow-xl border border-black/10 aspect-[550/780] min-h-[600px]"><SpreadExperience /></div>
+          <div className="page shadow-xl border border-black/10 aspect-[550/780] min-h-[600px]"><SpreadProjects projectIndex={0} /></div>
+          <div className="page shadow-xl border border-black/10 aspect-[550/780] min-h-[600px]"><SpreadProjects projectIndex={1} /></div>
           <div className="page shadow-xl border border-black/10 aspect-[550/780] min-h-[600px]"><SpreadContact /></div>
         </div>
         <footer className="text-center font-meta text-[10px] text-white/40 tracking-widest pt-4 select-none uppercase">
-          WN PORTFOLIO · MOBILE EDITORIAL VIEW
+          ZALULU PORTFOLIO · MOBILE VIEW
         </footer>
       </div>
     );
@@ -101,27 +96,23 @@ export default function MagazineViewer() {
           onFlip={onFlip}
           className="magazine-book select-none"
         >
-          {/* Page 1 (Front Cover) */}
-          <div className="page border-r border-[#1A1714]/10"><SpreadCover /></div>
+          {/* Page 1 (Front Cover - Solid Green) */}
+          <div className="page border-r border-[#242D27]/10"><SpreadCover /></div>
           
-          {/* Page 2 & 3 (Contents & About) */}
-          <div className="page border-l border-[#1A1714]/10"><SpreadContents /></div>
-          <div className="page border-r border-[#1A1714]/10"><SpreadAbout /></div>
+          {/* Page 2 & 3 (Contents & About - TOC on Left, Portrait on Right) */}
+          <div className="page border-l border-[#242D27]/10"><SpreadContents /></div>
+          <div className="page border-r border-[#242D27]/10"><SpreadAbout /></div>
           
-          {/* Page 4 & 5 (Skills & Project 1 Ingestion) */}
-          <div className="page border-l border-[#1A1714]/10"><SpreadSkills /></div>
-          <div className="page border-r border-[#1A1714]/10"><SpreadProjects projectIndex={0} side="left" /></div>
+          {/* Page 4 & 5 (Skills & Experience - Skills on Left, Timeline on Right) */}
+          <div className="page border-l border-[#242D27]/10"><SpreadSkills /></div>
+          <div className="page border-r border-[#242D27]/10"><SpreadExperience /></div>
           
-          {/* Page 6 & 7 (Project 1 Review & Project 2 Blueprint) */}
-          <div className="page border-l border-[#1A1714]/10"><SpreadProjects projectIndex={0} side="right" /></div>
-          <div className="page border-r border-[#1A1714]/10"><SpreadProjects projectIndex={1} side="left" /></div>
+          {/* Page 6 & 7 (Projects - RetailMind on Left, Portfolio on Right) */}
+          <div className="page border-l border-[#242D27]/10"><SpreadProjects projectIndex={0} /></div>
+          <div className="page border-r border-[#242D27]/10"><SpreadProjects projectIndex={1} /></div>
           
-          {/* Page 8 & 9 (Project 2 Review & Milestones) */}
-          <div className="page border-l border-[#1A1714]/10"><SpreadProjects projectIndex={1} side="right" /></div>
-          <div className="page border-r border-[#1A1714]/10"><SpreadExperience /></div>
-          
-          {/* Page 10 (Back Cover / Contact) */}
-          <div className="page border-l border-[#1A1714]/10"><SpreadContact /></div>
+          {/* Page 8 (Back Cover / Contact - Solid Green Close) */}
+          <div className="page border-l border-[#242D27]/10"><SpreadContact /></div>
         </HTMLFlipBook>
       </motion.div>
 

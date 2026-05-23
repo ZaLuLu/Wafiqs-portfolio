@@ -3,12 +3,19 @@ import { ArrowLeft, ArrowRight } from '@phosphor-icons/react';
 import { motion } from 'framer-motion';
 
 export default function PageNav({ onPrev, onNext, current, total }) {
-  // Translate react-pageflip page indexes into double-spread units
-  // total = 10 pages. If current is 0, it's cover (spread 1).
-  // If current is 1 or 2, it's spread 2.
-  // If current is 3 or 4, it's spread 3, etc.
-  const currentSpread = current === 0 ? 1 : Math.floor((current - 1) / 2) + 2;
-  const totalSpreads = Math.floor((total - 2) / 2) + 2; // Math.floor(8 / 2) + 2 = 6 spreads total
+  // Translate react-pageflip page indexes into double-spread units for 8 pages total
+  // Index 0: Cover (Spread 1)
+  // Index 1, 2: Contents & About (Spread 2)
+  // Index 3, 4: Skills & Experience (Spread 3)
+  // Index 5, 6: Projects (Spread 4)
+  // Index 7: Contact Back Cover (Spread 5)
+  const currentSpread = current === 0 
+    ? 1 
+    : current === total - 1 
+      ? 5 
+      : Math.floor((current - 1) / 2) + 2;
+  
+  const totalSpreads = 5;
 
   return (
     <div className="page-nav select-none">
@@ -17,12 +24,12 @@ export default function PageNav({ onPrev, onNext, current, total }) {
       <motion.button
         className="nav-arrow nav-arrow--left"
         onClick={onPrev}
-        whileHover={{ scale: 1.08 }}
+        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         disabled={current === 0}
         aria-label="Flip backward"
       >
-        <ArrowLeft size={18} weight="bold" />
+        <ArrowLeft size={16} weight="bold" />
       </motion.button>
 
       {/* Counter */}
@@ -36,12 +43,12 @@ export default function PageNav({ onPrev, onNext, current, total }) {
       <motion.button
         className="nav-arrow nav-arrow--right"
         onClick={onNext}
-        whileHover={{ scale: 1.08 }}
+        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         disabled={current >= total - 2}
         aria-label="Flip forward"
       >
-        <ArrowRight size={18} weight="bold" />
+        <ArrowRight size={16} weight="bold" />
       </motion.button>
 
     </div>

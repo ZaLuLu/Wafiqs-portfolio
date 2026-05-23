@@ -3,137 +3,141 @@ import ColumnRule from '../ui/ColumnRule';
 import Folio from '../ui/Folio';
 import { SKILL_CATEGORIES } from '../../data/portfolio';
 
-function getSkillLevel(percentage) {
-  if (percentage >= 85) return 'Expert';
-  if (percentage >= 75) return 'Advanced';
-  if (percentage >= 65) return 'Proficient';
-  return 'Competent';
-}
-
 export default function SpreadSkills() {
-  const getTypographicBar = (percentage) => {
-    // 20 total segments for typographic bars
-    const totalSegments = 20;
-    const filledSegments = Math.round((percentage / 100) * totalSegments);
-    return '═'.repeat(filledSegments) + '┄'.repeat(totalSegments - filledSegments);
-  };
-
   return (
-    <div className="page-spread-content h-full bg-[#F8F5F0]">
+    <div className="page-spread-content h-full bg-[#F4ECE1] p-12 text-[#242D27]">
       {/* Paper grain realism overlay */}
-      <div className="paper-grain-overlay" />
+      <div className="paper-grain-overlay opacity-[0.02]" />
 
       {/* Top Folio strip */}
-      <header className="flex justify-between items-center border-b border-[#1A1714]/10 pb-4 select-none">
-        <span className="font-meta text-[9px] tracking-[0.25em] text-[#C41E1E] uppercase font-bold">
-          INFOGRAPHIC ASSESSMENT
+      <header className="flex justify-between items-center border-b border-[#242D27]/10 pb-5 select-none">
+        <span className="font-meta text-[9px] tracking-[0.25em] text-[#E25A38] uppercase font-bold">
+          CAPABILITIES
         </span>
-        <span className="font-meta text-[9px] tracking-widest text-[#1A1714]/50">
-          ENGINEERING SKILLS
+        <span className="font-meta text-[9px] tracking-widest text-[#242D27]/40 uppercase">
+          SKILLS MATRIX
         </span>
       </header>
 
-      {/* Skills Grid */}
-      <div className="flex flex-col gap-6 my-auto py-4">
+      {/* Background outline typographic embellishment (from 3.jpg style) */}
+      <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
+        <div className="absolute top-[35%] right-[-10%] font-heading font-outline-cream text-[140px] opacity-[0.18] leading-none uppercase tracking-[0.2em] font-black rotate-[90deg]">
+          SKILLS
+        </div>
+      </div>
+
+      {/* Decluttered Spacious Content Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.15fr_1.1fr] gap-10 my-auto py-8 items-stretch relative z-10">
         
-        {/* Flagship Column: Technical Development */}
-        <div className="border-b border-[#1A1714]/15 pb-4">
-          <div className="flex items-center gap-4 mb-3 select-none">
-            <h3 className="font-display font-bold text-sm tracking-widest text-[#0F2318] uppercase">
-              {SKILL_CATEGORIES.technical.name} DEVELOPMENT
+        {/* Left Side: Technical & Systems Stack */}
+        <div className="flex flex-col justify-center pr-2">
+          <div className="flex flex-col gap-2 mb-6 select-none">
+            <span className="font-meta text-[9.5px] tracking-[0.3em] text-[#E25A38] uppercase font-bold">
+              ENGINEERING CORE
+            </span>
+            <h3 className="font-heading italic font-light text-[38px] leading-none text-[#2E4237]">
+              Technical Skills
             </h3>
-            <ColumnRule />
+            <div className="w-12 h-[1px] bg-[#E25A38] mt-3" />
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1">
-            {SKILL_CATEGORIES.technical.skills.map((skill) => (
-              <div key={skill.label} className="flex items-center justify-between py-2 border-b border-[#1A1714]/5">
-                <span className="font-body font-medium text-[13.5px] text-[#1A1714] min-w-[150px]">
-                  {skill.label}
-                </span>
-                
-                {/* Typographic Fill Bar */}
-                <span className="flex-1 mx-4 font-meta text-[9px] text-[#C41E1E]/70 select-none overflow-hidden whitespace-nowrap tracking-[2px]">
-                  {getTypographicBar(skill.percentage)}
-                </span>
-                
-                <span className="font-meta text-[9px] tracking-wider text-[#8A847E] uppercase select-none min-w-[70px] text-right">
-                  {getSkillLevel(skill.percentage)}
+
+          <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-3">
+              <span className="font-meta text-[9px] tracking-widest text-[#738579] uppercase block font-semibold select-none">
+                SOFTWARE &amp; FRAMEWORKS
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {SKILL_CATEGORIES.technical.skills.slice(0, 4).map((skill) => (
+                  <span
+                    key={skill.label}
+                    className="font-meta text-[11px] tracking-wide uppercase px-4 py-2 border border-[#2E4237]/20 text-[#242D27] hover:border-[#FFA726] hover:bg-[#FFA726]/10 transition-all cursor-default duration-300 rounded-[9999px] font-medium"
+                  >
+                    {skill.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-3 mt-2">
+              <span className="font-meta text-[9px] tracking-widest text-[#738579] uppercase block font-semibold select-none">
+                DATABASE &amp; SECURE SYSTEMS
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {SKILL_CATEGORIES.technical.skills.slice(4).map((skill) => (
+                  <span
+                    key={skill.label}
+                    className="font-meta text-[11px] tracking-wide uppercase px-4 py-2 border border-[#2E4237]/20 text-[#242D27] hover:border-[#FFA726] hover:bg-[#FFA726]/10 transition-all cursor-default duration-300 rounded-[9999px] font-medium"
+                  >
+                    {skill.label}
+                  </span>
+                ))}
+                <span className="font-meta text-[11px] tracking-wide uppercase px-4 py-2 border border-[#2E4237]/20 text-[#242D27] hover:border-[#FFA726] hover:bg-[#FFA726]/10 transition-all cursor-default duration-300 rounded-[9999px] font-medium">
+                  Web Security
                 </span>
               </div>
-            ))}
+            </div>
           </div>
         </div>
 
-        {/* Two-Column split for Soft & Other skills */}
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_0.1fr_1fr] gap-6 items-stretch">
-          
-          {/* Column A: Soft Skills */}
+        {/* Divider */}
+        <div className="hidden md:flex justify-center items-center">
+          <ColumnRule vertical={true} />
+        </div>
+
+        {/* Right Side: Soft traits & Operations */}
+        <div className="flex flex-col justify-center pl-2 gap-8">
+          {/* Section A: Soft Skills */}
           <div>
-            <div className="flex items-center gap-4 mb-3 select-none">
-              <h3 className="font-display font-bold text-xs tracking-wider text-[#0F2318] uppercase">
+            <div className="flex flex-col gap-2 mb-4 select-none">
+              <span className="font-meta text-[9px] tracking-widest text-[#738579] uppercase block font-semibold">
+                TRAITS &amp; APTITUDE
+              </span>
+              <h4 className="font-display font-bold text-sm tracking-widest text-[#2E4237] uppercase">
                 {SKILL_CATEGORIES.soft.name}
-              </h3>
-              <ColumnRule />
+              </h4>
             </div>
 
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-wrap gap-2">
               {SKILL_CATEGORIES.soft.skills.map((skill) => (
-                <div key={skill.label} className="flex items-center justify-between py-2 border-b border-[#1A1714]/5">
-                  <span className="font-body font-medium text-[13px] text-[#1A1714]">
-                    {skill.label}
-                  </span>
-                  
-                  {/* Subtle clean rule */}
-                  <span className="flex-1 mx-3 border-b border-dashed border-[#1A1714]/15" />
-                  
-                  <span className="font-meta text-[9px] tracking-wider text-[#8A847E] uppercase select-none">
-                    {getSkillLevel(skill.percentage)}
-                  </span>
-                </div>
+                <span
+                  key={skill.label}
+                  className="font-meta text-[11.5px] tracking-wide uppercase px-4.5 py-2.5 bg-[#FAF6F0] border border-[#242D27]/5 text-[#3D4A40] hover:border-[#FFA726] hover:text-[#FFA726] transition-all cursor-default duration-300 rounded-[9999px] font-medium"
+                >
+                  {skill.label}
+                </span>
               ))}
             </div>
           </div>
 
-          {/* Vertical Splitter */}
-          <div className="hidden md:flex justify-center items-center">
-            <ColumnRule vertical={true} />
-          </div>
-
-          {/* Column B: Operational Tools & Traits */}
+          {/* Section B: Operational Tools */}
           <div>
-            <div className="flex items-center gap-4 mb-3 select-none">
-              <h3 className="font-display font-bold text-xs tracking-wider text-[#0F2318] uppercase">
+            <div className="flex flex-col gap-2 mb-4 select-none">
+              <span className="font-meta text-[9px] tracking-widest text-[#738579] uppercase block font-semibold">
+                SYSTEM OPERATIONS
+              </span>
+              <h4 className="font-display font-bold text-sm tracking-widest text-[#2E4237] uppercase">
                 {SKILL_CATEGORIES.other.name}
-              </h3>
-              <ColumnRule />
+              </h4>
             </div>
 
-            <div className="flex flex-col gap-1">
-              {SKILL_CATEGORIES.other.skills.map((skill) => (
-                <div key={skill.label} className="flex items-center justify-between py-2 border-b border-[#1A1714]/5">
-                  <span className="font-body font-medium text-[13px] text-[#1A1714]">
-                    {skill.label}
-                  </span>
-                  
-                  {/* Subtle clean rule */}
-                  <span className="flex-1 mx-3 border-b border-dashed border-[#1A1714]/15" />
-                  
-                  <span className="font-meta text-[9px] tracking-wider text-[#8A847E] uppercase select-none">
-                    {getSkillLevel(skill.percentage)}
-                  </span>
-                </div>
+            <div className="flex flex-wrap gap-2">
+              {SKILL_CATEGORIES.other.skills.slice(0, 3).map((skill) => (
+                <span
+                  key={skill.label}
+                  className="font-meta text-[11px] tracking-wide uppercase px-4 py-2 border border-[#2E4237]/20 text-[#242D27] hover:border-[#FFA726] hover:bg-[#FFA726]/10 transition-all cursor-default duration-300 rounded-[9999px] font-medium"
+                >
+                  {skill.label}
+                </span>
               ))}
             </div>
           </div>
-
         </div>
 
       </div>
 
       {/* Bottom Folio */}
-      <footer className="border-t border-[#1A1714]/10 pt-4 w-full">
-        <Folio page={4} text="PORTFOLIO TECHNICAL ASSESSMENT" />
+      <footer className="border-t border-[#242D27]/10 pt-5 w-full">
+        <Folio page={4} text="SKILLS MATRIX" />
       </footer>
     </div>
   );
