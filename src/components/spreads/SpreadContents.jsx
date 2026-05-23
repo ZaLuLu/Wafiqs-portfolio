@@ -59,7 +59,7 @@ export default function SpreadContents() {
           variants={itemVariants} 
           className="flex justify-between items-center border-b border-[#1A1916]/10 pb-5 select-none"
         >
-          <span className="font-meta text-[9.5px] tracking-[0.25em] text-[#DC684A] uppercase font-bold">
+          <span className="font-meta text-[9.5px] tracking-[0.25em] text-[#C9A96E] uppercase font-bold">
             INDEX DIRECTORY
           </span>
           <span className="font-meta text-[9.5px] tracking-widest text-[#1A1916]/40 uppercase font-semibold">
@@ -73,10 +73,10 @@ export default function SpreadContents() {
           {/* Left Side: Editorial Typography & Whitespace */}
           <div className="flex flex-col justify-between pr-4 select-none">
             <motion.div variants={itemVariants} className="flex flex-col gap-3">
-              <span className="font-meta text-[9px] tracking-[0.3em] text-[#DC684A] uppercase font-bold block mb-1">
+              <span className="font-meta text-[9px] tracking-[0.3em] text-[#C9A96E] uppercase font-bold block mb-1">
                 VOLUME 1.0
               </span>
-              <h2 className="font-heading italic font-light text-[62px] sm:text-[72px] leading-[0.8] text-[#1A1916]">
+              <h2 className="contents-logotype">
                 CON<br/>TENTS
               </h2>
             </motion.div>
@@ -110,16 +110,16 @@ export default function SpreadContents() {
                 <motion.li
                   key={item.page}
                   variants={itemVariants}
-                  className="grid grid-cols-[44px_1fr] gap-6 py-4 border-b border-[#1A1916]/10 hover:bg-[#DC684A]/[0.025] transition-colors group cursor-pointer duration-300"
+                  className="grid grid-cols-[44px_1fr] gap-6 py-4 border-b border-[#1A1916]/10 hover:bg-[#C9A96E]/[0.025] transition-colors group cursor-pointer duration-300"
                 >
-                  <span className="font-display font-light text-[34px] leading-none text-[#7A746B] group-hover:text-[#DC684A] transition-colors self-center">
+                  <span className="font-display font-light text-[34px] leading-none text-[#7A746B] group-hover:text-[#C9A96E] transition-colors self-center">
                     {item.page}
                   </span>
                   <div className="flex flex-col justify-center">
-                    <span className="font-display font-bold text-[14px] tracking-widest text-[#1A1916] group-hover:text-[#DC684A] transition-colors uppercase">
+                    <span className="font-display font-bold text-[14px] tracking-widest text-[#1A1916] group-hover:text-[#C9A96E] transition-colors uppercase">
                       {item.section}
                     </span>
-                    <span className="font-meta text-[11px] text-[#7A746B] mt-1 font-light leading-normal">
+                    <span className="chapter-desc mt-1 font-light leading-normal">
                       {item.desc}
                     </span>
                   </div>

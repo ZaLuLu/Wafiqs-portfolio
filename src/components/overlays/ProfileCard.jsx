@@ -44,7 +44,7 @@ export default function ProfileCard({ onClose }) {
             <svg
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-12 h-12 text-[#D1B48C] animate-pulse"
+              className="w-12 h-12 text-[#C9A96E] animate-pulse"
             >
               <path d="M12 2L14.8 9.2L22 12L14.8 14.8L12 22L9.2 14.8L2 12L9.2 9.2L12 2Z" />
             </svg>
@@ -53,7 +53,7 @@ export default function ProfileCard({ onClose }) {
           
           <div className="pc-name-block select-none">
             <h2 className="pc-name">
-              <span className="font-cookie text-6xl text-[#D1B48C] block -mb-2 font-normal leading-none pr-3">
+              <span className="font-cookie text-6xl text-[#C9A96E] block -mb-2 font-normal leading-none pr-3">
                 {IDENTITY.fullName.split(' ')[0]}
               </span>
               <span className="font-heading italic text-4xl text-[#1A1916] block ml-6 leading-none">
@@ -107,7 +107,7 @@ export default function ProfileCard({ onClose }) {
         {/* Card Footer Bar */}
         <div className="pc-footer select-none">
           <span className="pc-footer-text">{IDENTITY.location}</span>
-          <span className="pc-footer-text text-[#DC684A] font-bold">{IDENTITY.status}</span>
+          <span className="pc-footer-text text-[#C9A96E] font-bold">{IDENTITY.status}</span>
         </div>
 
       </motion.div>

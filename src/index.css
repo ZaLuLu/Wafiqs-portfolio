@@ -12,50 +12,53 @@
 }
 
 /* ============================================================
-   DESIGN TOKENS — Custom Obsidian, Raw Brass & Oyster White (V3)
+   DESIGN TOKENS — Wafiq Portfolio (V6 Strict Editorial)
    ============================================================ */
 :root {
-  /* ─── Backgrounds & Bases ─── */
-  --c-base:         #0D0C0A;   /* Polished volcanic obsidian - base background */
-  --c-surface:      #151310;   /* Warm granite / volcanic stone - cards */
-  --c-surface-light:#221F1A;   /* Lifted stone */
-  --c-paper:        #F5F1EB;   /* Oyster shell off-white - page sheets */
-  
-  --c-forest-dark:  #080706;   /* Deepest shadow */
+  /* Backgrounds */
+  --bg-dark:         #0C0C0C;   /* Volcanic black cover, dark left pages, contact base */
+  --bg-bridge:       #1C1A16;   /* Transition card surface */
+  --bg-cream:        #F0EBE0;   /* Editorial wove warm cream - contents, technical specs, projects right */
 
-  /* ─── Japanese Muted Organic Palette (V5) ─── */
-  --c-jp-sage:      #E2E7DF;   /* Moss Sage Green */
-  --c-jp-oyster:    #F5F1EB;   /* Wabi-Sabi Oyster Warm White */
-  --c-jp-blue:      #E4E9EC;   /* Muted Indigo / Steel Blue */
-  --c-jp-ochre:     #EFE9DF;   /* Soft Amber Ochre */
-  --c-jp-rose:      #F0E5E1;   /* Muted Coral Rose / Clay Terracotta */
-  --c-jp-granite:   #151310;   /* Dark Granite volcanic stone */
-  --c-jp-obsidian:  #0D0C0A;   /* Volcanic Sand obsidian */
+  /* Accent */
+  --gold:            #C9A96E;   /* Unified luxury editorial accent */
+  --gold-dim:        rgba(201, 169, 110, 0.20);
+  --gold-ghost:      rgba(201, 169, 110, 0.07);
 
-  /* ─── Text / Ink ─── */
-  --c-ink:          #1A1916;   /* Rich deep ink */
-  --c-ink-mid:      #383530;   /* Mid charcoal/stone for body */
-  --c-ink-muted:    #7A746B;   /* Muted warm grey for captions */
-  --c-ink-faint:    #E6E0D5;   /* Separator lines */
+  /* Text — dark pages */
+  --text-light:      #F5F0E8;
+  --text-light-dim:  rgba(245, 240, 232, 0.50);
+  --text-light-off:  rgba(245, 240, 232, 0.28);
 
-  /* ─── Accents (Custom V3) ─── */
-  --c-gold:         #D1B48C;   /* Raw brass / champagne gold */
-  --c-gold-dim:     rgba(209, 180, 140, 0.15); /* Translucent borders */
-  --c-gold-glow:    rgba(209, 180, 140, 0.05); /* Soft backlights */
-  --c-terracotta:   #DC684A;   /* Organic Terracotta red accent */
-  --c-red:          #DC684A;   /* Red accent mapping */
+  /* Text — cream pages */
+  --text-dark:       #3A3020;
+  --text-dark-dim:   rgba(58, 48, 32, 0.55);
+  --text-dark-off:   rgba(58, 48, 32, 0.35);
 
-  /* ─── Structural ─── */
-  --c-rule:         rgba(26, 25, 22, 0.08); /* Subtle divider rules between columns */
-  --c-shadow:       rgba(8, 7, 6, 0.45);  /* Calendar sheets drop-shadows */
+  /* Structural Base Variables (mapped to new tokens) */
+  --c-base:          var(--bg-dark);
+  --c-surface:       var(--bg-bridge);
+  --c-paper:         var(--bg-cream);
 
-  /* ─── Font Stacks ─── */
-  --font-display:   'Cormorant Garamond', Georgia, serif;
-  --font-heading:   'DM Serif Display', Georgia, serif;
-  --font-body:      'Lora', Georgia, serif;
-  --font-quote:     'Libre Baskerville', Georgia, serif;
-  --font-meta:      'JetBrains Mono', monospace;
-  --font-cookie:    'Cookie', cursive, Georgia, serif;
+  /* Font Stacks */
+  --font-display:    'Cormorant Garamond', Georgia, serif;
+  --font-heading:    'DM Serif Display',   Georgia, serif;
+  --font-body:       'Lora',               Georgia, serif;
+  --font-ui:         'JetBrains Mono',     monospace;
+  --font-cookie:     'Cookie', cursive, Georgia, serif;
+
+  /* Type Scale */
+  --type-display:    clamp(3.5rem, 10vw, 7rem);
+  --type-headline:   clamp(1.75rem, 4vw, 3rem);
+  --type-title:      clamp(1.25rem, 2.5vw, 1.75rem);
+  --type-body:       1rem;
+  --type-caption:    0.8125rem;
+  --type-label:      0.6875rem;
+
+  /* Motion */
+  --ease:            cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast:        180ms;
+  --dur-base:        320ms;
 }
 
 /* ============================================================
@@ -70,11 +73,12 @@
 html, body {
   width: 100%;
   min-height: 100vh;
-  background-color: var(--c-base);
-  color: var(--c-ink);
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
   font-family: var(--font-body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-smoothing: grayscale;
 }
 
 /* ============================================================
@@ -84,14 +88,14 @@ html, body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--c-forest-dark);
+  background: var(--bg-dark);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--c-surface);
-  border: 1px solid var(--c-forest-dark);
+  background: var(--bg-bridge);
+  border: 1px solid var(--bg-dark);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--c-gold);
+  background: var(--gold);
 }
 
 /* ============================================================
@@ -100,26 +104,26 @@ html, body {
 .font-display { font-family: var(--font-display); }
 .font-heading { font-family: var(--font-heading); }
 .font-body    { font-family: var(--font-body); }
-.font-quote   { font-family: var(--font-quote); }
-.font-meta    { font-family: var(--font-meta); }
+.font-meta    { font-family: var(--font-ui); }
+.font-ui      { font-family: var(--font-ui); }
 .font-cookie  { font-family: var(--font-cookie); }
 
-/* Custom Outline Typography (matching 3.jpg outlines) */
+/* Custom Outline Typography */
 .font-outline {
-  -webkit-text-stroke: 1px var(--c-gold);
+  -webkit-text-stroke: 1px var(--gold);
   color: transparent;
 }
 .font-outline-cream {
-  -webkit-text-stroke: 1px rgba(245, 241, 235, 0.12);
+  -webkit-text-stroke: 1px rgba(245, 240, 232, 0.12);
   color: transparent;
 }
 
 /* Typographic Scale Styles */
 .masthead {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(48px, 10vw, 96px);
-  line-height: 1;
+  font-weight: 300;
+  font-size: var(--type-display);
+  line-height: 0.95;
   letter-spacing: -0.01em;
 }
 
@@ -128,98 +132,136 @@ html, body {
   font-weight: 300;
   font-size: clamp(32px, 5.5vw, 60px);
   line-height: 1.1;
-  color: var(--c-ink);
+  color: var(--text-dark);
 }
 
 .spread-title {
   font-family: var(--font-heading);
-  font-style: italic;
   font-weight: 400;
-  font-size: clamp(36px, 6vw, 68px);
+  font-size: var(--type-headline);
   line-height: 1;
-}
-
-.pull-quote-text {
-  font-family: var(--font-quote);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(17px, 2vw, 22px);
-  line-height: 1.45;
 }
 
 .body-text {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: clamp(13px, 1.1vw, 14.5px);
-  line-height: 1.8;
-  color: var(--c-ink-mid);
+  font-size: var(--type-body);
+  line-height: 1.75;
+  color: var(--text-dark-dim);
 }
 
 .caption {
-  font-family: var(--font-meta);
+  font-family: var(--font-ui);
   font-weight: 400;
-  font-size: 11px;
+  font-size: var(--type-caption);
   line-height: 1.5;
   letter-spacing: 0.08em;
-  color: var(--c-ink-muted);
+  color: var(--text-dark-off);
 }
 
 .folio {
-  font-family: var(--font-meta);
+  font-family: var(--font-ui);
   font-weight: 400;
-  font-size: 10px;
+  font-size: var(--type-label);
   line-height: 1;
   letter-spacing: 0.25em;
-  color: var(--c-ink-muted);
+  color: var(--text-dark-off);
   text-transform: uppercase;
 }
 
 /* ============================================================
-   WABI-SABI JAPANESE PAGE BACKGROUNDS (V5)
+   WABI-SABI JAPANESE PAGE BACKGROUNDS (V6 Unified Cadence)
    ============================================================ */
-.bg-jp-sage { background-color: var(--c-jp-sage) !important; color: #1A1916 !important; }
-.bg-jp-oyster { background-color: var(--c-jp-oyster) !important; color: #1A1916 !important; }
-.bg-jp-blue { background-color: var(--c-jp-blue) !important; color: #1A1916 !important; }
-.bg-jp-ochre { background-color: var(--c-jp-ochre) !important; color: #1A1916 !important; }
-.bg-jp-rose { background-color: var(--c-jp-rose) !important; color: #1A1916 !important; }
-.bg-jp-granite { background-color: var(--c-jp-granite) !important; color: #F5F1EB !important; }
-.bg-jp-obsidian { background-color: var(--c-jp-obsidian) !important; color: #F5F1EB !important; }
+.bg-jp-sage { background-color: var(--bg-cream) !important; color: var(--text-dark) !important; }
+.bg-jp-oyster { background-color: var(--bg-cream) !important; color: var(--text-dark) !important; }
+.bg-jp-blue { background-color: var(--bg-cream) !important; color: var(--text-dark) !important; }
+.bg-jp-ochre { background-color: var(--bg-cream) !important; color: var(--text-dark) !important; }
+.bg-jp-rose { background-color: var(--bg-cream) !important; color: var(--text-dark) !important; }
+.bg-jp-granite { background-color: var(--bg-dark) !important; color: var(--text-light) !important; }
+.bg-jp-obsidian { background-color: var(--bg-dark) !important; color: var(--text-light) !important; }
 
 /* Set text contrast overrides for dark pages */
 .bg-jp-granite .body-text, .bg-jp-obsidian .body-text {
-  color: rgba(245, 241, 235, 0.75) !important;
+  color: var(--text-light-dim) !important;
 }
 .bg-jp-granite .caption, .bg-jp-obsidian .caption,
 .bg-jp-granite .folio, .bg-jp-obsidian .folio {
-  color: rgba(245, 241, 235, 0.45) !important;
+  color: var(--text-light-off) !important;
+}
+
+/* Set text contrast overrides for light pages */
+.bg-jp-sage .body-text, .bg-jp-oyster .body-text, .bg-jp-blue .body-text, .bg-jp-ochre .body-text, .bg-jp-rose .body-text {
+  color: var(--text-dark-dim) !important;
+}
+.bg-jp-sage .caption, .bg-jp-oyster .caption, .bg-jp-blue .caption, .bg-jp-ochre .caption, .bg-jp-rose .caption,
+.bg-jp-sage .folio, .bg-jp-oyster .folio, .bg-jp-blue .folio, .bg-jp-ochre .folio, .bg-jp-rose .folio {
+  color: var(--text-dark-off) !important;
 }
 
 /* ============================================================
-   MONOSPACED SPECIFICATION SHEET WITH DOT LEADERS
+   MONOSPACED SPECIFICATION SHEET WITH DOT LEADERS (V6 CSS dotted)
    ============================================================ */
-.spec-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.spec-item {
+.leader-row {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.leader-skill {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text-dark);
+  white-space: nowrap;
+}
+
+.leader-line {
+  flex: 1;
+  border-bottom: 1px dotted var(--text-dark-off);
+  margin-bottom: 4px;
+}
+
+.leader-category {
+  font-family: var(--font-ui);
+  font-size: var(--type-label);
+  letter-spacing: 0.08em;
+  color: var(--text-dark-dim);
+  white-space: nowrap;
+}
+
+/* ─ Education card ──────────────────────────────────────── */
+.education-card {
+  border-left: 2px solid var(--gold);
+  padding: 10px 14px;
+  background: rgba(201, 169, 110, 0.05);
+  margin-bottom: 12px;
+  border-radius: 0;
+}
+
+/* ─ Contact form inputs ──────────────────────────────────── */
+.contact-input {
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid var(--gold-dim);
+  padding: 8px 0;
   width: 100%;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+  outline: none;
+  margin-bottom: 1rem;
+  transition: border-bottom-color var(--dur-fast);
 }
-.spec-dot-leader {
-  flex-grow: 1;
-  border-bottom: 1.5px dotted rgba(26, 25, 22, 0.15);
-  margin: 0 10px;
-  position: relative;
-  top: -3px;
+
+.contact-input:focus {
+  border-bottom-color: var(--gold);
 }
-.bg-jp-blue .spec-dot-leader {
-  border-bottom-color: rgba(26, 25, 22, 0.25);
-}
-.bg-jp-granite .spec-dot-leader {
-  border-bottom-color: rgba(245, 241, 235, 0.2);
+
+.contact-input::placeholder {
+  color: var(--text-light-off);
+  font-style: italic;
 }
 
 /* ============================================================
@@ -815,5 +857,66 @@ html, body {
   padding-left: clamp(3rem, 7.5vw, 6.5rem) !important;
   padding-right: clamp(2rem, 4.5vw, 3.5rem) !important;
 }
+
+/* ─ CTA Buttons (V6 Monocle/Bloomberg Hierarchy) ──────────────────── */
+.cta-primary {
+  display: inline-block;
+  border: 1px solid var(--gold-dim);
+  color: var(--gold) !important;
+  background: transparent;
+  padding: 7px 18px;
+  font-family: var(--font-ui);
+  font-size: var(--type-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--dur-fast), border-color var(--dur-fast);
+  text-decoration: none !important;
+}
+
+.cta-primary:hover {
+  background: var(--gold-ghost);
+  border-color: var(--gold);
+}
+
+.cta-secondary {
+  display: inline-block;
+  color: var(--text-light-dim) !important;
+  font-family: var(--font-ui);
+  font-size: var(--type-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color var(--dur-fast);
+}
+
+.cta-secondary:hover {
+  color: var(--text-light) !important;
+}
+
+/* ─ Contents Page (V6 Monocle Style) ──────────────────── */
+.contents-logotype {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--text-dark);
+}
+
+.chapter-desc {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-dark-dim);
+  line-height: 1.5;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+
 
 

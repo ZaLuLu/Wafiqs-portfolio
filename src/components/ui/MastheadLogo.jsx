@@ -7,7 +7,7 @@ export default function MastheadLogo() {
       <svg
         viewBox="0 0 24 24"
         fill="currentColor"
-        className="w-5 h-5 text-[#FFA726] animate-pulse"
+        className="w-5 h-5 text-[#C9A96E] animate-pulse"
       >
         <path d="M12 2L14.8 9.2L22 12L14.8 14.8L12 22L9.2 14.8L2 12L9.2 9.2L12 2Z" />
       </svg>

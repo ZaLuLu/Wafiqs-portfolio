@@ -7,11 +7,12 @@ import SpreadAbout from '../spreads/SpreadAbout';
 import SpreadSkills from '../spreads/SpreadSkills';
 import SpreadExperience from '../spreads/SpreadExperience';
 import SpreadProjects from '../spreads/SpreadProjects';
+import SpreadContactLeft from '../spreads/SpreadContactLeft';
 import SpreadContact from '../spreads/SpreadContact';
 import ProfileCard from '../overlays/ProfileCard';
 import PageNav from './PageNav';
 
-const TOTAL_PAGES = 8;
+const TOTAL_PAGES = 10;
 
 export default function VerticalBinderViewer() {
   const bookRef = useRef(null);
@@ -71,6 +72,7 @@ export default function VerticalBinderViewer() {
       { component: <SpreadExperience />, id: "experience", classes: "bg-jp-ochre shadow-2xl" },
       { component: <SpreadProjects projectIndex={0} />, id: "retailmind", classes: "bg-jp-granite shadow-2xl" },
       { component: <SpreadProjects projectIndex={1} />, id: "portfolio", classes: "bg-jp-rose shadow-2xl" },
+      { component: <SpreadContactLeft />, id: "contact-left", classes: "bg-jp-obsidian shadow-2xl" },
       { component: <SpreadContact />, id: "contact", classes: "bg-jp-obsidian shadow-2xl" },
     ];
 
@@ -160,9 +162,17 @@ export default function VerticalBinderViewer() {
           <div className="page bg-jp-rose">
             <SpreadProjects projectIndex={1} />
           </div>
-          {/* Page 8: Contact Close (Volcanic Obsidian) */}
-          <div className="page bg-jp-obsidian" data-density="hard">
+          {/* Page 8: Contact Left (Volcanic Obsidian) */}
+          <div className="page bg-jp-obsidian">
+            <SpreadContactLeft />
+          </div>
+          {/* Page 9: Contact Form (Volcanic Obsidian) */}
+          <div className="page bg-jp-obsidian">
             <SpreadContact />
+          </div>
+          {/* Page 10: Back Cover (Volcanic Obsidian) */}
+          <div className="page bg-jp-obsidian" data-density="hard">
+            <div className="page-spread-content h-full bg-[#0C0C0C]" />
           </div>
         </HTMLFlipBook>
       </div>

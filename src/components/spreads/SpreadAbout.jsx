@@ -49,7 +49,7 @@ export default function SpreadAbout({ onOpenDossier }) {
           variants={itemVariants} 
           className="flex justify-between items-center border-b border-[#1A1916]/10 pb-4 select-none"
         >
-          <span className="font-meta text-[9.5px] tracking-[0.25em] text-[#DC684A] uppercase font-bold">
+          <span className="font-meta text-[9.5px] tracking-[0.25em] text-[#C9A96E] uppercase font-bold">
             SUBJECT PROFILE
           </span>
           <span className="font-meta text-[9.5px] tracking-widest text-[#1A1916]/40 uppercase font-semibold">
@@ -85,13 +85,13 @@ export default function SpreadAbout({ onOpenDossier }) {
             {/* Polaroid caption / stamp code */}
             <div className="mt-3 w-full flex justify-between px-1 select-none">
               <span className="font-meta text-[8px] text-[#7A746B] tracking-wider uppercase font-semibold">ZN-001</span>
-              <span className="font-meta text-[8px] text-[#DC684A] font-bold">ACTIVE SYSTEM</span>
+              <span className="font-meta text-[8px] text-[#C9A96E] font-bold">ACTIVE SYSTEM</span>
             </div>
           </motion.div>
 
           {/* Biography Block - High Premium Editorial Text */}
           <div className="flex flex-col gap-2.5 text-center px-4 max-w-[390px] mt-2">
-            <span className="font-meta text-[8px] tracking-[0.25em] text-[#DC684A] uppercase font-bold block select-none">
+            <span className="font-meta text-[8px] tracking-[0.25em] text-[#C9A96E] uppercase font-bold block select-none">
               BIOGRAPHICAL ANCHOR
             </span>
             <h3 className="font-heading italic font-light text-[28px] leading-tight text-[#1A1916] select-none">
@@ -105,7 +105,7 @@ export default function SpreadAbout({ onOpenDossier }) {
 
         {/* Slanted Calligraphic Signature in bottom right */}
         <div className="absolute bottom-[3.25rem] right-[2.5rem] select-none pointer-events-none z-20">
-          <span className="font-cookie text-[42px] text-[#DC684A] leading-none block -rotate-6 transform origin-bottom-right select-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
+          <span className="font-cookie text-[42px] text-[#C9A96E] leading-none block -rotate-6 transform origin-bottom-right select-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
             Wafiq Nawaz
           </span>
         </div>

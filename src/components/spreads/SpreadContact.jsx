@@ -49,7 +49,7 @@ export default function SpreadContact() {
       {/* Floating Spotlight backlight */}
       <div className="absolute inset-0 pointer-events-none select-none z-0"
         style={{
-          background: 'radial-gradient(circle at 30% 60%, rgba(209, 180, 140, 0.04) 0%, transparent 60%)'
+          background: 'radial-gradient(circle at 30% 60%, rgba(201, 169, 110, 0.04) 0%, transparent 60%)'
         }}
       />
 
@@ -64,7 +64,7 @@ export default function SpreadContact() {
           variants={itemVariants} 
           className="flex justify-between items-center border-b border-white/10 pb-4 select-none"
         >
-          <span className="font-meta text-[9.5px] tracking-[0.25em] text-[#D1B48C] uppercase font-bold">
+          <span className="font-meta text-[9.5px] tracking-[0.25em] text-[#C9A96E] uppercase font-bold">
             COLLABORATION
           </span>
           <span className="font-meta text-[9.5px] tracking-widest text-white/40 uppercase font-semibold">
@@ -77,7 +77,7 @@ export default function SpreadContact() {
           
           {/* Header block */}
           <div className="flex flex-col gap-1 text-center select-none">
-            <span className="font-meta text-[8px] tracking-[0.2em] text-[#D1B48C] block font-bold uppercase">
+            <span className="font-meta text-[8px] tracking-[0.2em] text-[#C9A96E] block font-bold uppercase">
               TRANSMIT REQUEST
             </span>
             <h3 className="font-heading italic font-light text-[28px] leading-tight text-white">
@@ -90,19 +90,19 @@ export default function SpreadContact() {
             {/* Outlook Card */}
             <a 
               href="mailto:wafiqnawaz@outlook.com" 
-              className="p-2.5 bg-[#151310] border border-white/10 hover:border-[#D1B48C]/80 transition-all duration-300 rounded-[2px] flex flex-col gap-0.5 text-left group"
+              className="p-2.5 bg-[#151310] border border-white/10 hover:border-[#C9A96E]/80 transition-all duration-300 rounded-[2px] flex flex-col gap-0.5 text-left group"
             >
-              <span className="font-meta text-[7.5px] text-[#D1B48C] font-bold tracking-wider">OUTLOOK MAIL</span>
-              <span className="font-body text-[10.5px] text-white/80 group-hover:text-[#D1B48C] transition-colors truncate">wafiqnawaz@outlook.com</span>
+              <span className="font-meta text-[7.5px] text-[#C9A96E] font-bold tracking-wider">OUTLOOK MAIL</span>
+              <span className="font-body text-[10.5px] text-white/80 group-hover:text-[#C9A96E] transition-colors truncate">wafiqnawaz@outlook.com</span>
             </a>
             
             {/* Gmail Card */}
             <a 
-              href="mailto:nawazfaqiq711@gmail.com" 
-              className="p-2.5 bg-[#151310] border border-white/10 hover:border-[#D1B48C]/80 transition-all duration-300 rounded-[2px] flex flex-col gap-0.5 text-left group"
+              href="mailto:nawazwafiq711@gmail.com" 
+              className="p-2.5 bg-[#151310] border border-white/10 hover:border-[#C9A96E]/80 transition-all duration-300 rounded-[2px] flex flex-col gap-0.5 text-left group"
             >
-              <span className="font-meta text-[7.5px] text-[#D1B48C] font-bold tracking-wider">GMAIL MAIL</span>
-              <span className="font-body text-[10.5px] text-white/80 group-hover:text-[#D1B48C] transition-colors truncate">nawazfaqiq711@gmail.com</span>
+              <span className="font-meta text-[7.5px] text-[#C9A96E] font-bold tracking-wider">GMAIL MAIL</span>
+              <span className="font-body text-[10.5px] text-white/80 group-hover:text-[#C9A96E] transition-colors truncate">nawazwafiq711@gmail.com</span>
             </a>
 
             {/* LinkedIn Card */}
@@ -110,10 +110,10 @@ export default function SpreadContact() {
               href="https://www.linkedin.com/in/wafiqnawaz" 
               target="_blank" 
               rel="noreferrer" 
-              className="p-2.5 bg-[#151310] border border-white/10 hover:border-[#D1B48C]/80 transition-all duration-300 rounded-[2px] flex flex-col gap-0.5 text-left group"
+              className="p-2.5 bg-[#151310] border border-white/10 hover:border-[#C9A96E]/80 transition-all duration-300 rounded-[2px] flex flex-col gap-0.5 text-left group"
             >
-              <span className="font-meta text-[7.5px] text-[#D1B48C] font-bold tracking-wider">LINKEDIN DIRECTORY</span>
-              <span className="font-body text-[10.5px] text-white/80 group-hover:text-[#D1B48C] transition-colors truncate">in/wafiqnawaz</span>
+              <span className="font-meta text-[7.5px] text-[#C9A96E] font-bold tracking-wider">LINKEDIN DIRECTORY</span>
+              <span className="font-body text-[10.5px] text-white/80 group-hover:text-[#C9A96E] transition-colors truncate">in/wafiqnawaz</span>
             </a>
 
             {/* GitHub Card */}
@@ -121,10 +121,10 @@ export default function SpreadContact() {
               href="https://github.com/ZaLuLu" 
               target="_blank" 
               rel="noreferrer" 
-              className="p-2.5 bg-[#151310] border border-white/10 hover:border-[#D1B48C]/80 transition-all duration-300 rounded-[2px] flex flex-col gap-0.5 text-left group"
+              className="p-2.5 bg-[#151310] border border-white/10 hover:border-[#C9A96E]/80 transition-all duration-300 rounded-[2px] flex flex-col gap-0.5 text-left group"
             >
-              <span className="font-meta text-[7.5px] text-[#D1B48C] font-bold tracking-wider">GITHUB ARCHIVE</span>
-              <span className="font-body text-[10.5px] text-white/80 group-hover:text-[#D1B48C] transition-colors truncate">github.com/ZaLuLu</span>
+              <span className="font-meta text-[7.5px] text-[#C9A96E] font-bold tracking-wider">GITHUB ARCHIVE</span>
+              <span className="font-body text-[10.5px] text-white/80 group-hover:text-[#C9A96E] transition-colors truncate">github.com/ZaLuLu</span>
             </a>
           </motion.div>
 
@@ -133,14 +133,14 @@ export default function SpreadContact() {
             <a 
               href="/Wafiq_Nawaz_Resume.pdf" 
               download
-              className="w-full flex items-center justify-center gap-2 p-2.5 bg-[#151310] border border-[#D1B48C]/40 hover:border-[#D1B48C] transition-all duration-300 rounded-[2px] font-meta text-[9.5px] tracking-widest text-[#D1B48C] font-bold uppercase text-center select-none hover:bg-[#D1B48C]/10"
+              className="cta-primary font-bold w-full justify-center flex gap-2 items-center text-center select-none hover:bg-[#C9A96E]/10"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              DOWNLOAD IIM-STYLE RESUME
+              DOWNLOAD RÉSUMÉ
             </a>
           </motion.div>
 
@@ -150,16 +150,16 @@ export default function SpreadContact() {
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-[#151310] border border-[#D1B48C]/20 p-4 text-center rounded-[2px] select-none shadow-xl"
+                className="bg-[#151310] border border-[#C9A96E]/20 p-4 text-center rounded-[2px] select-none shadow-xl"
               >
-                <span className="font-cookie text-2xl text-[#D1B48C] block mb-1 font-normal">Thank you!</span>
+                <span className="font-cookie text-2xl text-[#C9A96E] block mb-1 font-normal">Thank you!</span>
                 <p className="font-body text-[11px] text-[#F5F1EB]/80">
                   Transmission logged. Wafiq will follow up shortly.
                 </p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
-                <span className="font-meta text-[7.5px] tracking-[0.25em] text-[#D1B48C] font-bold block select-none uppercase mb-1">OR TRANSMIT AN IMMEDIATE FEEDBACK PACKET</span>
+                <span className="font-meta text-[7.5px] tracking-[0.25em] text-[#C9A96E] font-bold block select-none uppercase mb-1">OR TRANSMIT AN IMMEDIATE FEEDBACK PACKET</span>
                 <div className="grid grid-cols-2 gap-3">
                   {/* Name */}
                   <div className="flex flex-col gap-1">
@@ -173,7 +173,7 @@ export default function SpreadContact() {
                       onChange={handleChange}
                       required
                       placeholder="Enter name"
-                      className="bg-transparent border-b border-white/15 focus:border-[#D1B48C] text-[10.5px] font-meta text-[#F5F1EB] pb-0.5 outline-none transition-colors"
+                      className="contact-input"
                     />
                   </div>
 
@@ -189,7 +189,7 @@ export default function SpreadContact() {
                       onChange={handleChange}
                       required
                       placeholder="Enter email"
-                      className="bg-transparent border-b border-white/15 focus:border-[#D1B48C] text-[10.5px] font-meta text-[#F5F1EB] pb-0.5 outline-none transition-colors"
+                      className="contact-input"
                     />
                   </div>
                 </div>
@@ -204,9 +204,9 @@ export default function SpreadContact() {
                     value={formState.message}
                     onChange={handleChange}
                     required
-                    rows={1}
                     placeholder="Describe inquiry..."
-                    className="bg-transparent border-b border-white/15 focus:border-[#D1B48C] text-[10.5px] font-body text-[#F5F1EB] pb-0.5 outline-none transition-colors resize-none"
+                    className="contact-input resize-none"
+                    style={{ minHeight: '80px' }}
                   />
                 </div>
 
@@ -215,7 +215,7 @@ export default function SpreadContact() {
                   variants={itemVariants}
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="font-meta text-[9px] tracking-widest text-[#D1B48C] hover:text-[#0D0C0A] bg-transparent hover:bg-[#D1B48C] border border-[#D1B48C]/50 hover:border-[#D1B48C] py-2.5 text-center cursor-pointer transition-all duration-300 font-bold uppercase disabled:opacity-50 select-none rounded-[2px] outline-none border-solid mt-1.5"
+                  className="font-meta text-[9px] tracking-widest text-[#C9A96E] hover:text-[#0D0C0A] bg-transparent hover:bg-[#C9A96E] border border-[#C9A96E]/50 hover:border-[#C9A96E] py-2.5 text-center cursor-pointer transition-all duration-300 font-bold uppercase disabled:opacity-50 select-none rounded-[2px] outline-none border-solid mt-1.5"
                 >
                   {status === 'submitting' ? 'TRANSMITTING...' : 'TRANSMIT REGISTER →'}
                 </motion.button>
@@ -226,7 +226,7 @@ export default function SpreadContact() {
 
         {/* Bottom Folio */}
         <motion.footer variants={itemVariants} className="border-t border-white/10 pt-4 w-full">
-          <Folio page={8} text="CLOSE REGISTER" />
+          <Folio page={9} text="CLOSE REGISTER" />
         </motion.footer>
       </motion.div>
     </div>

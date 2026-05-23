@@ -72,7 +72,7 @@ export default function SpreadExperience() {
           variants={itemVariants} 
           className="flex justify-between items-center border-b border-[#1A1916]/10 pb-5 select-none"
         >
-          <span className="font-meta text-[9.5px] tracking-[0.25em] text-[#DC684A] uppercase font-bold">
+          <span className="font-meta text-[9.5px] tracking-[0.25em] text-[#C9A96E] uppercase font-bold">
             ACADEMIC MILESTONES
           </span>
           <span className="font-meta text-[9.5px] tracking-widest text-[#1A1916]/40 uppercase font-semibold">
@@ -80,15 +80,15 @@ export default function SpreadExperience() {
           </span>
         </motion.header>
 
-        {/* Single-Column Wabi-Sabi Flow (V5 Decluttered) */}
+        {/* Single-Column Wabi-Sabi Flow (V6 Education & Timeline) */}
         <div className="my-auto py-4 flex flex-col gap-6 max-w-[420px] mx-auto w-full">
           
           {/* Alma Mater education card */}
           <motion.div 
             variants={itemVariants}
-            className="p-5 border border-[#1A1916]/12 bg-[#FAF6F0]/80 shadow-md border-l-[3px] border-[#1A1916] flex flex-col gap-3"
+            className="education-card flex flex-col gap-2.5 text-left"
           >
-            <span className="font-meta text-[8px] tracking-[0.3em] text-[#DC684A] font-bold block select-none">
+            <span className="font-meta text-[8px] tracking-[0.3em] text-[#C9A96E] font-bold block select-none">
               ALMA MATER
             </span>
             
@@ -108,7 +108,7 @@ export default function SpreadExperience() {
 
           {/* Timeline Milestones stacked cleanly */}
           <motion.div variants={timelineVariants} className="flex flex-col gap-3">
-            <span className="font-meta text-[8px] tracking-[0.3em] text-[#DC684A] uppercase font-bold select-none block mb-1">
+            <span className="font-meta text-[8px] tracking-[0.3em] text-[#C9A96E] uppercase font-bold select-none block mb-1">
               SYSTEM HISTORY
             </span>
             
@@ -116,13 +116,13 @@ export default function SpreadExperience() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="pb-2 border-b border-[#1A1916]/10 last:border-b-0 flex flex-col gap-1 hover:bg-[#DC684A]/[0.01] pl-2 transition-colors duration-300"
+                className="pb-2 border-b border-[#1A1916]/10 last:border-b-0 flex flex-col gap-1 hover:bg-[#C9A96E]/[0.01] pl-2 transition-colors duration-300"
               >
                 <div className="flex justify-between items-baseline">
                   <span className="font-display font-bold text-[12.5px] text-[#1A1916] leading-snug">
                     {item.title}
                   </span>
-                  <span className="font-meta text-[9px] text-[#DC684A] font-bold tracking-widest pl-2">
+                  <span className="font-meta text-[9px] text-[#C9A96E] font-bold tracking-widest pl-2">
                     {item.year}
                   </span>
                 </div>

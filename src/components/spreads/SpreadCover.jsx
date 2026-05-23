@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import MastheadLogo from '../ui/MastheadLogo';
 import { IDENTITY } from '../../data/portfolio';
+import heroPhoto from '../../assets/WafiqNawaz.jpeg';
 
 export default function SpreadCover() {
   const containerVariants = {
@@ -16,7 +17,7 @@ export default function SpreadCover() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 25 },
     visible: {
       opacity: 1,
       y: 0,
@@ -24,96 +25,85 @@ export default function SpreadCover() {
     },
   };
 
-  const starVariants = {
-    hidden: { scale: 0, rotate: -45 },
-    visible: {
-      scale: 1,
-      rotate: 0,
-      transition: { type: 'spring', stiffness: 80, damping: 15 },
-    },
-  };
-
   return (
-    <div className="w-full h-full relative overflow-hidden bg-jp-obsidian text-[#F5F1EB] flex items-center justify-center">
+    <div className="w-full h-full relative overflow-hidden bg-jp-obsidian text-[#F5F0E8] flex flex-col md:flex-row items-stretch">
       {/* Tactical paper grain realism overlay */}
       <div className="paper-grain-overlay opacity-[0.015]" />
 
-      {/* Floating Spotlight backlight */}
-      <div className="absolute inset-0 pointer-events-none select-none z-0"
-        style={{
-          background: 'radial-gradient(circle at 50% 50%, rgba(209, 180, 140, 0.05) 0%, transparent 60%)'
-        }}
-      />
-
-      {/* Fine technical blueprint grid lines and abstract diagonals (V5) */}
-      <div className="absolute inset-0 pointer-events-none select-none z-0 opacity-[0.025]">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-          <defs>
-            <pattern id="cover-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#F5F1EB" strokeWidth="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#cover-grid)" />
-          {/* Fine blueprint crop lines & crosshairs */}
-          <line x1="20" y1="20" x2="20" y2="60" stroke="#F5F1EB" strokeWidth="0.5" />
-          <line x1="20" y1="20" x2="60" y2="20" stroke="#F5F1EB" strokeWidth="0.5" />
-          <line x1="90%" y1="90%" x2="90%" y2="80%" stroke="#F5F1EB" strokeWidth="0.5" />
-          <line x1="90%" y1="90%" x2="80%" y2="90%" stroke="#F5F1EB" strokeWidth="0.5" />
-        </svg>
+      {/* Left Column: Flagship Hero Portrait (42% width) */}
+      <div className="w-full md:w-[42%] h-[40%] md:h-full relative overflow-hidden bg-[#0C0C0C] border-r border-white/10">
+        <img
+          src={heroPhoto}
+          alt="Wafiq Nawaz flagship hero portrait"
+          className="w-full h-full object-cover opacity-90 filter contrast-[1.05] brightness-[0.92] transition-all duration-700 hover:scale-103"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0C0C0C]/40 pointer-events-none" />
       </div>
 
+      {/* Right Column: Editorial Typographic Panel (58% width) */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="page-spread-content relative z-10 flex flex-col justify-between h-full w-full"
+        className="w-full md:w-[58%] h-[60%] md:h-full flex flex-col justify-between p-6 sm:p-8 pl-5 sm:pl-7 relative z-10 select-none"
       >
-        
-        {/* Top Header bar - Cinematic layout */}
+        {/* Top Header bar with custom anchored metadata */}
         <motion.header 
           variants={itemVariants} 
-          className="flex justify-between items-center border-b border-white/10 pb-6 w-full select-none"
+          className="flex justify-between items-start border-b border-white/10 pb-5 w-full select-none"
         >
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <motion.div 
-              variants={starVariants}
               whileHover={{ rotate: 180, scale: 1.15 }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
               className="cursor-pointer"
             >
               <MastheadLogo />
             </motion.div>
-            <span className="font-meta text-[9.5px] tracking-[0.35em] text-[#D1B48C] font-bold uppercase">
+            <span className="font-meta text-[8.5px] tracking-[0.25em] text-[#C9A96E] font-bold uppercase">
               CREATIVE ARCHITECTURE
             </span>
           </div>
-          <span className="font-meta text-[9.5px] tracking-[0.25em] text-white/50 uppercase">
-            THE DEVELOPER ISSUE // Bengaluru, IN
-          </span>
+
+          {/* Anchored Top-Right Metadata Labels Container */}
+          <div className="text-right font-meta text-[8.5px] tracking-widest text-[#F5F0E8]/45 uppercase leading-relaxed mt-0.5">
+            <div className="text-[#C9A96E] font-bold mb-0.5">◆ THE DEVELOPER ISSUE</div>
+            <div>Bengaluru, IN</div>
+          </div>
         </motion.header>
 
-        {/* Massive Centerpiece Branding (Clean, Spaced, No Overlaps - V5) */}
-        <div className="my-auto flex flex-col items-center justify-center text-center py-10 relative select-none w-full">
+        {/* Massive Centerpiece Branding (Kinfolk / Editorial Monograph style) */}
+        <div className="my-auto flex flex-col items-start text-left py-6 w-full relative">
           <motion.span 
             variants={itemVariants}
-            className="font-meta text-[10px] tracking-[0.45em] text-[#DC684A] uppercase block mb-6 font-bold"
+            className="font-meta text-[8.5px] tracking-[0.4em] text-[#C9A96E] uppercase block mb-4 font-bold"
           >
             ◇ CHARACTER DOCUMENTARY ◇
           </motion.span>
           
-          <div className="flex flex-col items-center justify-center w-full">
-            {/* Elegant, clean calligraphic name centerpiece (Gold) */}
+          <div className="flex flex-col items-start w-full">
+            {/* Elegant, clean calligraphic name centerpiece (Cormorant Garamond 300 Italic) */}
             <motion.h1 
               variants={itemVariants}
-              className="font-cookie text-[96px] sm:text-[116px] md:text-[136px] text-[#D1B48C] leading-none tracking-wide normal-case font-normal select-text drop-shadow-[0_4px_12px_rgba(0,0,0,0.4)]"
+              style={{
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                fontWeight: 300,
+                fontStyle: 'italic',
+                fontSize: 'clamp(2.5rem, 5.5vw, 4.25rem)',
+                lineHeight: 0.95,
+                letterSpacing: '-0.01em',
+                color: '#F5F0E8',
+              }}
+              className="select-text"
             >
-              {IDENTITY.fullName}
+              Wafiq<br />
+              <span style={{ color: '#C9A96E' }}>Nawaz.</span>
             </motion.h1>
             
             {/* Monospaced technical sub-heading */}
             <motion.span
               variants={itemVariants}
-              className="font-meta text-[11px] tracking-[0.3em] text-white/40 uppercase block mt-3 font-medium"
+              className="font-meta text-[9.5px] tracking-[0.25em] text-white/40 uppercase block mt-3 font-semibold"
             >
               {IDENTITY.role}
             </motion.span>
@@ -121,46 +111,27 @@ export default function SpreadCover() {
 
           <motion.div 
             variants={itemVariants}
-            className="w-16 h-[0.5px] bg-[#D1B48C]/30 my-8" 
+            className="w-10 h-[0.5px] bg-[#C9A96E]/40 my-5" 
           />
           
           <motion.p 
             variants={itemVariants}
-            className="font-body italic text-[14.5px] text-[#F5F1EB]/75 max-w-[440px] leading-relaxed px-4"
+            className="font-body italic text-[13px] text-[#F5F0E8]/75 max-w-[340px] leading-relaxed select-text"
           >
             "An editorial inquiry into secure full-stack architecture, systems development, and clean human interaction."
           </motion.p>
         </div>
 
-        {/* Cover footer - minimal Lookbook details */}
+        {/* Gold Rule Above Pagination */}
         <motion.footer 
-          variants={itemVariants} 
-          className="flex justify-between items-end border-t border-white/10 pt-6 w-full select-none text-white/50"
+          variants={itemVariants}
+          className="w-full flex items-center gap-3 select-none"
         >
-          <div className="flex flex-col text-left">
-            <span className="font-meta text-[8.5px] tracking-widest text-[#D1B48C] font-bold uppercase mb-1.5">
-              SPECIALTY
-            </span>
-            <span className="font-display text-[12px] text-white leading-none uppercase tracking-widest font-semibold">
-              {IDENTITY.classLabel}
-            </span>
-          </div>
-          
-          {/* Subtle star glyph in center footer */}
-          <div className="text-[#D1B48C] opacity-40 animate-spin" style={{ animationDuration: '40s' }}>
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-5.5 h-5.5">
-              <path d="M12 2L14.8 9.2L22 12L14.8 14.8L12 22L9.2 14.8L2 12L9.2 9.2L12 2Z" />
-            </svg>
-          </div>
-
-          <div className="flex flex-col text-right">
-            <span className="font-meta text-[8.5px] tracking-widest text-[#D1B48C] font-bold uppercase mb-1.5">
-              Uptime Status
-            </span>
-            <span className="font-display text-[12px] text-white leading-none uppercase tracking-widest font-semibold">
-              {IDENTITY.statusBadge}
-            </span>
-          </div>
+          <div className="flex-1 h-[0.5px] bg-gradient-to-r from-transparent to-[#C9A96E]/30" />
+          <span className="font-meta text-[8.5px] tracking-widest text-[#F5F0E8]/40">
+            01 / 10
+          </span>
+          <div className="flex-1 h-[0.5px] bg-gradient-to-r from-[#C9A96E]/30 to-transparent" />
         </motion.footer>
 
       </motion.div>
