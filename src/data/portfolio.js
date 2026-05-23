@@ -282,15 +282,6 @@ export const PROJECTS = [
   },
   {
     id:    2,
-    title: 'DOCUMIND',
-    type:  'WEB APP',
-    tech:  'REACT, FASTAPI, POSTGRESQL, GEMINI AI, OCR',
-    year:  '2026',
-    url:   'https://github.com/ZaLuLu',
-    desc:  'Manual expense tracking is tedious and error-prone. DocuMind uses Gemini OCR to extract vendor, amount, date, and category from uploaded receipts automatically. Includes anomaly detection (2× historical average), monthly budget tracking, and a context-aware AI financial advisor.',
-  },
-  {
-    id:    3,
     title: 'ZALULU PORTFOLIO',
     type:  'WEB APP · LIVE',
     tech:  'REACT, TAILWINDCSS, VITE',
@@ -299,7 +290,7 @@ export const PROJECTS = [
     desc:  'Built this portfolio as a design challenge — neo-brutalist game aesthetic with custom cursor, Web Audio API sound effects, animated ASCII skill bars, and a vault-style project archive. Single data-file architecture means all content updates in one place.',
   },
   {
-    id:    4,
+    id:    3,
     title: 'MORE COMING SOON',
     type:  'IN PROGRESS',
     tech:  'TBD',
