@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SpreadCover from '../spreads/SpreadCover';
 import SpreadContents from '../spreads/SpreadContents';
@@ -13,6 +13,7 @@ const TOTAL_PAGES = 8;
 
 export default function VerticalBinderViewer() {
   const [currentPage, setCurrentPage] = useState(0);
+  const [direction, setDirection] = useState(0); // 1 = forward, -1 = backward
   const [isMobile, setIsMobile] = useState(false);
 
   // Monitor viewport size for mobile layout fallback
@@ -27,26 +28,44 @@ export default function VerticalBinderViewer() {
 
   const nextPage = () => {
     if (currentPage < TOTAL_PAGES - 1) {
+      setDirection(1);
       setCurrentPage((prev) => prev + 1);
     }
   };
 
   const prevPage = () => {
     if (currentPage > 0) {
+      setDirection(-1);
       setCurrentPage((prev) => prev - 1);
     }
   };
 
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (isMobile) return;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'Space') {
+        e.preventDefault();
+        nextPage();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        prevPage();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentPage, isMobile]);
+
   // List of page components
   const pages = [
-    { component: <SpreadCover />, id: "cover" },
+    { component: <SpreadCover />, id: "cover", dark: true },
     { component: <SpreadContents />, id: "contents" },
     { component: <SpreadAbout />, id: "about" },
     { component: <SpreadSkills />, id: "skills" },
     { component: <SpreadExperience />, id: "experience" },
     { component: <SpreadProjects projectIndex={0} />, id: "retailmind" },
     { component: <SpreadProjects projectIndex={1} />, id: "portfolio" },
-    { component: <SpreadContact />, id: "contact" },
+    { component: <SpreadContact />, id: "contact", dark: true },
   ];
 
   // ─── MOBILE VIEW (Elegant Scrollable Feed) ───
@@ -55,10 +74,10 @@ export default function VerticalBinderViewer() {
       <div className="binder-stage flex flex-col gap-10 py-12 px-4 overflow-y-auto min-h-screen">
         <div className="binder-glow" />
         <div className="w-full max-w-[600px] flex flex-col gap-10 z-10 mx-auto">
-          {pages.map((page, idx) => (
+          {pages.map((page) => (
             <div
               key={page.id}
-              className="binder-page relative w-full shadow-2xl"
+              className={`binder-page relative w-full shadow-2xl ${page.dark ? 'binder-page-cover' : ''}`}
               style={{ position: 'relative' }}
             >
               {page.component}
@@ -72,91 +91,68 @@ export default function VerticalBinderViewer() {
     );
   }
 
-  // ─── DESKTOP VIEW (3D Top-Bound Notebook Flipbook) ───
+  // ─── DESKTOP VIEW (Cinematic 3D Parallax Slideshow) ───
+  const activePage = pages[currentPage];
+
+  // Transition variants for highly cinematic 3D folder slide
+  const pageVariants = {
+    enter: (dir) => ({
+      y: dir > 0 ? '100%' : '-100%',
+      rotateX: dir > 0 ? -25 : 25,
+      scale: dir > 0 ? 1.05 : 0.95,
+      opacity: 0,
+    }),
+    center: {
+      y: 0,
+      rotateX: 0,
+      scale: 1,
+      opacity: 1,
+      transition: {
+        y: { type: 'spring', stiffness: 90, damping: 20 },
+        rotateX: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+        scale: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+        opacity: { duration: 0.5 },
+      },
+    },
+    exit: (dir) => ({
+      y: dir > 0 ? '-100%' : '100%',
+      rotateX: dir > 0 ? 25 : -25,
+      scale: dir > 0 ? 0.95 : 1.05,
+      opacity: 0,
+      transition: {
+        y: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+        rotateX: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+        scale: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+        opacity: { duration: 0.4 },
+      },
+    }),
+  };
+
   return (
     <div className="binder-stage">
-      {/* Warm ambient studio lighting backdrop */}
+      {/* Floating pulsing spotlight */}
       <div className="binder-glow" />
 
-      {/* Main Magazine Frame */}
+      {/* Main Slideshow Frame */}
       <div className="binder-wrap">
-        
-        {/* Top binder Seam & Clips */}
-        <div className="binder-seam select-none pointer-events-none">
-          <div className="binder-ring" />
-          <div className="binder-ring" />
-          <div className="binder-ring" />
-          <div className="binder-ring" />
-          <div className="binder-ring" />
-          <div className="binder-ring" />
-        </div>
-
-        {/* Dynamic 3D stacked pages */}
-        {pages.map((page, index) => {
-          const isFlipped = index < currentPage;
-          const isActive = index === currentPage;
-          
-          // Z-indexing calculation:
-          // - Active page is on top (zIndex = 100)
-          // - Flipped pages are at the bottom, stacked sequentially
-          // - Underneath pages are stacked sequentially beneath active
-          let zIndex = 10;
-          if (isActive) {
-            zIndex = 100;
-          } else if (isFlipped) {
-            zIndex = 20 + index;
-          } else {
-            zIndex = 90 - index;
-          }
-
-          // Depth offset styling for sheets layered flat underneath
-          const depthOffset = !isFlipped && !isActive 
-            ? (index - currentPage) * 1.5 
-            : 0;
-          
-          const scaleOffset = !isFlipped && !isActive
-            ? 1 - (index - currentPage) * 0.004
-            : 1;
-
-          return (
-            <motion.div
-              key={page.id}
-              className="binder-page"
-              style={{
-                zIndex,
-                pointerEvents: isActive ? 'auto' : 'none',
-                transformOrigin: 'top center',
-              }}
-              initial={false}
-              animate={{
-                rotateX: isFlipped ? -135 : 0, // -135deg keeps it flipped back in 3D but readable from top angle if needed
-                y: isFlipped ? -15 : depthOffset,
-                scale: scaleOffset,
-                opacity: isFlipped ? 0 : 1, // Soft fade out as it flips over to avoid visual clutter
-              }}
-              transition={{
-                duration: 0.85,
-                ease: [0.16, 1, 0.3, 1], // premium custom ease-out
-              }}
-            >
-              {/* Soft dark shadow sheet overlay that darkens lower pages under active page */}
-              {!isActive && !isFlipped && (
-                <motion.div 
-                  className="absolute inset-0 bg-black/40 pointer-events-none z-[101]"
-                  animate={{ opacity: (index - currentPage) * 0.15 }}
-                  transition={{ duration: 0.85 }}
-                />
-              )}
-
-              {/* Flipped page shadow simulation */}
-              {isFlipped && (
-                <div className="absolute inset-0 bg-[#0D0C0A]/85 pointer-events-none z-[101]" />
-              )}
-
-              {page.component}
-            </motion.div>
-          );
-        })}
+        <AnimatePresence initial={false} custom={direction} mode="popLayout">
+          <motion.div
+            key={currentPage}
+            custom={direction}
+            variants={pageVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className={`binder-page ${activePage.dark ? 'binder-page-cover' : ''}`}
+            style={{
+              width: '100%',
+              height: '100%',
+              transformStyle: 'preserve-3d',
+            }}
+          >
+            {activePage.component}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Floating Tactical Navigation controls */}

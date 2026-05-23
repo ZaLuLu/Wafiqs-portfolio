@@ -166,95 +166,78 @@ html, body {
 }
 
 /* ============================================================
-   3D VERTICAL BINDER STAGE (Top-Bound Catalog layout)
+   3D CINEMATIC SLIDEBOOK STAGE (Borderless Full-Screen Layout)
    ============================================================ */
 .binder-stage {
   width: 100vw;
   height: 100vh;
-  background: radial-gradient(circle at center, var(--c-base) 0%, var(--c-forest-dark) 100%);
+  background-color: var(--c-base);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding: 2.5rem;
 }
 
-/* Warm raw brass spotlight behind the catalog */
+/* Elegant floating spotlight representing moving luxury studio lighting */
 .binder-glow {
   position: absolute;
-  width: 80vw;
-  height: 70vh;
+  width: 120vw;
+  height: 120vh;
   background: radial-gradient(
-    ellipse at center,
-    rgba(209, 180, 140, 0.045) 0%,
-    transparent 70%
+    circle at 50% 50%,
+    rgba(209, 180, 140, 0.08) 0%,
+    rgba(220, 104, 74, 0.035) 45%,
+    transparent 75%
   );
   pointer-events: none;
   z-index: 0;
+  animation: floatSpotlight 24s ease-in-out infinite alternate;
 }
 
-/* Core centering wrapper */
+@keyframes floatSpotlight {
+  0% { transform: translate(-15%, -15%) scale(1); }
+  50% { transform: translate(15%, 20%) scale(1.15); }
+  100% { transform: translate(-5%, 10%) scale(0.9); }
+}
+
+/* Core centering wrapper - fully borderless cinematic catalog scale */
 .binder-wrap {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 580px; /* Centered tall single-page magazine layout */
   height: 100%;
-  max-height: 820px;
-  perspective: 1500px; /* Setup 3D space */
+  perspective: 2000px; /* Enhanced 3D space */
 }
 
-/* Calendar Binder rings / seam representation */
-.binder-seam {
-  position: absolute;
-  top: 0;
-  left: 0; right: 0;
-  height: 14px;
-  background: linear-gradient(180deg, #1A1815 0%, #0D0C0A 100%);
-  border-bottom: 1px solid var(--c-gold);
-  border-radius: 4px 4px 0 0;
-  display: flex;
-  justify-content: space-around;
-  padding-inline: 4rem;
-  z-index: 150;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-}
-.binder-ring {
-  width: 8px;
-  height: 20px;
-  background: linear-gradient(90deg, #57524A 0%, #D8D2C4 50%, #57524A 100%);
-  border-radius: 2px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.6);
-  transform: translateY(-10px);
-}
-
-/* Single page sheet design */
+/* Single page full-screen lookbook sheet */
 .binder-page {
   position: absolute;
   inset: 0;
   background: var(--c-paper);
-  border-radius: 4px;
-  box-shadow: 
-    0 30px 70px rgba(0,0,0,0.5),
-    0 10px 25px rgba(0,0,0,0.3);
   overflow: hidden;
-  transform-origin: top center;
-  backface-visibility: hidden;
   z-index: 10;
 }
 
-/* Inner page margin layout - DECLUTTERED & ROOMY */
+/* Full-bleed cover page in solid volcanic sand */
+.binder-page-cover {
+  background: var(--c-base) !important;
+}
+
+/* Inner page margin layout - DECLUTTERED & EXTRA ROOMY */
 .page-spread-content {
   width: 100%;
   height: 100%;
-  padding: clamp(2.25rem, 4.5vw, 3.5rem);
+  padding: clamp(3rem, 6vw, 7rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 14px; /* Space for the top binder seam */
-  height: calc(100% - 14px);
+}
+
+/* Dynamic custom cursor follow highlights, animated rules */
+.cinematic-glow-star {
+  filter: drop-shadow(0 0 8px var(--c-gold));
 }
 
 /* ============================================================
