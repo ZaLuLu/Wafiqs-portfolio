@@ -32,25 +32,31 @@ export default function ProfileCard({ onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         
-        {/* Card Header Strip (Forest Green Background) */}
+        {/* Card Header Strip (Obsidian Background) */}
         <div className="pc-header select-none">
           <span className="pc-issue">DOSSIER FILE · {IDENTITY.serialNumber}</span>
           <button className="pc-close" onClick={onClose} aria-label="Close dossier">×</button>
         </div>
 
-        {/* Identity Section (Portrait + Calligraphy Title) */}
+        {/* Identity Section (Technical Badge + Calligraphy Title) */}
         <div className="pc-identity">
-          <img
-            src="/profile.jpg"
-            alt={IDENTITY.fullName}
-            className="pc-portrait select-none pointer-events-none"
-          />
+          <div className="pc-badge-wrap select-none pointer-events-none">
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-12 h-12 text-[#D1B48C] animate-pulse"
+            >
+              <path d="M12 2L14.8 9.2L22 12L14.8 14.8L12 22L9.2 14.8L2 12L9.2 9.2L12 2Z" />
+            </svg>
+            <span className="pc-badge-tag">SECURE ID: ZN-01</span>
+          </div>
+          
           <div className="pc-name-block select-none">
             <h2 className="pc-name">
-              <span className="font-cookie text-6xl text-[#E8A020] block -mb-2 font-normal leading-none pr-3">
+              <span className="font-cookie text-6xl text-[#D1B48C] block -mb-2 font-normal leading-none pr-3">
                 {IDENTITY.fullName.split(' ')[0]}
               </span>
-              <span className="font-heading italic text-4xl text-[#0F2318] block ml-6 leading-none">
+              <span className="font-heading italic text-4xl text-[#1A1916] block ml-6 leading-none">
                 {IDENTITY.fullName.split(' ')[1]}
               </span>
             </h2>
@@ -59,7 +65,7 @@ export default function ProfileCard({ onClose }) {
         </div>
 
         {/* Technical & Personal Grid Details */}
-        <div className="pc-details bg-[#FDFCFB]">
+        <div className="pc-details bg-[#F5F1EB]">
           
           {/* Col 1: Bio */}
           <div className="pc-col">
@@ -101,7 +107,7 @@ export default function ProfileCard({ onClose }) {
         {/* Card Footer Bar */}
         <div className="pc-footer select-none">
           <span className="pc-footer-text">{IDENTITY.location}</span>
-          <span className="pc-footer-text text-rose-500 font-bold">{IDENTITY.status}</span>
+          <span className="pc-footer-text text-[#DC684A] font-bold">{IDENTITY.status}</span>
         </div>
 
       </motion.div>

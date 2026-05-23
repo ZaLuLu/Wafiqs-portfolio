@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import MagazineViewer from './components/magazine/MagazineViewer';
+import VerticalBinderViewer from './components/magazine/VerticalBinderViewer';
 import MastheadLogo from './components/ui/MastheadLogo';
 import { IDENTITY } from './data/portfolio';
 
@@ -9,13 +9,13 @@ export default function App() {
 
   // Console easter egg
   useEffect(() => {
-    console.log('%c Wafiq Nawaz ', 'background:#FFA726;color:#1D2C24;font-size:20px;font-weight:bold;padding:4px 12px;');
-    console.log('%c Full-Stack Developer · Cybersecurity Student · Open to Work 2026 ', 'color:#F4ECE1;font-size:12px;font-family:monospace;');
-    console.log('%c wafiqnawaz@outlook.com · github.com/ZaLuLu ', 'color:#E25A38;font-size:11px;font-family:monospace;');
+    console.log('%c Wafiq Nawaz ', 'background:#D1B48C;color:#0D0C0A;font-size:20px;font-weight:bold;padding:4px 12px;');
+    console.log('%c Full-Stack Developer · Cybersecurity Student · Open to Work 2026 ', 'color:#F5F1EB;font-size:12px;font-family:monospace;');
+    console.log('%c wafiqnawaz@outlook.com · github.com/ZaLuLu ', 'color:#DC684A;font-size:11px;font-family:monospace;');
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-[#1D2C24] overflow-x-hidden">
+    <div className="w-full min-h-screen bg-[#0D0C0A] overflow-x-hidden">
       <AnimatePresence mode="wait">
         {!loaded ? (
           <motion.div
@@ -29,12 +29,12 @@ export default function App() {
 
             {/* Abstract background vector details */}
             <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
-              <div className="absolute top-[25%] left-[20%] text-[#FFA726] opacity-35 animate-pulse">
+              <div className="absolute top-[25%] left-[20%] text-[#D1B48C] opacity-35 animate-pulse">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
                   <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
                 </svg>
               </div>
-              <div className="absolute bottom-[25%] right-[20%] text-[#FFA726] opacity-25">
+              <div className="absolute bottom-[25%] right-[20%] text-[#D1B48C] opacity-25">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                   <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
                 </svg>
@@ -63,11 +63,11 @@ export default function App() {
                   PORTFOLIO
                 </h2>
                 
-                <h1 className="font-cookie text-[64px] text-[#FFA726] leading-none tracking-wide normal-case font-normal mt-[-5px]">
+                <h1 className="font-cookie text-[64px] text-[#D1B48C] leading-none tracking-wide normal-case font-normal mt-[-5px]">
                   {IDENTITY.fullName}
                 </h1>
                 
-                <p className="font-meta text-[9.5px] tracking-widest text-[#FFA726] uppercase mt-4 font-semibold">
+                <p className="font-meta text-[9.5px] tracking-widest text-[#D1B48C] uppercase mt-4 font-semibold">
                   {IDENTITY.location}
                 </p>
               </div>
@@ -91,7 +91,7 @@ export default function App() {
             transition={{ duration: 0.65 }}
             className="w-full min-h-screen"
           >
-            <MagazineViewer />
+            <VerticalBinderViewer />
           </motion.div>
         )}
       </AnimatePresence>
