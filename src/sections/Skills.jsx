@@ -37,28 +37,25 @@ export default function Skills() {
     }
   };
 
-  // Render square block matrix based on 1-10 level
-  const renderSquareBlocks = (level) => {
-    const total = 10;
-    const blocks = [];
-    for (let i = 1; i <= total; i++) {
-      const isFilled = i <= level;
-      blocks.push(
-        <span 
-          key={i} 
-          className="inline-block text-[10px] sm:text-[11px] leading-none transition-colors duration-500 font-mono"
-          style={{ 
-            color: isFilled ? '#F5A623' : 'rgba(245, 166, 35, 0.12)',
-            marginRight: '2px'
-          }}
-        >
-          ■
-        </span>
-      );
-    }
+  // Render square block matrix based on 1-10 level (Change 9)
+  const renderSquareBlocks = (level, isVisible) => {
     return (
       <div className="flex items-center gap-[1px]">
-        {blocks}
+        {Array.from({ length: 10 }, (_, i) => (
+          <motion.span
+            key={i}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={isVisible
+              ? { opacity: i < level ? 1 : 0.08, scale: 1 }
+              : { opacity: 0, scale: 0 }
+            }
+            transition={{ delay: i * 0.04, duration: 0.2, ease: 'easeOut' }}
+            className="inline-block text-[11px] leading-none font-mono"
+            style={{ color: '#F5A623' }}
+          >
+            ■
+          </motion.span>
+        ))}
       </div>
     );
   };
@@ -94,66 +91,54 @@ export default function Skills() {
           Skills.
         </motion.h2>
 
-        {/* Technical & Soft Matrix Layout */}
+        {/* Technical & Soft Matrix Layout (Change 11) */}
         <div className="flex flex-col gap-16 mt-6">
           {skills.map((cat, idx) => (
             <motion.div
               key={cat.category}
               variants={categoryVariants}
-              className="grid grid-cols-1 lg:grid-cols-[110px_1fr] gap-6 lg:gap-12 items-stretch"
+              className="flex flex-col gap-6 w-full"
             >
-              {/* Vertical Rotated Sidebar Label */}
-              <div className="hidden lg:flex justify-end pr-2 border-r border-[#F2EDE4]/10">
-                <span 
-                  className="font-mono text-[10px] tracking-[0.25em] text-[#F2EDE4]/30 uppercase font-bold text-right"
-                  style={{
-                    writingMode: 'vertical-rl',
-                    textOrientation: 'mixed',
-                    transform: 'rotate(180deg)'
-                  }}
-                >
-                  {cat.sidebar}
+              {/* Category Subtitle */}
+              <div className="border-b border-[#F5A623]/25 pb-4 flex justify-between items-end">
+                <h3 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-none tracking-wide text-[#F5A623] uppercase">
+                  {cat.category}
+                </h3>
+                <span className="font-mono text-[8px] text-[#F2EDE4]/25 tracking-widest uppercase">
+                  SECTOR // 0{idx + 1}
                 </span>
               </div>
 
-              {/* Category Core Block */}
-              <div className="flex flex-col w-full">
-                
-                {/* Category Subtitle */}
-                <div className="border-b border-[#F5A623]/25 pb-3 mb-6 flex justify-between items-end">
-                  <h3 className="font-display text-[1.4rem] tracking-wider text-[#F5A623] uppercase">
-                    {cat.category}
-                  </h3>
-                  <span className="font-mono text-[8px] text-[#F2EDE4]/30 tracking-widest uppercase">
-                    SECTOR // 0{idx + 1}
-                  </span>
-                </div>
+              {/* Grid of leader rows and block gauges — now full width */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6">
+                {cat.items.map((item, rowIdx) => (
+                  <motion.div
+                    key={item.name}
+                    variants={rowVariants}
+                    custom={rowIdx}
+                    className="flex flex-col gap-1.5"
+                  >
+                    {/* Typographic dot leader row */}
+                    <div className="leader-row select-text">
+                      <span className="leader-skill">{item.name}</span>
+                      {/* Animated Leader line (Change 10) */}
+                      <motion.div
+                        className="leader-line"
+                        initial={{ scaleX: 0 }}
+                        animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: rowIdx * 0.06 }}
+                        style={{ transformOrigin: 'left center' }}
+                      />
+                      <span className="leader-cat">{item.cat}</span>
+                    </div>
 
-                {/* Grid of leader rows and block gauges */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
-                  {cat.items.map((item, rowIdx) => (
-                    <motion.div
-                      key={item.name}
-                      variants={rowVariants}
-                      custom={rowIdx}
-                      className="flex flex-col gap-1.5"
-                    >
-                      {/* Typographic dot leader row */}
-                      <div className="leader-row select-text">
-                        <span className="leader-skill">{item.name}</span>
-                        <div className="leader-line" />
-                        <span className="leader-cat">{item.cat}</span>
-                      </div>
-
-                      {/* Monospaced block gauges */}
-                      <div className="flex justify-between items-center select-none pt-0.5">
-                        <span className="font-mono text-[8px] text-[#F2EDE4]/25 uppercase font-semibold">GAUGE</span>
-                        {renderSquareBlocks(item.level)}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
+                    {/* Monospaced block gauges */}
+                    <div className="flex justify-between items-center select-none pt-0.5">
+                      <span className="font-mono text-[8px] text-[#F2EDE4]/25 uppercase font-semibold">GAUGE</span>
+                      {renderSquareBlocks(item.level, isInView)}
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           ))}

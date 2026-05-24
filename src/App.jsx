@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Lenis from 'lenis';
 import Nav from './components/Nav';
+import Cursor from './components/Cursor';
 import Hero from './sections/Hero';
 import About from './sections/About';
 import Skills from './sections/Skills';
@@ -36,6 +37,7 @@ export default function App() {
 
   return (
     <div className="w-full min-h-screen bg-[#0D0C09] text-[#F2EDE4] overflow-x-hidden selection:bg-[#C9A96E] selection:text-[#0D0C09]">
+      <Cursor />
       {/* Dynamic Frosted Navigation bar */}
       <Nav />
 

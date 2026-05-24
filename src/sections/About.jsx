@@ -70,15 +70,27 @@ export default function About() {
           About.
         </motion.h2>
 
+        {/* Change 5: Pull quote full-width statement */}
+        <motion.div variants={itemVariants} className="w-full max-w-[85%] mt-2 mb-6">
+          <blockquote className="font-serif italic font-light text-[clamp(2rem,5vw,3.75rem)] leading-[1.1] text-[#0D0C09]">
+            <span className="text-[#C9A96E]">"Discipline</span>
+            {" & persistent iteration outperform ad-hoc intelligence.\""}
+          </blockquote>
+        </motion.div>
+
         {/* Center Content Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.9fr] gap-12 sm:gap-16 items-start mt-4">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 sm:gap-16 items-start mt-4">
           
           {/* Left Column: High-Fashion Polaroid Centerpiece */}
           <div className="flex flex-col items-center w-full">
             <motion.div 
               variants={photoVariants}
-              className="bg-[#FAF6F0] p-4 pb-12 border border-[#0D0C09]/12 shadow-[0_25px_50px_rgba(13,12,9,0.12)] rounded-[2px] w-full max-w-[340px] flex flex-col items-center relative group"
+              className="bg-[#FAF6F0] p-4 pb-12 border border-[#0D0C09]/12 shadow-[0_25px_50px_rgba(13,12,9,0.12)] rounded-[2px] w-full max-w-[340px] flex flex-col items-center relative group rotate-[2.5deg] hover:rotate-[0deg] transition-transform duration-500"
             >
+              {/* Washi tape strips as absolute children (Change 6) */}
+              <div className="absolute -top-3 left-6 w-12 h-5 bg-[#E8E2D9]/70 rotate-[-35deg] rounded-[1px] z-20 pointer-events-none" />
+              <div className="absolute -top-3 right-6 w-12 h-5 bg-[#E8E2D9]/70 rotate-[35deg] rounded-[1px] z-20 pointer-events-none" />
+
               {/* Image box with card border */}
               <div className="relative overflow-hidden w-full aspect-[3/4] border border-[#0D0C09]/10 bg-[#EFE9DF]">
                 <img
@@ -111,20 +123,10 @@ export default function About() {
           {/* Right Column: Dynamic Typographic Text Grid */}
           <div className="flex flex-col gap-10 w-full">
             
-            {/* Pull Quote Row */}
+            {/* Typewriter Biography Columns (Change 7) */}
             <motion.div 
               variants={itemVariants}
-              className="border-left-3 border-[#C9A96E] pl-6 py-1 select-none"
-            >
-              <blockquote className="font-serif italic font-light text-[clamp(1.5rem,3.2vw,2.25rem)] leading-[1.2] text-[#0D0C09] max-w-[20ch]">
-                "Discipline &amp; persistent iteration outperform ad-hoc intelligence."
-              </blockquote>
-            </motion.div>
-
-            {/* Typewriter Biography Columns (2-column on wide screens) */}
-            <motion.div 
-              variants={itemVariants}
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 font-body text-[13.5px] leading-[1.8] text-[#0D0C09]/75 select-text"
+              className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-8 font-body text-[13.5px] leading-[1.8] text-[#0D0C09]/75 select-text"
             >
               <div className="flex flex-col gap-4">
                 <p>
@@ -134,7 +136,11 @@ export default function About() {
                   A Computer Science student at Svyasa University, Bengaluru, I translate intricate system constraints and security models into clean, resilient, and beautifully structured user experiences.
                 </p>
               </div>
-              <div className="flex flex-col gap-4">
+
+              {/* Thin vertical rule separator */}
+              <div className="hidden md:block w-[0.5px] bg-[#0D0C09]/10 self-stretch mx-4" />
+
+              <div className="flex flex-col gap-4 mt-0 md:mt-8">
                 <p>
                   My engineering journey focuses on secure web protocols, backend pipeline optimizations, and responsive interface details. Every project is approached as an editorial publication — requiring typographic restraint, structural grids, and wabi-sabi balance.
                 </p>
@@ -142,6 +148,27 @@ export default function About() {
                   ◆ CSE STUDENT // BENGALURU, IN · 2026
                 </p>
               </div>
+            </motion.div>
+
+            {/* Change 8: Quantified statistical stats row */}
+            <motion.div 
+              variants={itemVariants}
+              className="w-full border-t border-[#0D0C09]/10 pt-6 mt-4 grid grid-cols-3 gap-4 select-none"
+            >
+              {[
+                { value: '03', label: 'PROJECTS IN PROD' },
+                { value: '02+', label: 'YRS BUILDING' },
+                { value: 'OPEN', label: 'FOR 2026 INTERNSHIPS' },
+              ].map((stat) => (
+                <div key={stat.label} className="flex flex-col gap-1">
+                  <span className="font-display text-[2.5rem] leading-none text-[#0D0C09]">
+                    {stat.value}
+                  </span>
+                  <span className="font-mono text-[8px] tracking-[0.2em] text-[#0D0C09]/40 uppercase">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
             </motion.div>
 
           </div>

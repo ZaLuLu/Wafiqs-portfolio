@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Grain } from '../components/Grain';
 import SectionLabel from '../components/SectionLabel';
+import { EnvelopeSimple, LinkedinLogo, GithubLogo } from '@phosphor-icons/react';
 
 export default function Contact() {
   const sectionRef = useRef(null);
@@ -76,11 +77,10 @@ export default function Contact() {
           </span>
         </div>
 
-        {/* Massive Section Logotype */}
+        {/* Massive Section Logotype (Change 17) */}
         <motion.div variants={itemVariants} className="w-full">
           <h2 className="font-display text-[clamp(4.5rem,14vw,11.5rem)] leading-[0.8] tracking-[-0.01em] text-[#0D0C09] uppercase select-text">
-            Transmit <br className="hidden sm:inline" />
-            Request.
+            Transmit Request.
           </h2>
         </motion.div>
 
@@ -100,7 +100,7 @@ export default function Contact() {
               </blockquote>
             </motion.div>
 
-            {/* Channels Directory Grid */}
+            {/* Channels Directory Grid (Change 15) */}
             <motion.div 
               variants={itemVariants} 
               className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full select-none"
@@ -108,19 +108,31 @@ export default function Contact() {
               {/* Outlook Card */}
               <a 
                 href="mailto:wafiqnawaz@outlook.com?subject=Inquiry%20from%20Portfolio" 
-                className="p-4 bg-[#FAF6F0] border border-[#0D0C09]/10 hover:border-[#C9A96E]/80 hover:bg-[#FAF6F0]/60 transition-all duration-300 rounded-[2px] flex flex-col gap-1 text-left group"
+                className="p-4 bg-[#FAF6F0] border border-[#0D0C09]/10 hover:border-[#C9A96E]/80 hover:bg-[#FAF6F0]/60 transition-all duration-300 rounded-[2px] flex flex-col gap-1 text-left group relative overflow-hidden"
               >
-                <span className="font-mono text-[8px] text-[#C9A96E] font-bold tracking-[0.18em] uppercase">OUTLOOK MAIL</span>
-                <span className="font-body text-[12px] text-[#0D0C09]/80 group-hover:text-[#1A5EDB] transition-colors truncate">wafiqnawaz@outlook.com</span>
+                <span className="font-mono text-[8px] text-[#C9A96E] font-bold tracking-[0.18em] uppercase flex items-center gap-1.5">
+                  <EnvelopeSimple size={10} weight="bold" />
+                  OUTLOOK MAIL
+                </span>
+                <span className="font-body text-[12px] text-[#0D0C09]/80 group-hover:text-[#1A5EDB] transition-colors truncate pr-6">wafiqnawaz@outlook.com</span>
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 font-mono text-[14px] text-[#C9A96E] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                  →
+                </span>
               </a>
               
               {/* Gmail Card */}
               <a 
                 href="mailto:nawazwafiq711@gmail.com?subject=Inquiry%20from%20Portfolio" 
-                className="p-4 bg-[#FAF6F0] border border-[#0D0C09]/10 hover:border-[#C9A96E]/80 hover:bg-[#FAF6F0]/60 transition-all duration-300 rounded-[2px] flex flex-col gap-1 text-left group"
+                className="p-4 bg-[#FAF6F0] border border-[#0D0C09]/10 hover:border-[#C9A96E]/80 hover:bg-[#FAF6F0]/60 transition-all duration-300 rounded-[2px] flex flex-col gap-1 text-left group relative overflow-hidden"
               >
-                <span className="font-mono text-[8px] text-[#C9A96E] font-bold tracking-[0.18em] uppercase">GMAIL MAIL</span>
-                <span className="font-body text-[12px] text-[#0D0C09]/80 group-hover:text-[#1A5EDB] transition-colors truncate">nawazwafiq711@gmail.com</span>
+                <span className="font-mono text-[8px] text-[#C9A96E] font-bold tracking-[0.18em] uppercase flex items-center gap-1.5">
+                  <EnvelopeSimple size={10} weight="bold" />
+                  GMAIL MAIL
+                </span>
+                <span className="font-body text-[12px] text-[#0D0C09]/80 group-hover:text-[#1A5EDB] transition-colors truncate pr-6">nawazwafiq711@gmail.com</span>
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 font-mono text-[14px] text-[#C9A96E] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                  →
+                </span>
               </a>
 
               {/* LinkedIn Card */}
@@ -128,10 +140,16 @@ export default function Contact() {
                 href="https://www.linkedin.com/in/wafiqnawaz" 
                 target="_blank" 
                 rel="noreferrer" 
-                className="p-4 bg-[#FAF6F0] border border-[#0D0C09]/10 hover:border-[#C9A96E]/80 hover:bg-[#FAF6F0]/60 transition-all duration-300 rounded-[2px] flex flex-col gap-1 text-left group"
+                className="p-4 bg-[#FAF6F0] border border-[#0D0C09]/10 hover:border-[#C9A96E]/80 hover:bg-[#FAF6F0]/60 transition-all duration-300 rounded-[2px] flex flex-col gap-1 text-left group relative overflow-hidden"
               >
-                <span className="font-mono text-[8px] text-[#C9A96E] font-bold tracking-[0.18em] uppercase">LINKEDIN DIRECTORY</span>
-                <span className="font-body text-[12px] text-[#0D0C09]/80 group-hover:text-[#1A5EDB] transition-colors truncate">in/wafiqnawaz</span>
+                <span className="font-mono text-[8px] text-[#C9A96E] font-bold tracking-[0.18em] uppercase flex items-center gap-1.5">
+                  <LinkedinLogo size={10} weight="bold" />
+                  LINKEDIN DIRECTORY
+                </span>
+                <span className="font-body text-[12px] text-[#0D0C09]/80 group-hover:text-[#1A5EDB] transition-colors truncate pr-6">in/wafiqnawaz</span>
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 font-mono text-[14px] text-[#C9A96E] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                  →
+                </span>
               </a>
 
               {/* GitHub Card */}
@@ -139,10 +157,16 @@ export default function Contact() {
                 href="https://github.com/ZaLuLu" 
                 target="_blank" 
                 rel="noreferrer" 
-                className="p-4 bg-[#FAF6F0] border border-[#0D0C09]/10 hover:border-[#C9A96E]/80 hover:bg-[#FAF6F0]/60 transition-all duration-300 rounded-[2px] flex flex-col gap-1 text-left group"
+                className="p-4 bg-[#FAF6F0] border border-[#0D0C09]/10 hover:border-[#C9A96E]/80 hover:bg-[#FAF6F0]/60 transition-all duration-300 rounded-[2px] flex flex-col gap-1 text-left group relative overflow-hidden"
               >
-                <span className="font-mono text-[8px] text-[#C9A96E] font-bold tracking-[0.18em] uppercase">GITHUB ARCHIVE</span>
-                <span className="font-body text-[12px] text-[#0D0C09]/80 group-hover:text-[#1A5EDB] transition-colors truncate">github.com/ZaLuLu</span>
+                <span className="font-mono text-[8px] text-[#C9A96E] font-bold tracking-[0.18em] uppercase flex items-center gap-1.5">
+                  <GithubLogo size={10} weight="bold" />
+                  GITHUB ARCHIVE
+                </span>
+                <span className="font-body text-[12px] text-[#0D0C09]/80 group-hover:text-[#1A5EDB] transition-colors truncate pr-6">github.com/ZaLuLu</span>
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 font-mono text-[14px] text-[#C9A96E] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                  →
+                </span>
               </a>
             </motion.div>
 
@@ -219,7 +243,7 @@ export default function Contact() {
                 </div>
 
                 {/* Message */}
-                <div className="flex flex-col gap-1.5 w-full">
+                <div className="flex flex-col gap-1.5 w-full relative">
                   <label className="font-mono text-[8px] tracking-widest text-[#0D0C09]/55 uppercase select-none font-bold">
                     MESSAGE
                   </label>
@@ -228,10 +252,15 @@ export default function Contact() {
                     value={formState.message}
                     onChange={handleChange}
                     required
+                    maxLength={500}
                     placeholder="Describe your inquiry..."
                     className="border-b border-[#0D0C09]/20 focus:border-[#0D0C09] bg-transparent text-[#0D0C09] text-[13.5px] font-body focus:outline-none pb-2 w-full transition-colors duration-300 resize-none"
                     style={{ minHeight: '120px' }}
                   />
+                  {/* Live Character Counter (Change 16) */}
+                  <span className={`font-mono text-[9px] text-right block mt-1 transition-colors ${formState.message.length > 450 ? 'text-[#C9A96E]' : 'text-[#0D0C09]/30'}`}>
+                    {formState.message.length} / 500
+                  </span>
                 </div>
 
                 {/* Submit button */}

@@ -218,3 +218,26 @@ body {
   background: rgba(13, 12, 9, 0.06);
   border-color: var(--ink);
 }
+
+/* ─────────────────────────────────────────────────────────── */
+/* Antigravity Overhaul Enhancements                            */
+/* ─────────────────────────────────────────────────────────── */
+
+@media (pointer: fine) {
+  html, * { cursor: none !important; }
+}
+
+/* Allow hero section overflow for portrait bleed */
+#hero { overflow: visible !important; }
+#about { position: relative; z-index: 10; }
+
+/* Skills leader line scale settings */
+.leader-line {
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.leader-line.animate {
+  transform: scaleX(1);
+}
+

@@ -101,7 +101,7 @@ export default function Hero() {
           <motion.div
             variants={photoVariants}
             style={{ y: photoY }}
-            className="absolute z-2 w-[190px] sm:w-[260px] md:w-[320px] aspect-[3/4] overflow-hidden border border-[#F2EDE4]/10 shadow-[0_30px_60px_rgba(0,0,0,0.4)] rounded-[4px] bg-[#1C1A16] filter contrast-[1.04] brightness-[0.94] transition-all duration-500 hover:scale-[1.02]"
+            className="relative z-10 w-[260px] sm:w-[340px] md:w-[400px] aspect-[3/4] overflow-visible mx-auto mb-[-20vh] border border-[#F2EDE4]/10 shadow-[0_40px_80px_rgba(0,0,0,0.6)] rounded-[4px] bg-[#1C1A16] filter contrast-[1.04] brightness-[0.94] transition-all duration-500 hover:scale-[1.02]"
           >
             <img
               src={heroPhoto}
@@ -110,6 +110,16 @@ export default function Hero() {
             />
             {/* Subtle glass spotlight reflection */}
             <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
+            
+            {/* Floating Role Spine Label (Change 4) */}
+            <div className="absolute -left-8 top-0 bottom-0 flex items-center">
+              <span
+                className="font-mono text-[8px] tracking-[0.3em] text-[#F2EDE4]/25 uppercase"
+                style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+              >
+                FULL · STACK · DEV · 2026
+              </span>
+            </div>
           </motion.div>
 
           {/* Last Name Layer (N A W A Z) - Slides up, positioned lower & z-index: 3 */}
@@ -117,7 +127,7 @@ export default function Hero() {
             <motion.h1
               variants={nameWordVariants}
               style={{ y: nawazY }}
-              className="font-display text-[clamp(4.5rem,14vw,11.5rem)] leading-[0.85] tracking-[-0.02em] text-[#C9A96E] uppercase select-text"
+              className="font-display text-[clamp(6rem,18vw,15rem)] leading-[0.82] tracking-[-0.02em] text-[#C9A96E] uppercase select-text translate-x-[3vw]"
             >
               Nawaz.
             </motion.h1>

@@ -68,8 +68,8 @@ export default function Projects() {
                   variants={rowVariants}
                   className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 py-12 items-center relative"
                 >
-                  {/* Background index number watermark */}
-                  <span className="absolute right-0 top-6 font-display text-[clamp(6rem,15vw,12rem)] text-[#F2EDE4] opacity-[0.03] select-none pointer-events-none z-0 leading-none">
+                  {/* Background index number watermark (Change 13) */}
+                  <span className="absolute right-[-2rem] top-0 font-display text-[clamp(8rem,18vw,14rem)] text-[#F2EDE4] opacity-[0.055] select-none pointer-events-none z-0 leading-none">
                     {project.id}
                   </span>
 
@@ -79,22 +79,33 @@ export default function Projects() {
                       isAlternate ? 'lg:order-2' : ''
                     }`}
                   >
-                    {/* Blank Image Frame with textured outline */}
-                    <div 
-                      className="project-frame select-none cursor-pointer group"
-                      data-project={project.title}
-                    >
-                      {/* Faint overlay title in background of frame */}
-                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-                        <span className="font-display text-[clamp(2.5rem,6vw,4.5rem)] text-[#F2EDE4]/[0.03] tracking-wider transition-colors duration-300 group-hover:text-[#1A5EDB]/10">
+                    {/* Typographic Poster Frame (Change 12) */}
+                    <div className="project-frame select-none cursor-pointer group relative overflow-hidden">
+                      {/* Large ghosted title */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="font-display text-[clamp(3rem,9vw,7rem)] text-[#F2EDE4]/[0.07] tracking-wider group-hover:text-[#1A5EDB]/[0.10] transition-colors duration-500 text-center leading-none px-4">
                           {project.title}
                         </span>
                       </div>
-                      
-                      {/* Subtle diagonal line aesthetics representing code architecture */}
-                      <div className="absolute inset-0 opacity-[0.08] group-hover:opacity-[0.18] transition-opacity duration-300 bg-gradient-to-br from-transparent via-[#1A5EDB]/30 to-[#1A5EDB]/50" />
-                      <div className="absolute top-4 left-4 w-6 h-6 border-t border-l border-[#F2EDE4]/20 group-hover:border-[#1A5EDB]/60 transition-colors" />
-                      <div className="absolute bottom-4 right-4 w-6 h-6 border-b border-r border-[#F2EDE4]/20 group-hover:border-[#1A5EDB]/60 transition-colors" />
+
+                      {/* Foreground data block */}
+                      <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col gap-1 border-t border-[#F2EDE4]/[0.06] bg-gradient-to-t from-[#1C1915]/80 to-transparent text-left">
+                        <span className="font-mono text-[8px] text-[#1A5EDB]/60 tracking-[0.2em] uppercase">
+                          ── STACK ──────────────────
+                        </span>
+                        {project.stack.slice(0, 3).map(tech => (
+                          <span key={tech} className="font-mono text-[9px] text-[#F2EDE4]/30">
+                            › {tech}
+                          </span>
+                        ))}
+                        <span className="font-mono text-[7px] text-[#C9A96E]/40 mt-1 tracking-widest">
+                          {project.year} · {project.status}
+                        </span>
+                      </div>
+
+                      {/* Corner brackets */}
+                      <div className="absolute top-4 left-4 w-5 h-5 border-t border-l border-[#F2EDE4]/15 group-hover:border-[#1A5EDB]/50 transition-colors" />
+                      <div className="absolute bottom-4 right-4 w-5 h-5 border-b border-r border-[#F2EDE4]/15 group-hover:border-[#1A5EDB]/50 transition-colors" />
                     </div>
                   </div>
 
@@ -111,14 +122,11 @@ export default function Projects() {
                       <span className="text-[#C9A96E]">{project.status}</span>
                     </div>
 
-                    {/* Project Header */}
+                    {/* Project Header (Change 14) */}
                     <div className="flex flex-col gap-0.5 select-text">
-                      <h3 className="font-display text-[2.5rem] tracking-tight leading-none text-[#F2EDE4]">
+                      <h3 className="font-display text-[clamp(2.75rem,5vw,4.5rem)] tracking-tight leading-[0.95] text-[#F2EDE4] relative inline-block after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[1px] after:bg-[#1A5EDB] after:w-0 hover:after:w-full after:transition-all after:duration-400">
                         {project.title}
                       </h3>
-                      <span className="font-mono text-[10.5px] tracking-wider text-[#F2EDE4]/50 italic">
-                        {project.subtitle}
-                      </span>
                     </div>
 
                     {/* Paragraph description */}
