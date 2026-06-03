@@ -64,8 +64,8 @@ export default function AboutSpread() {
 
       {/* ── SECTION HEADER ── */}
       <div className="spread-header">
-        <div className="flex items-baseline gap-5">
-          <span className="spread-header-numeral">I</span>
+        <div className="flex items-baseline gap-4">
+          <span className="spread-header-numeral">[ 01 ]</span>
           <div>
             <div className="spread-header-title">Operative Dossier</div>
             <div className="spread-header-subtitle">Biographical Record</div>

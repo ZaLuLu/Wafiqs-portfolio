@@ -130,8 +130,8 @@ export default function ContactSpread() {
 
       {/* ── SECTION HEADER ── */}
       <div className="spread-header">
-        <div className="flex items-baseline gap-5">
-          <span className="spread-header-numeral">V</span>
+        <div className="flex items-baseline gap-4">
+          <span className="spread-header-numeral">[ 05 ]</span>
           <div>
             <div className="spread-header-title">Secure Relay Terminal</div>
             <div className="spread-header-subtitle">Transmission Dispatch</div>

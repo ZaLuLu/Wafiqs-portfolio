@@ -73,8 +73,8 @@ export default function SkillsSpread() {
 
       {/* ── SECTION HEADER ── */}
       <div className="spread-header">
-        <div className="flex items-baseline gap-5">
-          <span className="spread-header-numeral">II</span>
+        <div className="flex items-baseline gap-4">
+          <span className="spread-header-numeral">[ 02 ]</span>
           <div>
             <div className="spread-header-title">Capability Matrix</div>
             <div className="spread-header-subtitle">Technical Systems & Stack Modules</div>

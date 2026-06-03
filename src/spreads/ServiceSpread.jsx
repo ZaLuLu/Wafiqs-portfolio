@@ -117,8 +117,8 @@ export default function ServiceSpread() {
 
       {/* ── SECTION HEADER ── */}
       <div className="spread-header">
-        <div className="flex items-baseline gap-5">
-          <span className="spread-header-numeral">IV</span>
+        <div className="flex items-baseline gap-4">
+          <span className="spread-header-numeral">[ 04 ]</span>
           <div>
             <div className="spread-header-title">Service Record</div>
             <div className="spread-header-subtitle">Chronological Logistics · Operative Milestones</div>
