@@ -9,35 +9,47 @@ import ServiceSpread  from './spreads/ServiceSpread';
 import ContactSpread  from './spreads/ContactSpread';
 import SpreadNav      from './components/SpreadNav';
 
-// Section metadata matching tactical folder indexing
 const SECTIONS = [
-  { id: 'cover',    label: 'Index',     title: 'CLASSIFICATION SHEET', code: 'WN-00' },
-  { id: 'about',    label: 'Dossier',   title: 'I. DOSSIER RECORD',   code: 'WN-01' },
-  { id: 'skills',   label: 'Matrix',    title: 'II. CAPABILITY MATRIX', code: 'WN-02' },
-  { id: 'projects', label: 'Projects',  title: 'III. OPERATION FILES', code: 'WN-03' },
-  { id: 'service',  label: 'Logistics', title: 'IV. SERVICE LOGISTICS', code: 'WN-04' },
-  { id: 'contact',  label: 'Relay',     title: 'V. TRANSMISSION TERMINAL', code: 'WN-05' },
+  { id: 'cover',    label: 'Index',     title: 'Classification Sheet',    code: 'WN-00' },
+  { id: 'about',    label: 'Dossier',   title: 'Operative Dossier',       code: 'WN-01' },
+  { id: 'skills',   label: 'Matrix',    title: 'Capability Matrix',       code: 'WN-02' },
+  { id: 'projects', label: 'Projects',  title: 'Operation Files',         code: 'WN-03' },
+  { id: 'service',  label: 'Logistics', title: 'Service Record',          code: 'WN-04' },
+  { id: 'contact',  label: 'Relay',     title: 'Secure Relay Terminal',   code: 'WN-05' },
 ];
+
+// Shared entrance animation for each section panel
+const sectionVariants = {
+  hidden: { opacity: 0, y: 28, filter: 'blur(6px)' },
+  visible: {
+    opacity: 1, y: 0, filter: 'blur(0px)',
+    transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] }
+  },
+};
 
 export default function App() {
   const containerRef = useRef(null);
   const sectionRefs  = useRef([]);
   const [activeIdx, setActiveIdx] = useState(0);
+  const [visibleSections, setVisibleSections] = useState(new Set([0]));
 
   // ── Observe which section is in view ─────────────────────────
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          const idx = sectionRefs.current.indexOf(entry.target);
+          if (idx === -1) return;
           if (entry.isIntersecting) {
-            const idx = sectionRefs.current.indexOf(entry.target);
-            if (idx !== -1) setActiveIdx(idx);
+            setActiveIdx(idx);
+            // Mark section as permanently visible (for entrance anim — once only)
+            setVisibleSections(prev => new Set([...prev, idx]));
           }
         });
       },
       {
         root: containerRef.current,
-        threshold: 0.55, // section must be >55% visible to count as active
+        threshold: 0.45,
       }
     );
 
@@ -49,12 +61,10 @@ export default function App() {
   // ── Scroll to a section by index ─────────────────────────────
   const scrollToSection = useCallback((idx) => {
     const el = sectionRefs.current[idx];
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, []);
 
-  // ── Keyboard navigation (up/down arrows) ─────────────────────
+  // ── Keyboard navigation (arrow keys) ─────────────────────────
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
@@ -78,54 +88,94 @@ export default function App() {
       'background:#111827;color:#F3EDE2;font-size:18px;font-weight:bold;padding:6px 16px;font-family:monospace;border-radius:4px;border:1px solid #8B3A3A;'
     );
     console.log(
-      '%c  CLASSIFIED DOSSIER ARCHIVE // ACCESS GRANTED  ',
-      'color:#8B3A3A;font-size:11px;font-family:monospace;font-weight:bold;'
+      '%c  wafiqnawaz@outlook.com · github.com/ZaLuLu  ',
+      'color:#B84040;font-size:12px;font-family:monospace;font-weight:600;'
     );
   }, []);
 
-  const currentTitle = SECTIONS[activeIdx]?.title ?? '';
+  const currentSection = SECTIONS[activeIdx];
+
+  const SPREAD_COMPONENTS = [
+    <CoverSpread key="cover" onNavigate={scrollToSection} />,
+    <AboutSpread key="about" />,
+    <SkillsSpread key="skills" />,
+    <ProjectsSpread key="projects" />,
+    <ServiceSpread key="service" />,
+    <ContactSpread key="contact" />,
+  ];
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-[#111827]">
+    <div className="relative w-full h-screen overflow-hidden" style={{ background: 'var(--midnight-deep)' }}>
       {/* Scrollbar suppression */}
       <style>{`
         ::-webkit-scrollbar { display: none; }
         * { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
-      {/* Grain texture */}
+      {/* Grain texture overlay */}
       <div className="grain" />
 
       {/* ── FIXED TOP CHROME ─────────────────────────────── */}
       <div
-        className="fixed inset-x-6 top-6 flex justify-between items-center z-50
-                   pointer-events-none select-none font-mono"
-        style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.20em',
-                 textTransform: 'uppercase', color: 'rgba(243, 237, 226, 0.6)' }}
+        className="fixed inset-x-6 top-5 flex justify-between items-center z-50 pointer-events-none select-none"
       >
-        {/* Left: back to cover (hidden on cover) */}
+        {/* Left: back button or status */}
         {activeIdx > 0 ? (
           <button
             onClick={() => scrollToSection(0)}
-            className="pointer-events-auto transition-opacity duration-300 hover:opacity-100"
-            style={{ opacity: 0.8, borderBottom: '1px dashed var(--restricted-red)', paddingBottom: '2px', color: 'var(--restricted-red)' }}
+            className="pointer-events-auto transition-all duration-300 hover:opacity-100 hover:-translate-x-0.5"
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 'var(--text-sm)',
+              fontWeight: 700,
+              letterSpacing: '0.10em',
+              textTransform: 'uppercase',
+              color: 'var(--restricted-red-vivid)',
+              opacity: 0.85,
+              borderBottom: '1px dashed rgba(184,64,64,0.45)',
+              paddingBottom: '2px',
+            }}
           >
-            ← INDEX // COVER
+            ← Cover
           </button>
         ) : (
-          <span style={{ opacity: 0.8, color: 'var(--restricted-red)', fontWeight: 700 }}>
-            DE-RESTRICTED ACCESS
+          <span style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: 'var(--text-sm)',
+            fontWeight: 700,
+            letterSpacing: '0.10em',
+            textTransform: 'uppercase',
+            color: 'var(--restricted-red-vivid)',
+            opacity: 0.85,
+          }}>
+            De-Restricted Access
           </span>
         )}
 
-        {/* Center: section title */}
-        <span className="hidden md:block" style={{ opacity: 0.5 }}>
-          {currentTitle}
+        {/* Center: current section title */}
+        <span className="hidden md:block" style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: 'var(--text-sm)',
+          fontWeight: 500,
+          letterSpacing: '0.14em',
+          textTransform: 'uppercase',
+          color: 'var(--ivory-dim)',
+          opacity: 0.7,
+        }}>
+          {currentSection?.title}
         </span>
 
-        {/* Right: section counter */}
-        <span style={{ opacity: 0.8, color: 'var(--ivory-dim)' }}>
-          FILE NO. WN-0{activeIdx}
+        {/* Right: file counter */}
+        <span style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: 'var(--text-sm)',
+          fontWeight: 600,
+          letterSpacing: '0.10em',
+          textTransform: 'uppercase',
+          color: 'var(--ivory-dim)',
+          opacity: 0.75,
+        }}>
+          {currentSection?.code}
         </span>
       </div>
 
@@ -139,95 +189,35 @@ export default function App() {
           scrollBehavior: 'smooth',
         }}
       >
-        {/* Section 0 — Cover */}
-        <div
-          ref={(el) => { sectionRefs.current[0] = el; }}
-          style={{
-            height: '100vh',
-            scrollSnapAlign: 'start',
-            position: 'relative',
-            overflow: 'hidden',
-            background: '#111827',
-          }}
-        >
-          <CoverSpread onNavigate={scrollToSection} />
-        </div>
-
-        {/* Section 1 — About */}
-        <div
-          ref={(el) => { sectionRefs.current[1] = el; }}
-          style={{
-            height: '100vh',
-            scrollSnapAlign: 'start',
-            position: 'relative',
-            overflow: 'hidden',
-            background: '#111827',
-          }}
-        >
-          <AboutSpread />
-        </div>
-
-        {/* Section 2 — Skills */}
-        <div
-          ref={(el) => { sectionRefs.current[2] = el; }}
-          style={{
-            height: '100vh',
-            scrollSnapAlign: 'start',
-            position: 'relative',
-            overflow: 'hidden',
-            background: '#111827',
-          }}
-        >
-          <SkillsSpread />
-        </div>
-
-        {/* Section 3 — Projects */}
-        <div
-          ref={(el) => { sectionRefs.current[3] = el; }}
-          style={{
-            height: '100vh',
-            scrollSnapAlign: 'start',
-            position: 'relative',
-            overflow: 'hidden',
-            background: '#111827',
-          }}
-        >
-          <ProjectsSpread />
-        </div>
-
-        {/* Section 4 — Service */}
-        <div
-          ref={(el) => { sectionRefs.current[4] = el; }}
-          style={{
-            height: '100vh',
-            scrollSnapAlign: 'start',
-            position: 'relative',
-            overflow: 'hidden',
-            background: '#111827',
-          }}
-        >
-          <ServiceSpread />
-        </div>
-
-        {/* Section 5 — Contact */}
-        <div
-          ref={(el) => { sectionRefs.current[5] = el; }}
-          style={{
-            height: '100vh',
-            scrollSnapAlign: 'start',
-            position: 'relative',
-            overflow: 'hidden',
-            background: '#111827',
-          }}
-        >
-          <ContactSpread />
-        </div>
+        {SPREAD_COMPONENTS.map((spread, idx) => (
+          <div
+            key={SECTIONS[idx].id}
+            ref={(el) => { sectionRefs.current[idx] = el; }}
+            style={{
+              height: '100vh',
+              scrollSnapAlign: 'start',
+              position: 'relative',
+              overflow: 'hidden',
+              background: 'var(--midnight-deep)',
+            }}
+          >
+            {/* Section entrance animation wrapper */}
+            <motion.div
+              variants={sectionVariants}
+              initial="hidden"
+              animate={visibleSections.has(idx) ? 'visible' : 'hidden'}
+              style={{ width: '100%', height: '100%' }}
+            >
+              {spread}
+            </motion.div>
+          </div>
+        ))}
       </div>
 
       {/* ── RIGHT-SIDE DOSSIER TABS ───────────────────────── */}
       <SpreadNav
-        sections={SECTIONS.slice(1)} // About, Skills, Projects, Service, Contact
-        activeIdx={activeIdx - 1}     // shift so 0 = About
+        sections={SECTIONS.slice(1)}
+        activeIdx={activeIdx - 1}
         onDotClick={(i) => scrollToSection(i + 1)}
         visible={activeIdx > 0}
       />
