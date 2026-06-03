@@ -194,17 +194,17 @@ export default function CoverSpread({ onNavigate }) {
       >
         <div className="flex flex-col lg:flex-row gap-8 items-stretch w-full h-full relative z-10">
 
-          {/* ══ LEFT: Radar Scope ══ */}
+          {/* ══ LEFT: Radar Scope (Widened) ══ */}
           <motion.div
             variants={animItemLeft}
-            className="relative w-full lg:w-[34%] flex flex-col gap-5 items-center justify-center flex-shrink-0 py-4"
+            className="relative w-full lg:w-[38%] flex flex-col gap-5 items-center justify-center flex-shrink-0 py-4"
             style={{ borderRight: '1px solid rgba(255,255,255,0.05)', paddingRight: '20px' }}
           >
-            {/* Photo frame containing custom Scope HUD */}
+            {/* Photo frame containing custom Scope HUD (Wider 310px) */}
             <div
               className="group relative"
               style={{
-                width: '100%', maxWidth: '260px', aspectRatio: '3/4',
+                width: '100%', maxWidth: '310px', aspectRatio: '3/4',
                 borderRadius: '4px',
                 border: '1px solid rgba(184, 64, 64, 0.28)',
                 boxShadow: '0 24px 56px rgba(0,0,0,0.5), inset 0 0 30px rgba(0,0,0,0.3)',
@@ -215,8 +215,8 @@ export default function CoverSpread({ onNavigate }) {
               <RadarHUD />
             </div>
 
-            {/* Barcode */}
-            <div className="flex flex-col gap-1.5 w-full max-w-[260px] p-3 border rounded-sm"
+            {/* Barcode (Aligned to 310px width) */}
+            <div className="flex flex-col gap-1.5 w-full max-w-[310px] p-3 border rounded-sm"
               style={{ background: 'rgba(29,32,43,0.45)', borderColor: 'rgba(184, 64, 64, 0.15)' }}>
               <div className="flex justify-between items-center" style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--ivory-dim)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                 <span>Wafiq Nawaz</span>
@@ -233,118 +233,127 @@ export default function CoverSpread({ onNavigate }) {
             </div>
           </motion.div>
 
-          {/* ══ RIGHT: Document sheet ══ */}
+          {/* ══ RIGHT: Document sheet (Split two-column visual) ══ */}
           <motion.div variants={animItemRight} className="flex-grow flex flex-col relative">
             <PaperclipSVG />
 
             <div
-              className="paper-sheet flex-1 p-6 md:p-8 flex flex-col justify-between overflow-y-auto"
-              style={{ background: 'var(--paper-primary)', color: 'var(--ink-dark)' }}
+              className="paper-sheet flex-grow flex flex-col justify-between overflow-y-auto p-6 md:p-8"
+              style={{ background: 'var(--paper-primary)', color: 'var(--ink-dark)', height: 'calc(100% - 2px)' }}
             >
-              <div>
-                {/* Sheet header */}
-                <div className="flex justify-between items-center mb-6 border-b border-stone-300 pb-4">
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: '#57534e', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                    Intelligence Dossier · Cover Sheet
-                  </div>
-                  <span className="font-mono text-[11px] font-bold px-2.5 py-1 rounded border"
-                    style={{ background: 'rgba(155,56,56,0.08)', borderColor: 'var(--restricted-red-vivid)', color: 'var(--restricted-red-vivid)' }}>
-                    TOP SECRET
-                  </span>
+              {/* Sheet header */}
+              <div className="flex justify-between items-center mb-6 border-b border-stone-300 pb-4 flex-shrink-0">
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: '#57534e', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                  Intelligence Dossier · Cover Sheet
                 </div>
-
-                {/* HERO NAME — side-by-side tracked sans-serif */}
-                <h1
-                  className="font-sans font-extrabold uppercase leading-none tracking-widest"
-                  style={{ fontSize: 'clamp(2.1rem, 5.2vw, 3.8rem)', color: 'var(--ink-dark)', letterSpacing: '0.06em' }}
-                >
-                  WAFIQ <span style={{ color: 'var(--restricted-red-vivid)' }}>NAWAZ</span>
-                </h1>
-
-                <div className="flex flex-wrap items-center gap-3 mt-4 mb-5">
-                  <span style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-md)', fontWeight: 700, color: 'var(--restricted-red-vivid)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                    ZALULU
-                  </span>
-                  <span style={{ color: '#78716c' }}>·</span>
-                  <span style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', fontWeight: 500, color: '#57534e' }}>
-                    Full-Stack Developer &amp; Systems Architect
-                  </span>
-                </div>
-
-                {/* Intel brief */}
-                <div
-                  className="mb-5 p-4 rounded-sm"
-                  style={{
-                    background: 'rgba(28,25,23,0.03)',
-                    borderLeft: '4px solid var(--restricted-red-vivid)',
-                    paddingLeft: '16px',
-                  }}
-                >
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--restricted-red-vivid)', fontWeight: 700, marginBottom: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-                    Command Field Brief
-                  </div>
-                  <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', color: '#57534e', lineHeight: 1.65 }}>
-                    Subject Nawaz operates with exceptional technical agency in full-stack architecture and secure API design. Demonstrates high operational speed in deploying{' '}
-                    <span className="bg-stone-850 px-2 py-0.5 rounded text-transparent select-none">REDACTED</span>{' '}
-                    modules, FastAPI setups, and React architectures. Validated asset in Bengaluru region.
-                  </p>
-                </div>
-
-                {/* Table of Contents */}
-                <div className="flex flex-col gap-0.5 rounded-sm p-3" style={{ background: 'rgba(28,25,23,0.02)', border: '1px solid rgba(28,25,23,0.06)' }}>
-                  <div className="flex justify-between items-center pb-3 mb-1 border-b border-stone-300">
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', fontWeight: 700, color: '#57534e', textTransform: 'uppercase', letterSpacing: '0.10em' }}>
-                      Contents
-                    </span>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--restricted-red-vivid)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                      [CLASSIFIED]
-                    </span>
-                  </div>
-
-                  {TOC_ITEMS.map(item => (
-                    <button
-                      key={item.idx}
-                      onClick={() => onNavigate(item.idx)}
-                      className="group flex items-start gap-4 text-left cursor-pointer w-full py-2.5 px-2 rounded transition-all duration-300 hover:bg-stone-800/6"
-                    >
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-base)', fontWeight: 700, color: 'var(--restricted-red-vivid)', flexShrink: 0, paddingTop: '1px' }}>
-                        {String(item.idx).padStart(2, '0')}
-                      </span>
-                      <div className="flex-grow min-w-0">
-                        <div className="flex justify-between items-baseline gap-3">
-                          <span
-                            className="group-hover:text-[var(--restricted-red-vivid)] transition-colors duration-200"
-                            style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontWeight: 700, fontSize: 'var(--text-md)', textTransform: 'uppercase', color: 'var(--ink-dark)' }}
-                          >
-                            {item.name}
-                          </span>
-                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: '#a8a29e', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', flexShrink: 0 }}>
-                            {item.tag}
-                          </span>
-                        </div>
-                        <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', color: '#78716c', marginTop: '2px', lineHeight: 1.5 }} className="group-hover:text-stone-700 transition-colors duration-200">
-                          {item.desc}
-                        </p>
-                      </div>
-                    </button>
-                  ))}
-                </div>
+                <span className="font-mono text-[11px] font-bold px-2.5 py-1 rounded border"
+                  style={{ background: 'rgba(155,56,56,0.08)', borderColor: 'var(--restricted-red-vivid)', color: 'var(--restricted-red-vivid)' }}>
+                  TOP SECRET
+                </span>
               </div>
 
-              {/* Bottom action bar */}
-              <div className="mt-5 pt-4 border-t border-stone-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', color: '#78716c', lineHeight: 1.6 }}>
-                  Computer Science undergraduate at S-VYASA, Bengaluru.<br />
-                  Available for 2026 internship roles — local or remote.
-                </p>
-                <a
-                  href="/Wafiq_Nawaz_Resume.pdf"
-                  download
-                  className="btn-editorial-premium-red w-full sm:w-auto text-center justify-center flex-shrink-0 pointer-events-auto z-50"
-                  style={{ border: '1px solid var(--restricted-red-vivid)', color: 'var(--ink-dark)', background: 'rgba(184,64,64,0.08)' }}
-                >
-                  <span>↓</span> Download CV
-                </a>
+              {/* Two-Column split for sheet contents (prevents inner scrolling) */}
+              <div className="flex-1 flex flex-col lg:flex-row gap-6 md:gap-8 justify-between min-h-0">
+                
+                {/* Column 1: Profile Brief & Action Link */}
+                <div className="flex-grow flex flex-col justify-between min-w-0 h-full">
+                  <div>
+                    {/* HERO NAME — side-by-side tracked sans-serif */}
+                    <h1
+                      className="font-sans font-extrabold uppercase leading-none tracking-widest"
+                      style={{ fontSize: 'clamp(2.0rem, 4.2vw, 3.2rem)', color: 'var(--ink-dark)', letterSpacing: '0.06em' }}
+                    >
+                      WAFIQ <span style={{ color: 'var(--restricted-red-vivid)' }}>NAWAZ</span>
+                    </h1>
+
+                    <div className="flex items-center gap-2 mt-3 mb-4">
+                      <span style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--restricted-red-vivid)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                        ZALULU
+                      </span>
+                      <span style={{ color: '#78716c' }}>·</span>
+                      <span style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', fontWeight: 500, color: '#57534e' }}>
+                        Full-Stack Developer
+                      </span>
+                    </div>
+
+                    {/* Intel brief */}
+                    <div
+                      className="mb-4 p-4 rounded-sm"
+                      style={{
+                        background: 'rgba(28,25,23,0.03)',
+                        borderLeft: '4px solid var(--restricted-red-vivid)',
+                        paddingLeft: '14px',
+                      }}
+                    >
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--restricted-red-vivid)', fontWeight: 700, marginBottom: '6px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                        Command Field Brief
+                      </div>
+                      <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: '#57534e', lineHeight: 1.6 }}>
+                        Subject Nawaz operates with high technical agency in secure API design and full-stack systems. Demonstrates quick turnaround in deploying complex React, FastAPI, and Postgres modules.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Immediate Action: Download Resume */}
+                  <div className="pt-4 border-t border-stone-300 flex flex-col gap-3">
+                    <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-xs)', color: '#78716c', lineHeight: 1.5 }}>
+                      Undergraduate at S-VYASA, Bengaluru. Open for 2026 internships.
+                    </p>
+                    <a
+                      href="/Wafiq_Nawaz_Resume.pdf"
+                      download
+                      className="btn-editorial-premium-red w-full text-center justify-center pointer-events-auto"
+                      style={{ border: '1px solid var(--restricted-red-vivid)', color: 'var(--ink-dark)', background: 'rgba(184,64,64,0.08)', padding: '10px 20px' }}
+                    >
+                      <span>↓</span> Download CV Dossier
+                    </a>
+                  </div>
+                </div>
+
+                {/* Column 2: Table of Contents (Contents List) */}
+                <div className="w-full lg:w-[48%] xl:w-[50%] flex flex-col justify-stretch h-full border-t lg:border-t-0 lg:border-l border-stone-300 pt-6 lg:pt-0 lg:pl-6 xl:pl-8">
+                  <div className="flex flex-col gap-0.5 h-full justify-between">
+                    <div className="flex justify-between items-center pb-2.5 mb-2 border-b border-stone-300">
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', fontWeight: 700, color: '#57534e', textTransform: 'uppercase', letterSpacing: '0.10em' }}>
+                        Dossier Contents
+                      </span>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--restricted-red-vivid)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                        [CLASSIFIED]
+                      </span>
+                    </div>
+
+                    <div className="flex-grow flex flex-col gap-1 overflow-y-auto pr-1">
+                      {TOC_ITEMS.map(item => (
+                        <button
+                          key={item.idx}
+                          onClick={() => onNavigate(item.idx)}
+                          className="group flex items-start gap-3.5 text-left cursor-pointer w-full py-1.5 px-2 rounded transition-all duration-300 hover:bg-stone-850/5"
+                        >
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--restricted-red-vivid)', flexShrink: 0, paddingTop: '1px' }}>
+                            {String(item.idx).padStart(2, '0')}
+                          </span>
+                          <div className="flex-grow min-w-0">
+                            <div className="flex justify-between items-baseline gap-2">
+                              <span
+                                className="group-hover:text-[var(--restricted-red-vivid)] transition-colors duration-200"
+                                style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontWeight: 700, fontSize: 'var(--text-base)', textTransform: 'uppercase', color: 'var(--ink-dark)' }}
+                              >
+                                {item.name}
+                              </span>
+                              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: '#a8a29e', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', flexShrink: 0 }}>
+                                {item.tag}
+                              </span>
+                            </div>
+                            <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-xs)', color: '#78716c', marginTop: '1px', lineHeight: 1.4 }} className="group-hover:text-stone-700 transition-colors duration-200 truncate">
+                              {item.desc}
+                            </p>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </motion.div>
