@@ -14,6 +14,96 @@ const PaperclipSVG = () => (
   </svg>
 );
 
+// ── TACTICAL RADAR HUD VISUAL ────────────────────────────────
+
+const RadarHUD = () => (
+  <svg viewBox="0 0 200 260" fill="none" className="w-full h-full font-mono text-[6px] text-stone-500" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="cover-grid" width="12" height="12" patternUnits="userSpaceOnUse">
+        <path d="M 12 0 L 0 0 0 12" fill="none" stroke="rgba(184,64,64,0.06)" strokeWidth="0.5"/>
+      </pattern>
+      <linearGradient id="sweep-gradient" x1="100" y1="130" x2="150" y2="50" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="var(--restricted-red-vivid)" stopOpacity="0" />
+        <stop offset="100%" stopColor="var(--restricted-red-vivid)" stopOpacity="0.45" />
+      </linearGradient>
+    </defs>
+    
+    {/* Grid background */}
+    <rect width="100%" height="100%" fill="url(#cover-grid)" />
+    
+    {/* Outer diagnostic frame */}
+    <rect x="6" y="6" width="188" height="248" rx="2" stroke="rgba(184, 64, 64, 0.15)" strokeWidth="0.8" strokeDasharray="3 5" />
+    
+    {/* Concentric scope circles centered at (100, 130) */}
+    <circle cx="100" cy="130" r="100" stroke="rgba(184, 64, 64, 0.04)" strokeWidth="0.5" />
+    <circle cx="100" cy="130" r="75" stroke="rgba(184, 64, 64, 0.08)" strokeWidth="0.6" strokeDasharray="2 3" />
+    <circle cx="100" cy="130" r="50" stroke="rgba(184, 64, 64, 0.12)" strokeWidth="0.8" />
+    <circle cx="100" cy="130" r="25" stroke="rgba(184, 64, 64, 0.18)" strokeWidth="1" strokeDasharray="4 2" />
+    
+    {/* Axis lines */}
+    <line x1="100" y1="15" x2="100" y2="245" stroke="rgba(184, 64, 64, 0.08)" strokeWidth="0.5" />
+    <line x1="10" y1="130" x2="190" y2="130" stroke="rgba(184, 64, 64, 0.08)" strokeWidth="0.5" />
+    
+    {/* Degree ticks */}
+    <path d="M 100,10 L 100,15 M 100,250 L 100,245 M 10,130 L 15,130 M 190,130 L 185,130" stroke="rgba(184,64,64,0.3)" strokeWidth="1" />
+    
+    {/* Technical Text overlays */}
+    <text x="12" y="18" fill="var(--ivory-dim)" fontWeight="bold" letterSpacing="0.08em">HUD_SYS_V8.0</text>
+    <text x="12" y="26" fill="var(--restricted-red-vivid)" fontWeight="bold">SCANNING: ACTIVE</text>
+    
+    <text x="12" y="238" fill="var(--ivory-dim)">AZ: 218.45°</text>
+    <text x="12" y="246" fill="var(--ivory-dim)">EL: 12.04°</text>
+    
+    <text x="188" y="18" textAnchor="end" fill="var(--ivory-dim)">RANGE: 400m</text>
+    <text x="188" y="26" textAnchor="end" fill="var(--restricted-red-vivid)" fontWeight="bold">LOCK_READY</text>
+    
+    <text x="188" y="246" textAnchor="end" fill="var(--ivory-dim)">WN-REF: 0x2A9</text>
+
+    {/* Target markers (pulse animation) */}
+    <g className="animate-pulse">
+      {/* Target 1 */}
+      <rect x="55" y="85" width="6" height="6" fill="none" stroke="var(--restricted-red-vivid)" strokeWidth="0.8" />
+      <line x1="58" y1="83" x2="58" y2="93" stroke="var(--restricted-red-vivid)" strokeWidth="0.5" />
+      <line x1="53" y1="88" x2="63" y2="88" stroke="var(--restricted-red-vivid)" strokeWidth="0.5" />
+      <text x="64" y="89" fill="var(--restricted-red-vivid)" fontSize="5">TGT_01 // SECURE</text>
+
+      {/* Target 2 */}
+      <rect x="135" y="165" width="6" height="6" fill="none" stroke="var(--restricted-red-vivid)" strokeWidth="0.8" />
+      <line x1="138" y1="163" x2="138" y2="173" stroke="var(--restricted-red-vivid)" strokeWidth="0.5" />
+      <line x1="133" y1="168" x2="143" y2="168" stroke="var(--restricted-red-vivid)" strokeWidth="0.5" />
+      <text x="144" y="169" fill="var(--restricted-red-vivid)" fontSize="5">TGT_02 // SYSTEM</text>
+    </g>
+    
+    {/* Rotating sweep container */}
+    <g className="animate-[spin_7s_linear_infinite]" style={{ transformOrigin: '100px 130px' }}>
+      {/* Sweep Line */}
+      <line 
+        x1="100" y1="130" x2="185" y2="70" 
+        stroke="var(--restricted-red-vivid)" 
+        strokeWidth="1.2" 
+        opacity="0.8"
+      />
+      {/* Sweep Trail */}
+      <path 
+        d="M 100,130 L 185,70 A 100,100 0 0,0 130,32 Z" 
+        fill="url(#sweep-gradient)" 
+      />
+    </g>
+    
+    {/* Centered scope labels */}
+    <rect x="45" y="122" width="110" height="16" rx="2" fill="rgba(11, 12, 15, 0.9)" stroke="rgba(184, 64, 64, 0.4)" strokeWidth="0.8" />
+    <text x="100" y="132" fill="var(--ivory-warm)" fontSize="7" fontWeight="bold" letterSpacing="0.08em" textAnchor="middle">WAFIQ NAWAZ // SC-00</text>
+
+    {/* Crop corner marks */}
+    <path d="M 6,18 L 6,6 L 18,6" fill="none" stroke="var(--restricted-red-vivid)" strokeWidth="0.8" />
+    <path d="M 182,6 L 194,6 L 194,18" fill="none" stroke="var(--restricted-red-vivid)" strokeWidth="0.8" />
+    <path d="M 6,242 L 6,254 L 18,254" fill="none" stroke="var(--restricted-red-vivid)" strokeWidth="0.8" />
+    <path d="M 182,254 L 194,254 L 194,242" fill="none" stroke="var(--restricted-red-vivid)" strokeWidth="0.8" />
+  </svg>
+);
+
+// ── MAIN COVER SPREAD COMPONENT ─────────────────────────────
+
 export default function CoverSpread({ onNavigate }) {
   const [time, setTime] = useState('');
 
@@ -104,72 +194,33 @@ export default function CoverSpread({ onNavigate }) {
       >
         <div className="flex flex-col lg:flex-row gap-8 items-stretch w-full h-full relative z-10">
 
-          {/* ══ LEFT: Portrait / Silhouette ══ */}
+          {/* ══ LEFT: Radar Scope ══ */}
           <motion.div
             variants={animItemLeft}
             className="relative w-full lg:w-[34%] flex flex-col gap-5 items-center justify-center flex-shrink-0 py-4"
             style={{ borderRight: '1px solid rgba(255,255,255,0.05)', paddingRight: '20px' }}
           >
-            {/* Photo frame */}
+            {/* Photo frame containing custom Scope HUD */}
             <div
               className="group relative"
               style={{
                 width: '100%', maxWidth: '260px', aspectRatio: '3/4',
                 borderRadius: '4px',
-                border: '1px solid rgba(194, 159, 93, 0.25)',
+                border: '1px solid rgba(184, 64, 64, 0.28)',
                 boxShadow: '0 24px 56px rgba(0,0,0,0.5), inset 0 0 30px rgba(0,0,0,0.3)',
                 overflow: 'hidden',
-                background: 'var(--midnight-navy)',
+                background: '#07080B',
               }}
             >
-              {/* Corner ticks */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none z-20 text-[var(--gold-ochre-vivid)] opacity-50" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <path d="M 4,14 L 4,4 L 14,4" fill="none" stroke="currentColor" strokeWidth="0.8" />
-                <path d="M 86,4 L 96,4 L 96,14" fill="none" stroke="currentColor" strokeWidth="0.8" />
-                <path d="M 4,86 L 4,96 L 14,96" fill="none" stroke="currentColor" strokeWidth="0.8" />
-                <path d="M 86,96 L 96,96 L 96,86" fill="none" stroke="currentColor" strokeWidth="0.8" />
-              </svg>
-
-              {/* Rotating target ring */}
-              <div style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%,-50%)', width: '90px', height: '90px', zIndex: 20, pointerEvents: 'none' }}
-                className="flex items-center justify-center text-[var(--gold-ochre-vivid)] opacity-25">
-                <svg viewBox="0 0 100 100" className="w-full h-full animate-[spin_40s_linear_infinite]">
-                  <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="3 4" />
-                  <path d="M 50,0 L 50,15 M 50,85 L 50,100 M 0,50 L 15,50 M 85,50 L 100,50" stroke="currentColor" strokeWidth="0.5" />
-                </svg>
-                <div className="absolute w-2 h-2 bg-[var(--restricted-red-vivid)] rounded-full animate-ping opacity-60" />
-              </div>
-
-              {/* Scanner */}
-              <div className="absolute left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[var(--gold-ochre-vivid)] to-transparent opacity-20 z-10 pointer-events-none"
-                style={{ animation: 'tactical-scan 4s cubic-bezier(0.4,0,0.2,1) infinite' }} />
-
-              {/* Silhouette fill */}
-              <div className="w-full h-full flex items-center justify-center">
-                <svg viewBox="0 0 200 260" fill="none" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <pattern id="cover-grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                      <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(194,159,93,0.05)" strokeWidth="0.5"/>
-                    </pattern>
-                  </defs>
-                  <rect width="100%" height="100%" fill="url(#cover-grid)" />
-                  <path
-                    d="M 100,50 C 75,50 60,65 60,95 C 60,115 65,130 70,140 C 50,165 40,195 40,230 L 160,230 C 160,195 150,165 130,140 C 135,130 140,115 140,95 C 140,65 125,50 100,50 Z"
-                    fill="rgba(29, 32, 43, 0.7)" stroke="rgba(194, 159, 93, 0.2)" strokeWidth="1.2"
-                  />
-                  <rect x="25" y="85" width="150" height="24" rx="2" fill="var(--restricted-red)" />
-                  <text x="100" y="99" fill="var(--ivory-warm)" fontFamily="var(--font-mono)" fontSize="7.5" fontWeight="bold" letterSpacing="0.1em" textAnchor="middle">[PHOTO RESTRICTED]</text>
-                  <text x="100" y="107" fill="rgba(228,231,235,0.7)" fontFamily="var(--font-mono)" fontSize="5.5" letterSpacing="0.05em" textAnchor="middle">CLEARANCE REQUIRED</text>
-                </svg>
-              </div>
+              <RadarHUD />
             </div>
 
             {/* Barcode */}
             <div className="flex flex-col gap-1.5 w-full max-w-[260px] p-3 border rounded-sm"
-              style={{ background: 'rgba(29,32,43,0.45)', borderColor: 'rgba(194,159,93,0.15)' }}>
+              style={{ background: 'rgba(29,32,43,0.45)', borderColor: 'rgba(184, 64, 64, 0.15)' }}>
               <div className="flex justify-between items-center" style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--ivory-dim)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                 <span>Wafiq Nawaz</span>
-                <span style={{ color: 'var(--gold-ochre-vivid)' }}>VERIFIED ✓</span>
+                <span style={{ color: 'var(--restricted-red-vivid)' }}>VERIFIED ✓</span>
               </div>
               <div className="flex items-end justify-between h-5 w-full py-1 opacity-50">
                 {[2,1,3,1,4,2,1,2,4,1,3,2,1,4,1,2,3,1,4,2,1,2,4,1,3,2,1,4,1,2].map((w,i) => (
@@ -202,13 +253,12 @@ export default function CoverSpread({ onNavigate }) {
                   </span>
                 </div>
 
-                {/* HERO NAME — big */}
+                {/* HERO NAME — side-by-side tracked sans-serif */}
                 <h1
-                  className="font-display font-black italic uppercase leading-none"
-                  style={{ fontSize: 'clamp(3.6rem, 7vw, 5.8rem)', letterSpacing: '-0.02em', color: 'var(--ink-dark)' }}
+                  className="font-sans font-extrabold uppercase leading-none tracking-widest"
+                  style={{ fontSize: 'clamp(2.1rem, 5.2vw, 3.8rem)', color: 'var(--ink-dark)', letterSpacing: '0.06em' }}
                 >
-                  Wafiq<br />
-                  <span style={{ color: 'var(--restricted-red-vivid)' }}>Nawaz.</span>
+                  WAFIQ <span style={{ color: 'var(--restricted-red-vivid)' }}>NAWAZ</span>
                 </h1>
 
                 <div className="flex flex-wrap items-center gap-3 mt-4 mb-5">
@@ -235,7 +285,7 @@ export default function CoverSpread({ onNavigate }) {
                   </div>
                   <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', color: '#57534e', lineHeight: 1.65 }}>
                     Subject Nawaz operates with exceptional technical agency in full-stack architecture and secure API design. Demonstrates high operational speed in deploying{' '}
-                    <span className="bg-stone-800 px-2 py-0.5 rounded text-transparent select-none">REDACTED</span>{' '}
+                    <span className="bg-stone-850 px-2 py-0.5 rounded text-transparent select-none">REDACTED</span>{' '}
                     modules, FastAPI setups, and React architectures. Validated asset in Bengaluru region.
                   </p>
                 </div>

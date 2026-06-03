@@ -167,13 +167,13 @@ export default function ContactSpread() {
                 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--ivory-warm)' }}
               >
                 Initiate a<br />
-                <span style={{ color: 'var(--gold-ochre)' }}>Direct Dispatch.</span>
+                <span style={{ color: 'var(--restricted-red-vivid)' }}>Direct Dispatch.</span>
               </h2>
 
               {/* Email link */}
               <div 
                 className="p-4 rounded flex flex-col gap-2 text-center"
-                style={{ background: 'rgba(212,181,106,0.05)', border: '1.5px solid var(--gold-ochre-vivid)' }}
+                style={{ background: 'rgba(184,64,64,0.04)', border: '1.5px solid var(--restricted-red-vivid)' }}
               >
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: 'var(--ivory-dim)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.10em' }}>
                   Direct Email
@@ -188,7 +188,7 @@ export default function ContactSpread() {
               </div>
 
               {/* Field note */}
-              <div style={{ fontFamily: 'var(--font-sans)', fontStyle: 'italic', color: 'var(--ivory-dim)', fontSize: 'var(--text-base)', lineHeight: 1.6, borderLeft: '3px solid var(--gold-ochre-vivid)', paddingLeft: '14px' }}>
+              <div style={{ fontFamily: 'var(--font-sans)', fontStyle: 'italic', color: 'var(--ivory-dim)', fontSize: 'var(--text-base)', lineHeight: 1.6, borderLeft: '3px solid var(--restricted-red-vivid)', paddingLeft: '14px' }}>
                 "Available for 2026 internship roles — Bengaluru or remote."
               </div>
             </div>
@@ -206,9 +206,9 @@ export default function ContactSpread() {
                   className="flex items-center gap-3 pointer-events-auto transition-colors duration-300 group"
                   style={{ color: 'var(--ivory-dim)' }}
                 >
-                  <span style={{ color: 'var(--gold-ochre-vivid)', fontWeight: 700, fontFamily: 'var(--font-mono)', fontSize: 'var(--text-base)' }}>[+]</span>
+                  <span style={{ color: 'var(--restricted-red-vivid)', fontWeight: 700, fontFamily: 'var(--font-mono)', fontSize: 'var(--text-base)' }}>[+]</span>
                   <div>
-                    <div style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', fontWeight: 600, color: 'var(--ivory-warm)' }} className="group-hover:text-[var(--gold-ochre-vivid)] transition-colors">{link.label}</div>
+                    <div style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', fontWeight: 600, color: 'var(--ivory-warm)' }} className="group-hover:text-[var(--restricted-red-vivid)] transition-colors">{link.label}</div>
                     <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: 'var(--ivory-dim)' }}>{link.sub}</div>
                   </div>
                 </a>
@@ -221,7 +221,7 @@ export default function ContactSpread() {
                 href="/Wafiq_Nawaz_Resume.pdf"
                 download
                 className="btn-editorial-premium-red pointer-events-auto w-full text-center justify-center font-mono text-[11px]"
-                style={{ border: '1px solid var(--gold-ochre)', color: 'var(--ivory-warm)', background: 'rgba(212, 175, 55, 0.04)' }}
+                style={{ border: '1px solid var(--restricted-red-vivid)', color: 'var(--ivory-warm)', background: 'rgba(184, 64, 64, 0.04)' }}
               >
                 <span>↓</span> DOWNLOAD DOSSIER PDF
               </a>
@@ -235,8 +235,8 @@ export default function ContactSpread() {
             style={{
               background: 'rgba(16, 18, 26, 0.7)',
               backdropFilter: 'blur(24px)',
-              borderColor: 'rgba(212, 175, 55, 0.22)',
-              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(212, 175, 55, 0.01)'
+              borderColor: 'rgba(184, 64, 64, 0.28)',
+              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(184, 64, 64, 0.01)'
             }}
           >
             {/* Terminal Top bar chrome */}
@@ -251,7 +251,7 @@ export default function ContactSpread() {
                 <span className="w-2 h-2 rounded-full bg-[var(--tactical-green)] animate-pulse" />
                 <span>SECURE TRANSMISSION INTERFACE // PORT:5173</span>
               </div>
-              <span className="text-[var(--gold-ochre)]">WN-DISPATCH_READY</span>
+              <span className="text-[var(--restricted-red-vivid)]">WN-DISPATCH_READY</span>
             </div>
 
             {status === 'success' ? (
@@ -267,7 +267,7 @@ export default function ContactSpread() {
                     <polyline points="20 6 9 17 4 12"/>
                   </svg>
                 </div>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-lg)', fontWeight: 700, color: 'var(--gold-ochre-vivid)', display: 'block', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-lg)', fontWeight: 700, color: 'var(--restricted-red-vivid)', display: 'block', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                   Transmission Complete
                 </span>
                 <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', color: 'var(--ivory-dim)', lineHeight: 1.6, maxWidth: '280px' }}>
@@ -277,7 +277,7 @@ export default function ContactSpread() {
             ) : status === 'submitting' ? (
               <div className="flex-1 flex flex-col justify-between p-6 font-mono text-[11px] text-stone-300">
                 <div className="flex flex-col gap-2.5">
-                  <span className="text-[var(--gold-ochre)] font-bold mb-3 block uppercase tracking-widest text-[12px]">
+                  <span className="text-[var(--restricted-red-vivid)] font-bold mb-3 block uppercase tracking-widest text-[12px]">
                     [INITIATING SECURE RELAY DIRECTIVE]
                   </span>
                   
@@ -293,19 +293,19 @@ export default function ContactSpread() {
                     </motion.div>
                   ))}
 
-                  {/* Linear gold loader progress bar */}
+                  {/* Linear red loader progress bar */}
                   <div className="mt-4 w-full h-[3px] bg-white/5 rounded-full overflow-hidden relative">
                     <motion.div 
                       initial={{ left: '-100%' }}
                       animate={{ left: '100%' }}
                       transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-                      className="absolute top-0 bottom-0 w-1/3 bg-[var(--gold-ochre)]"
+                      className="absolute top-0 bottom-0 w-1/3 bg-[var(--restricted-red-vivid)]"
                     />
                   </div>
 
                   <div className="flex items-center gap-1.5 mt-4">
-                    <span className="text-[var(--gold-ochre)] font-bold uppercase tracking-wider text-[10px]">PACKET DISPATCHING ACTIVE</span>
-                    <span className="animate-pulse text-[var(--gold-ochre)] font-black text-sm">█</span>
+                    <span className="text-[var(--restricted-red-vivid)] font-bold uppercase tracking-wider text-[10px]">PACKET DISPATCHING ACTIVE</span>
+                    <span className="animate-pulse text-[var(--restricted-red-vivid)] font-black text-sm">█</span>
                   </div>
                 </div>
                 <div className="pt-4 border-t border-white/5 mt-6 text-center text-[9px] text-stone-500 font-bold uppercase tracking-wider">
@@ -318,10 +318,10 @@ export default function ContactSpread() {
                   
                   {/* Name field */}
                   <div className="flex flex-col gap-2">
-                    <label style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: 'var(--gold-ochre-vivid)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.10em' }}>
+                    <label style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: 'var(--restricted-red-vivid)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.10em' }}>
                       Your Name
                     </label>
-                    <div className="flex items-center border-b border-white/[0.08] py-2 focus-within:border-[var(--gold-ochre-vivid)] transition-all duration-300" style={{ boxShadow: 'none' }}>
+                    <div className="flex items-center border-b border-white/[0.08] py-2 focus-within:border-[var(--restricted-red-vivid)] transition-all duration-300" style={{ boxShadow: 'none' }}>
                       <input
                         type="text" name="name" value={form.name}
                         placeholder="Name or organization..."
@@ -335,10 +335,10 @@ export default function ContactSpread() {
 
                   {/* Email field */}
                   <div className="flex flex-col gap-2">
-                    <label style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: 'var(--gold-ochre-vivid)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.10em' }}>
+                    <label style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: 'var(--restricted-red-vivid)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.10em' }}>
                       Email Address
                     </label>
-                    <div className="flex items-center border-b border-white/[0.08] py-2 focus-within:border-[var(--gold-ochre-vivid)] transition-colors duration-300">
+                    <div className="flex items-center border-b border-white/[0.08] py-2 focus-within:border-[var(--restricted-red-vivid)] transition-colors duration-300">
                       <input
                         type="email" name="email" value={form.email}
                         placeholder="your@email.com"
@@ -352,10 +352,10 @@ export default function ContactSpread() {
 
                   {/* Message field */}
                   <div className="flex flex-col gap-2">
-                    <label style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: 'var(--gold-ochre-vivid)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.10em' }}>
+                    <label style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: 'var(--restricted-red-vivid)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.10em' }}>
                       Message
                     </label>
-                    <div className="border-b border-white/[0.08] py-2 focus-within:border-[var(--gold-ochre-vivid)] transition-colors duration-300">
+                    <div className="border-b border-white/[0.08] py-2 focus-within:border-[var(--restricted-red-vivid)] transition-colors duration-300">
                       <textarea
                         name="message" value={form.message} required
                         placeholder="Describe your project or inquiry..."
@@ -380,13 +380,13 @@ export default function ContactSpread() {
                   <button
                     type="submit"
                     disabled={status === 'submitting'}
-                    className="w-full py-3.5 rounded uppercase cursor-pointer flex items-center justify-center gap-3 transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--gold-ochre-vivid)] focus-visible:outline-offset-2"
+                    className="w-full py-3.5 rounded uppercase cursor-pointer flex items-center justify-center gap-3 transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--restricted-red-vivid)] focus-visible:outline-offset-2"
                     style={{
                       fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', fontWeight: 700,
-                      letterSpacing: '0.14em', border: '1px solid var(--gold-ochre-vivid)',
+                      letterSpacing: '0.14em', border: '1px solid var(--restricted-red-vivid)',
                       color: 'var(--ivory-warm)', background: 'transparent',
                     }}
-                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold-ochre-vivid)'; e.currentTarget.style.color = '#1c1c1d'; }}
+                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--restricted-red-vivid)'; e.currentTarget.style.color = 'var(--ivory-warm)'; }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--ivory-warm)'; }}
                   >
                     {status === 'submitting' ? (
