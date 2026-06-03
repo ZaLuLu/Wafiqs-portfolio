@@ -129,32 +129,15 @@ export default function ContactSpread() {
       </div>
 
       {/* ── SECTION HEADER ── */}
-      <div
-        className="flex justify-between items-end pb-4 w-full mb-6 relative z-10"
-        style={{ borderBottom: '1px solid var(--border-subtle)' }}
-      >
-        <div className="flex items-baseline gap-4">
-          <span
-            className="font-display italic font-black"
-            style={{ fontSize: '2rem', lineHeight: 1, color: 'var(--restricted-red)' }}
-          >
-            V
-          </span>
-          <div className="font-sans">
-            <div style={{ fontSize: '13px', fontWeight: 700, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--ivory-warm)' }}>
-              Secure Relay Terminal
-            </div>
-            <div style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ivory-dim)', marginTop: '2px' }}>
-              SECTION WN-05 · TRANSMISSION DISPATCH
-            </div>
+      <div className="spread-header">
+        <div className="flex items-baseline gap-5">
+          <span className="spread-header-numeral">V</span>
+          <div>
+            <div className="spread-header-title">Secure Relay Terminal</div>
+            <div className="spread-header-subtitle">Transmission Dispatch</div>
           </div>
         </div>
-        <span
-          className="font-sans hidden sm:block"
-          style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--restricted-red)', opacity: 0.8 }}
-        >
-          RESTRICTED // TRANSMISSION
-        </span>
+        <span className="spread-header-badge hidden sm:block">RESTRICTED // TRANSMISSION</span>
       </div>
 
       {/* ── MAIN FRAME ── */}
@@ -175,74 +158,61 @@ export default function ContactSpread() {
             className="flex flex-col gap-6 lg:w-[44%] justify-between flex-shrink-0"
           >
             <div className="flex flex-col gap-5 relative">
-              <span className="font-mono text-[10px] tracking-[0.24em] text-slate-400 uppercase">
-                DIRECT SECURE PORTAL
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', letterSpacing: '0.14em', color: 'var(--ivory-dim)', textTransform: 'uppercase', fontWeight: 600 }}>
+                Direct Secure Portal
               </span>
               
               <h2
-                className="font-display italic font-black uppercase text-3xl md:text-4xl leading-tight"
-                style={{ color: 'var(--ivory-warm)' }}
+                className="font-display italic font-black uppercase leading-tight"
+                style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--ivory-warm)' }}
               >
                 Initiate a<br />
                 <span style={{ color: 'var(--gold-ochre)' }}>Direct Dispatch.</span>
               </h2>
 
-              {/* Massive Direct Email Link with Stamp Highlight */}
+              {/* Email link */}
               <div 
-                className="p-4 rounded border font-mono tracking-wider flex flex-col gap-1 text-center"
-                style={{
-                  background: 'rgba(214, 175, 55, 0.04)',
-                  border: '1.5px solid var(--gold-ochre)',
-                }}
+                className="p-4 rounded flex flex-col gap-2 text-center"
+                style={{ background: 'rgba(212,181,106,0.05)', border: '1.5px solid var(--gold-ochre-vivid)' }}
               >
-                <span className="text-[10px] text-stone-500 font-bold uppercase">
-                  DIRECT EMAIL ASSET
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: 'var(--ivory-dim)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.10em' }}>
+                  Direct Email
                 </span>
                 <a
                   href="mailto:wafiqnawaz@outlook.com"
-                  className="pointer-events-auto transition-opacity duration-300 font-bold text-lg md:text-xl text-[var(--ivory-warm)] hover:opacity-85"
+                  className="pointer-events-auto transition-opacity duration-300 hover:opacity-80"
+                  style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-md)', fontWeight: 700, color: 'var(--ivory-warm)', letterSpacing: '0.04em' }}
                 >
-                  WAFIQNAWAZ@OUTLOOK.COM
+                  wafiqnawaz@outlook.com
                 </a>
               </div>
 
-              {/* Field Logistics notes */}
-              <div
-                className="font-sans italic text-slate-400 text-xs leading-relaxed"
-                style={{
-                  borderLeft: '3px solid var(--gold-ochre)',
-                  paddingLeft: '14px',
-                }}
-              >
-                "Active operative available for complete software diagnostics in 2026. Accepting internship roles locally at Bengaluru or remote assignments."
+              {/* Field note */}
+              <div style={{ fontFamily: 'var(--font-sans)', fontStyle: 'italic', color: 'var(--ivory-dim)', fontSize: 'var(--text-base)', lineHeight: 1.6, borderLeft: '3px solid var(--gold-ochre-vivid)', paddingLeft: '14px' }}>
+                "Available for 2026 internship roles — Bengaluru or remote."
               </div>
             </div>
 
-            {/* Social channels / Gateways */}
-            <div className="flex flex-col gap-3 font-mono text-xs">
-              <div
-                className="pb-2 text-[10px] tracking-[0.2em] uppercase border-b border-white/5 font-bold text-slate-400"
-              >
-                COMMUNICATION GATEWAYS
+            {/* Social links */}
+            <div className="flex flex-col gap-3">
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ivory-dim)', paddingBottom: '10px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                Communication Gateways
               </div>
-
-              <div className="flex flex-col gap-3">
-                {[
-                  { label: 'GATEWAY 01 // LINKEDIN', url: 'https://linkedin.com/in/wafiqnawaz' },
-                  { label: 'GATEWAY 02 // GITHUB', url: 'https://github.com/ZaLuLu' },
-                ].map(link => (
-                  <a
-                    key={link.url}
-                    href={link.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center gap-3 pointer-events-auto transition-colors duration-300 text-slate-400 hover:text-[var(--gold-ochre)]"
-                  >
-                    <span>[+]</span>
-                    {link.label}
-                  </a>
-                ))}
-              </div>
+              {[
+                { label: 'LinkedIn', sub: 'wafiqnawaz', url: 'https://linkedin.com/in/wafiqnawaz' },
+                { label: 'GitHub', sub: 'ZaLuLu', url: 'https://github.com/ZaLuLu' },
+              ].map(link => (
+                <a key={link.url} href={link.url} target="_blank" rel="noreferrer"
+                  className="flex items-center gap-3 pointer-events-auto transition-colors duration-300 group"
+                  style={{ color: 'var(--ivory-dim)' }}
+                >
+                  <span style={{ color: 'var(--gold-ochre-vivid)', fontWeight: 700, fontFamily: 'var(--font-mono)', fontSize: 'var(--text-base)' }}>[+]</span>
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', fontWeight: 600, color: 'var(--ivory-warm)' }} className="group-hover:text-[var(--gold-ochre-vivid)] transition-colors">{link.label}</div>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: 'var(--ivory-dim)' }}>{link.sub}</div>
+                  </div>
+                </a>
+              ))}
             </div>
 
             {/* Print directive button */}
@@ -286,19 +256,22 @@ export default function ContactSpread() {
 
             {status === 'success' ? (
               <motion.div
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center justify-center flex-1 py-16 px-6 text-center font-mono"
+                initial={{ opacity: 0, scale: 0.96, filter: 'blur(8px)' }}
+                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col items-center justify-center flex-1 py-16 px-6 text-center"
               >
-                <span
-                  className="font-bold text-lg text-[var(--gold-ochre)] block mb-4 uppercase tracking-widest"
-                >
-                  [TRANSMISSION COMPLETED]
+                {/* Animated checkmark */}
+                <div className="mb-6" style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'rgba(94,102,84,0.15)', border: '2px solid var(--archive-olive)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--archive-olive)" strokeWidth="2.5" strokeLinecap="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-lg)', fontWeight: 700, color: 'var(--gold-ochre-vivid)', display: 'block', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  Transmission Complete
                 </span>
-                <p
-                  className="text-stone-400 text-xs leading-relaxed max-w-[280px]"
-                >
-                  Log dispatched successfully into database array. Operative alerted. Disconnect secure gateway.
+                <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', color: 'var(--ivory-dim)', lineHeight: 1.6, maxWidth: '280px' }}>
+                  Message dispatched successfully. Operative alerted.
                 </p>
               </motion.div>
             ) : status === 'submitting' ? (
@@ -340,89 +313,91 @@ export default function ContactSpread() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex-1 flex flex-col justify-between p-6 font-mono pointer-events-auto" autoComplete="off">
-                <div className="flex flex-col gap-5">
+              <form onSubmit={handleSubmit} className="flex-1 flex flex-col justify-between p-6 pointer-events-auto" autoComplete="off">
+                <div className="flex flex-col gap-6">
                   
                   {/* Name field */}
-                  <div className="flex flex-col gap-1">
-                    <label className="text-[10px] text-[var(--gold-ochre)] font-bold uppercase tracking-widest">
-                      SENDER DIRECTIVE IDENTIFICATION
+                  <div className="flex flex-col gap-2">
+                    <label style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: 'var(--gold-ochre-vivid)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.10em' }}>
+                      Your Name
                     </label>
-                    <div className="flex items-center border-b border-white/5 py-1.5 focus-within:border-[var(--gold-ochre)] transition-colors">
+                    <div className="flex items-center border-b border-white/[0.08] py-2 focus-within:border-[var(--gold-ochre-vivid)] transition-all duration-300" style={{ boxShadow: 'none' }}>
                       <input
-                        type="text"
-                        name="name"
-                        value={form.name}
-                        placeholder="Enter sender name / organization..."
-                        required
-                        autoComplete="new-password"
+                        type="text" name="name" value={form.name}
+                        placeholder="Name or organization..."
+                        required autoComplete="new-password"
                         onChange={e => setForm({ ...form, name: e.target.value })}
-                        className="bg-transparent outline-none border-none text-[13px] text-white w-full tracking-wider font-serif placeholder:italic placeholder:text-stone-600"
+                        style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-md)', background: 'transparent', outline: 'none', border: 'none', color: 'var(--ivory-warm)', width: '100%' }}
+                        className="placeholder:text-slate-600 placeholder:italic"
                       />
                     </div>
                   </div>
 
                   {/* Email field */}
-                  <div className="flex flex-col gap-1">
-                    <label className="text-[10px] text-[var(--gold-ochre)] font-bold uppercase tracking-widest">
-                      ROUTING OUTBOX GATEWAY
+                  <div className="flex flex-col gap-2">
+                    <label style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: 'var(--gold-ochre-vivid)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.10em' }}>
+                      Email Address
                     </label>
-                    <div className="flex items-center border-b border-white/5 py-1.5 focus-within:border-[var(--gold-ochre)] transition-colors">
+                    <div className="flex items-center border-b border-white/[0.08] py-2 focus-within:border-[var(--gold-ochre-vivid)] transition-colors duration-300">
                       <input
-                        type="email"
-                        name="email"
-                        value={form.email}
-                        placeholder="Enter routing email gateway..."
-                        required
-                        autoComplete="new-password"
+                        type="email" name="email" value={form.email}
+                        placeholder="your@email.com"
+                        required autoComplete="new-password"
                         onChange={e => setForm({ ...form, email: e.target.value })}
-                        className="bg-transparent outline-none border-none text-[13px] text-white w-full tracking-wider font-serif placeholder:italic placeholder:text-stone-600"
+                        style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-md)', background: 'transparent', outline: 'none', border: 'none', color: 'var(--ivory-warm)', width: '100%' }}
+                        className="placeholder:text-slate-600 placeholder:italic"
                       />
                     </div>
                   </div>
 
                   {/* Message field */}
-                  <div className="flex flex-col gap-1">
-                    <label className="text-[10px] text-[var(--gold-ochre)] font-bold uppercase tracking-widest">
-                      DISPATCH PAYLOAD BODY
+                  <div className="flex flex-col gap-2">
+                    <label style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: 'var(--gold-ochre-vivid)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.10em' }}>
+                      Message
                     </label>
-                    <div className="border-b border-white/5 py-1.5 focus-within:border-[var(--gold-ochre)] transition-colors">
+                    <div className="border-b border-white/[0.08] py-2 focus-within:border-[var(--gold-ochre-vivid)] transition-colors duration-300">
                       <textarea
-                        name="message"
-                        value={form.message}
-                        required
-                        placeholder="Describe transmission objective or project specs..."
-                        maxLength={500}
-                        autoComplete="off"
+                        name="message" value={form.message} required
+                        placeholder="Describe your project or inquiry..."
+                        maxLength={500} autoComplete="off"
                         onChange={e => setForm({ ...form, message: e.target.value })}
-                        className="bg-transparent resize-none min-h-[90px] outline-none border-none text-[13px] text-white w-full tracking-wider leading-relaxed font-serif placeholder:italic placeholder:text-stone-600"
+                        style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-base)', background: 'transparent', resize: 'none', minHeight: '90px', outline: 'none', border: 'none', color: 'var(--ivory-warm)', width: '100%', lineHeight: 1.65 }}
+                        className="placeholder:text-slate-600 placeholder:italic"
                       />
                     </div>
-                    <div className="flex justify-between items-center text-[9px] text-stone-500 font-bold mt-1">
-                      <span className="text-[var(--restricted-red)]">
-                        {status === 'error' && 'TRANSMISSION_FAILED // RETRY_DIRECTIVE'}
-                      </span>
-                      <span>
-                        {form.message.length} / 500 CHARS
-                      </span>
+                    <div className="flex justify-between items-center mt-1">
+                      {status === 'error' ? (
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', color: 'var(--restricted-red-vivid)', fontWeight: 700 }}>⚠ Transmission failed — please retry.</span>
+                      ) : <span />}
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--ivory-dim)' }}>{form.message.length} / 500</span>
                     </div>
                   </div>
 
                 </div>
 
-                {/* Submit Transmission */}
-                <div className="pt-6 border-t border-white/5 mt-6">
+                {/* Submit */}
+                <div className="pt-5 border-t border-white/[0.06] mt-5">
                   <button
                     type="submit"
                     disabled={status === 'submitting'}
-                    className="w-full py-3 border border-[var(--gold-ochre)] text-[var(--ivory-warm)] bg-transparent hover:bg-[var(--gold-ochre)] hover:text-stone-900 transition-all duration-300 font-mono tracking-[0.24em] text-[11px] rounded uppercase cursor-pointer flex items-center justify-center gap-2.5"
+                    className="w-full py-3.5 rounded uppercase cursor-pointer flex items-center justify-center gap-3 transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--gold-ochre-vivid)] focus-visible:outline-offset-2"
+                    style={{
+                      fontFamily: 'var(--font-mono)', fontSize: 'var(--text-sm)', fontWeight: 700,
+                      letterSpacing: '0.14em', border: '1px solid var(--gold-ochre-vivid)',
+                      color: 'var(--ivory-warm)', background: 'transparent',
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold-ochre-vivid)'; e.currentTarget.style.color = '#1c1c1d'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--ivory-warm)'; }}
                   >
                     {status === 'submitting' ? (
-                      <>DISPATCHING PACKETS...</>
+                      <>
+                        <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                        Dispatching...
+                      </>
                     ) : (
                       <>
-                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--tactical-green)] animate-pulse" />
-                        INITIATE TRANSMISSION
+                        <span className="w-2 h-2 rounded-full bg-[var(--archive-olive)] animate-pulse" />
+                        Send Message
                       </>
                     )}
                   </button>
@@ -433,10 +408,6 @@ export default function ContactSpread() {
         </div>
       </div>
 
-      {/* Story Intercept Log */}
-      <div className="w-full mt-6 pt-3 border-t border-white/5 text-[9px] font-mono text-slate-500 pointer-events-none text-left z-10 relative">
-        [ENCRYPTION KEY VALIDATED // REF: WN-05]: Outbox proxy pathways initialized. Gateway active for secure client transmissions.
-      </div>
     </motion.div>
   );
 }
